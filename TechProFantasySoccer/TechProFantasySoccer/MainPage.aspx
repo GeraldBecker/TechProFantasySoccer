@@ -3,16 +3,44 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %></h2>
 
-    <asp:Table ID="Table1" runat="server" CellPadding="10">
-        <asp:TableRow>
-            <asp:TableHeaderCell>LEAGUE:</asp:TableHeaderCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableHeaderCell>  </asp:TableHeaderCell>
-        </asp:TableRow>
-        <asp:TableRow>
-            <asp:TableHeaderCell>TEAM:</asp:TableHeaderCell>
-        </asp:TableRow>
-    </asp:Table>
+    <style type="text/css">
+            .auto-style2 {
+                width: 100%;
+            }
+            .auto-style3 {
+                width: 486px;
+            }
+            .auto-style4 {
+                width: 1003px;
+            }
+    </style>
+
+    <table id="tbale1" class="auto-style2">
+        <tr>
+            <td class="auto-style3">LEAGUE:</td>
+            <td class="auto-style3">
+                <asp:TextBox ID="leagueTextbox" runat="server"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style3">TEAM:</td>
+            <td class="auto-style3">
+                <asp:TextBox ID="teamTextbox" runat="server"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td><button id="playerSearchBtn">Player Search</button></td>
+        </tr>
+        <tr>
+            <td><button id="teamOverviewBtn">Team Overview</button></td>
+        </tr>
+        <tr>
+            <td><button id="setLineupBtn">Set Team Lineup</button></td>
+        </tr>
+        <tr>
+            <td><button id="leagueChatBtn">League Chat</button></td>
+        </tr>
+    </table>
+    
 </asp:Content>
 
