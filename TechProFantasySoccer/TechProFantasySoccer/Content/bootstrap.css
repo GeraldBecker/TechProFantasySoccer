@@ -332,6 +332,7 @@ input,
 select[multiple],
 textarea {
   background-image: none;
+    width: 231px;
 }
 
 a {
@@ -522,6 +523,7 @@ h2,
 h3,
 .h3 {
   font-size: 24px;
+    height: 34px;
 }
 
 h4,
