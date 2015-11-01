@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 namespace TechProFantasySoccer {
     public partial class TeamOverview : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
-            DataTable table = new DataTable();
+            /*DataTable table = new DataTable();
             table.Columns.Add("Name");
             table.Columns.Add("Cost");
             table.Columns.Add("Position");
@@ -25,7 +25,7 @@ namespace TechProFantasySoccer {
 
             GridView1.DataSource = table;
 
-            GridView1.DataBind();
+            GridView1.DataBind();*/
         }
     }
 }
