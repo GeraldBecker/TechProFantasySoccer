@@ -140,7 +140,18 @@
         SUM([PlayerStats].YellowCards) AS YC,
         SUM([PlayerStats].RedCards) AS RC,
         SUM([PlayerStats].GoalsAllowed) AS GA,
-        SUM([PlayerStats].SavesMade) AS Saves
+        SUM([PlayerStats].SavesMade) AS Saves,
+        dbo.CalculateTotalFantasyPoints(SUM([PlayerStats].Goals),
+								        SUM([PlayerStats].Shots), 
+								        SUM([PlayerStats].Assists),
+								        SUM([PlayerStats].MinPlayed),
+								        SUM([PlayerStats].Fouls),
+								        SUM([PlayerStats].YellowCards),
+								        SUM([PlayerStats].RedCards),
+								        SUM([PlayerStats].GoalsAllowed),
+								        SUM([PlayerStats].SavesMade),
+								        SUM([PlayerStats].CleanSheets),
+								        Positions.PositionRef) AS 'Total Fantasy Pts'
         FROM [Players]
         INNER JOIN LineupHistory ON LineupHistory.PlayerId = Players.PlayerId
         INNER JOIN [Positions] ON [Positions].[PositionRef] = Players.PositionRef
@@ -148,7 +159,7 @@
         INNER JOIN Clubs ON Clubs.ClubId = Players.ClubId
         WHERE LineupHistory.Month = DATEPART(MONTH, GETDATE())
         AND LineupHistory.UserId = 1
-        GROUP BY Players.PlayerId, FirstName, LastName, Players.Cost, Clubs.ClubName, Positions.PositionName
+        GROUP BY Players.PlayerId, FirstName, LastName, Players.Cost, Clubs.ClubName, Positions.PositionName, Positions.PositionRef
         ORDER BY Last">
     </asp:SqlDataSource>
 
