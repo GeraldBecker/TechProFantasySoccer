@@ -30,7 +30,7 @@ namespace TechProFantasySoccer.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("FantasySoccerConnectionString", throwIfV1Schema: false)
         {
         }
 

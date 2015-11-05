@@ -40,13 +40,13 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// Label2 control.
+        /// GoalsPtsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label GoalsPtsLabel;
         
         /// <summary>
         /// Label3 control.
@@ -58,13 +58,13 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// Label4 control.
+        /// AssistsPtsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label AssistsPtsLabel;
         
         /// <summary>
         /// Label5 control.
@@ -76,13 +76,13 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
-        /// Label6 control.
+        /// ShotsPtsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.Label ShotsPtsLabel;
         
         /// <summary>
         /// Label7 control.
@@ -94,13 +94,13 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.Label Label7;
         
         /// <summary>
-        /// Label8 control.
+        /// MinPlayedPtsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
+        protected global::System.Web.UI.WebControls.Label MinPlayedPtsLabel;
         
         /// <summary>
         /// Label9 control.
@@ -112,13 +112,13 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
-        /// Label10 control.
+        /// FoulsPtsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label10;
+        protected global::System.Web.UI.WebControls.Label FoulsPtsLabel;
         
         /// <summary>
         /// Label11 control.
@@ -130,13 +130,13 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.Label Label11;
         
         /// <summary>
-        /// Label12 control.
+        /// YCPtsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label12;
+        protected global::System.Web.UI.WebControls.Label YCPtsLabel;
         
         /// <summary>
         /// Label13 control.
@@ -148,13 +148,13 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.Label Label13;
         
         /// <summary>
-        /// Label14 control.
+        /// RCPtsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label14;
+        protected global::System.Web.UI.WebControls.Label RCPtsLabel;
         
         /// <summary>
         /// Label15 control.
@@ -166,13 +166,13 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.Label Label15;
         
         /// <summary>
-        /// Label16 control.
+        /// GCPtsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label16;
+        protected global::System.Web.UI.WebControls.Label GCPtsLabel;
         
         /// <summary>
         /// Label17 control.
@@ -184,6 +184,15 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.Label Label17;
         
         /// <summary>
+        /// SavesMadePtsLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SavesMadePtsLabel;
+        
+        /// <summary>
         /// Label18 control.
         /// </summary>
         /// <remarks>
@@ -193,76 +202,85 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.Label Label18;
         
         /// <summary>
-        /// Label19 control.
+        /// CleanSheetsPtsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label19;
+        protected global::System.Web.UI.WebControls.Label CleanSheetsPtsLabel;
         
         /// <summary>
-        /// Label20 control.
+        /// DefendersLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label20;
+        protected global::System.Web.UI.WebControls.Label DefendersLabel;
         
         /// <summary>
-        /// Label21 control.
+        /// DefendersPtsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label21;
+        protected global::System.Web.UI.WebControls.Label DefendersPtsLabel;
         
         /// <summary>
-        /// Label22 control.
+        /// MidfieldersLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label22;
+        protected global::System.Web.UI.WebControls.Label MidfieldersLabel;
         
         /// <summary>
-        /// Label23 control.
+        /// MidfieldersPtsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label23;
+        protected global::System.Web.UI.WebControls.Label MidfieldersPtsLabel;
         
         /// <summary>
-        /// Label24 control.
+        /// StrikersLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label24;
+        protected global::System.Web.UI.WebControls.Label StrikersLabel;
         
         /// <summary>
-        /// Label25 control.
+        /// StrikersPtsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label25;
+        protected global::System.Web.UI.WebControls.Label StrikersPtsLabel;
         
         /// <summary>
-        /// Label26 control.
+        /// GoaliesLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label26;
+        protected global::System.Web.UI.WebControls.Label GoaliesLabel;
+        
+        /// <summary>
+        /// GoaliesPtsLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label GoaliesPtsLabel;
         
         /// <summary>
         /// SqlFantasyDataSource control.
@@ -272,5 +290,14 @@ namespace TechProFantasySoccer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlFantasyDataSource;
+        
+        /// <summary>
+        /// SqlTeamStats control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlTeamStats;
     }
 }
