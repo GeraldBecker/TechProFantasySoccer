@@ -6,8 +6,7 @@
     <h3>Available Cap Space: <span style="font-size:16px;">$50,000</span></h3>
     
     <h4>Players:  (YTD Stats)</h4>
-    <asp:GridView ID="GridView1" runat="server" AllowSorting="True" 
-        DataSourceID="SqlFantasyDataSource">
+    <asp:GridView ID="GridView1" runat="server" AllowSorting="True" OnSorting="GridView1_Sorting">
         <%--<columns>
              <asp:BoundField DataField="FirstName" HeaderText="First" SortExpression="FirstName" />
             <asp:BoundField DataField="Cost" HeaderText="Cost" SortExpression="Cost" />
@@ -165,9 +164,14 @@
         LEFT OUTER JOIN PlayerStats ON PlayerStats.PlayerId = Players.PlayerId
         INNER JOIN Clubs ON Clubs.ClubId = Players.ClubId
         WHERE LineupHistory.Month = DATEPART(MONTH, GETDATE())
-        AND LineupHistory.UserId = 1
+        AND LineupHistory.UserId = @UserId
         GROUP BY Players.PlayerId, FirstName, LastName, Players.Cost, Clubs.ClubName, Positions.PositionName, Positions.PositionRef
         ORDER BY Last">
+
+        <SelectParameters>
+            <asp:Parameter Name="UserId" Type="string"/>
+        </SelectParameters>
+
     </asp:SqlDataSource>
 
 
