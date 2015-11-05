@@ -1,3 +1,11 @@
 ﻿body {
     background-color: #80ddfc;
 }
+
+#MainContent_StatsTable td {
+    padding: 0 5px;
+}
+
+th.stats_spacing {
+    padding: 0 0 0 20px;
+}
