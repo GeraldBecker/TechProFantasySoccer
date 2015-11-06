@@ -50,17 +50,21 @@ namespace TechProFantasySoccer.Players {
                 con.Open();
                 temp.Load(cmd.ExecuteReader());
 
-                PlayerName = temp.Rows[0]["First"] + " " + temp.Rows[0]["Last"];
+                if(temp.Rows.Count > 0) {
+                    PlayerName = temp.Rows[0]["First"] + " " + temp.Rows[0]["Last"];
 
-                LeagueNameLabel.Text = (string)temp.Rows[0]["LeagueName"];
-                ClubNameLabel.Text = (string)temp.Rows[0]["ClubName"];
-                PositionLabel.Text = (string)temp.Rows[0]["Position"];
-                CostLabel.Text = ((int)temp.Rows[0]["Cost"]).ToString();
+                    LeagueNameLabel.Text = (string)temp.Rows[0]["LeagueName"];
+                    ClubNameLabel.Text = (string)temp.Rows[0]["ClubName"];
+                    PositionLabel.Text = (string)temp.Rows[0]["Position"];
+                    CostLabel.Text = ((int)temp.Rows[0]["Cost"]).ToString();
+                }
 
             } catch(System.Data.SqlClient.SqlException ex) {
 
             } catch(System.InvalidCastException ex) {
                 Response.Write("An error has occured converting a value.");
+            } catch(System.IndexOutOfRangeException ex) {
+                //Enter a valid player id.
             } finally {
                 con.Close();
             }
