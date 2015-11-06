@@ -166,6 +166,7 @@
     <Content Include="FantasyPointsDetails.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="JoinLeague.aspx" />
+    <Content Include="LeagueStandings.aspx" />
     <Content Include="MainPage.aspx" />
     <Content Include="ManagerMain.aspx" />
     <Content Include="packages.config" />
@@ -209,12 +210,15 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="SetLineup.aspx" />
     <Content Include="Site.Master" />
     <Content Include="StyleSheet.css" />
     <Content Include="TeamOverview.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
-    <Content Include="Bundle.config" />
+    <Content Include="Bundle.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Site.Mobile.Master" />
@@ -352,6 +356,13 @@
     <Compile Include="JoinLeague.aspx.designer.cs">
       <DependentUpon>JoinLeague.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LeagueStandings.aspx.cs">
+      <DependentUpon>LeagueStandings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeagueStandings.aspx.designer.cs">
+      <DependentUpon>LeagueStandings.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.aspx.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -383,6 +394,13 @@
       <DependentUpon>ViewPlayer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetLineup.aspx.cs">
+      <DependentUpon>SetLineup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SetLineup.aspx.designer.cs">
+      <DependentUpon>SetLineup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
