@@ -54,7 +54,6 @@ namespace TechProFantasySoccer {
             midfieldercmd.Connection = con1;
 
             DataTable midfieldertbl = new DataTable();
-            //GridView1.EmptyDataText = "No Records Found";
             midfieldertbl.Load(midfieldercmd.ExecuteReader());
 
             tbMidfielders.DataSource = midfieldertbl;
@@ -82,12 +81,12 @@ namespace TechProFantasySoccer {
 
             SqlCommand benchcmd = new SqlCommand();
             benchcmd.CommandText =
-                "SELECT Players.FirstName AS First, LastName AS Last " +
+                "SELECT Players.FirstName AS First, LastName AS Last, Positions.PositionName AS Position " +
                 "FROM Players " +
                 "JOIN LineupHistory ON LineupHistory.PlayerId = Players.PlayerId " +
+                "JOIN Positions ON Positions.PositionRef = Players.PositionRef " +
                 "WHERE LineupHistory.Month = DATEPART(MONTH, GETDATE()) " +
                 "AND LineupHistory.UserId = '" + User.Identity.GetUserId() + "' " +
-                //"AND Players.PositionRef = 1 " +
                 "AND LineupHistory.Active = 0 " +
                 "ORDER BY Last";
 
