@@ -45,7 +45,7 @@
             if (e.stopPropagation) {
                 e.stopPropagation();
             }
-            
+
             srcElement.style.opacity = '1';
             $(this).removeClass('highlight');
             var count = $(this).find("div[data-player-name='" + e.dataTransfer.getData('text/html') + "']").length;
@@ -59,6 +59,16 @@
             }
             return false;
         }
+
+        document.addEventListener("drop", function (event) {
+            event.preventDefault();
+            if (event.target.className == "droptarget") {
+                document.getElementById("demo").style.color = "";
+                event.target.style.border = "";
+                var data = event.dataTransfer.getData("Text");
+                event.target.appendChild(document.getElementById(data));
+            }
+        });
 
         function OnDragEnd(e) {
             $("div .bag").removeClass('highlight');
