@@ -162,6 +162,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="MainPage.aspx" />
+    <Content Include="ManagerMain.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -315,6 +316,13 @@
     </Compile>
     <Compile Include="MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerMain.aspx.cs">
+      <DependentUpon>ManagerMain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerMain.aspx.designer.cs">
+      <DependentUpon>ManagerMain.aspx</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
