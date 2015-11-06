@@ -166,6 +166,7 @@
     <Content Include="FantasyPointsDetails.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="JoinLeague.aspx" />
+    <Content Include="LeagueStandings.aspx" />
     <Content Include="MainPage.aspx" />
     <Content Include="ManagerMain.aspx" />
     <Content Include="packages.config" />
@@ -215,7 +216,9 @@
     <Content Include="TeamOverview.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
-    <Content Include="Bundle.config" />
+    <Content Include="Bundle.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Site.Mobile.Master" />
@@ -352,6 +355,13 @@
     </Compile>
     <Compile Include="JoinLeague.aspx.designer.cs">
       <DependentUpon>JoinLeague.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeagueStandings.aspx.cs">
+      <DependentUpon>LeagueStandings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeagueStandings.aspx.designer.cs">
+      <DependentUpon>LeagueStandings.aspx</DependentUpon>
     </Compile>
     <Compile Include="MainPage.aspx.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>

@@ -123,7 +123,7 @@ namespace TechProFantasySoccer {
                 
 
                 con.Open();
-                GridView1.EmptyDataText = "No Records Found";
+                PlayerSearchGridView.EmptyDataText = "No Records Found";
                 temp.Load(cmd.ExecuteReader());
 
 
@@ -147,8 +147,8 @@ namespace TechProFantasySoccer {
                 }*/
                 //temp.Columns.Remove("PlayerId");
 
-                GridView1.DataSource = temp;
-                GridView1.DataBind();
+                PlayerSearchGridView.DataSource = temp;
+                PlayerSearchGridView.DataBind();
             } catch(System.Data.SqlClient.SqlException ex) {
 
             } finally {
@@ -157,11 +157,11 @@ namespace TechProFantasySoccer {
         }
 
 
-        protected void GridView1_Sorting(object sender, GridViewSortEventArgs e) {
-            DataTable temp = (DataTable)GridView1.DataSource;
+        protected void PlayerSearchGridView_Sorting(object sender, GridViewSortEventArgs e) {
+            DataTable temp = (DataTable)PlayerSearchGridView.DataSource;
             temp.DefaultView.Sort = e.SortExpression + " " + GetSortDirection(e.SortExpression);
-            GridView1.DataSource = temp;
-            GridView1.DataBind();
+            PlayerSearchGridView.DataSource = temp;
+            PlayerSearchGridView.DataBind();
         }
 
         private string GetSortDirection(string column) {
@@ -189,9 +189,9 @@ namespace TechProFantasySoccer {
             return sortDirection;
         }
 
-        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e) {
-            GridView1.PageIndex = e.NewPageIndex;
-            GridView1.DataBind();
+        protected void PlayerSearchGridView_PageIndexChanging(object sender, GridViewPageEventArgs e) {
+            PlayerSearchGridView.PageIndex = e.NewPageIndex;
+            PlayerSearchGridView.DataBind();
         }
 
         protected void ClearEntries(object sender, EventArgs e) {
@@ -202,5 +202,18 @@ namespace TechProFantasySoccer {
             PositionDropDown.SelectedIndex = 0;
             clearButtonPress = true;
         }
+
+        protected void PlayerSearchGridView_SelectedIndexChanged(Object sender, EventArgs e) {
+            // Get the currently selected row using the SelectedRow property.
+            GridViewRow row = PlayerSearchGridView.SelectedRow;
+
+            // Display the first name from the selected row.
+            // In this example, the third column (index 2) contains
+            // the first name.
+            //FirstNameTextBox.Text = "PICK:" + row.Cells[1].Text + ".";
+            Response.Redirect("./Players/ViewPlayer?player=" + row.Cells[1].Text);
+        }
+
+
     }
 }
