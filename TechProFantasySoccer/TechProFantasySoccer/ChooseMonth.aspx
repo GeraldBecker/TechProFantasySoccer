@@ -6,40 +6,22 @@
 
     <table id="table1">
         <tr>
-            <td><asp:Button id="janBtn" runat="server" Height="36px" Width="300px" text="January" BackColor="#eaeaea" /></td>
-        </tr>
-        <tr>
-            <td><asp:Button id="febBtn" runat="server" Height="36px" Width="300px" text="February" BackColor="#eaeaea" /></td>
-        </tr>
-        <tr>
-            <td><asp:Button id="marBtn" runat="server" Height="36px" Width="300px" text="March" BackColor="#eaeaea" /></td>
-        </tr>
-        <tr>
-            <td><asp:Button id="aprBtn" runat="server" Height="36px" Width="300px" text="April" BackColor="#eaeaea" /></td>
-        </tr>
-        <tr>
-            <td><asp:Button id="mayBtn" runat="server" Height="36px" Width="300px" text="May" BackColor="#eaeaea" /></td>
-        </tr>
-        <tr>
-            <td><asp:Button id="junBtn" runat="server" Height="36px" Width="300px" text="June" BackColor="#eaeaea" /></td>
-        </tr>
-        <tr>
-            <td><asp:Button id="julBtn" runat="server" Height="36px" Width="300px" text="July" BackColor="#eaeaea" /></td>
-        </tr>
-        <tr>
-            <td><asp:Button id="augBtn" runat="server" Height="36px" Width="300px" text="August" BackColor="#eaeaea" /></td>
-        </tr>
-        <tr>
             <td><asp:Button id="sepBtn" runat="server" Height="36px" Width="300px" text="September" BackColor="#eaeaea" /></td>
         </tr>
         <tr>
-            <td><asp:Button id="octBtn" runat="server" Height="36px" Width="300px" text="October" BackColor="#eaeaea" /></td>
+            <td><asp:Button id="octBtn" runat="server" Height="36px" Width="300px" text="October" BackColor="#e7e7e7" /></td>
         </tr>
         <tr>
-            <td><asp:Button id="novBtn" runat="server" Height="36px" Width="300px" text="November" BackColor="#eaeaea" /></td>
+            <td><asp:Button id="novBtn" runat="server" Height="36px" Width="300px" text="November" BackColor="#e4e4e4" /></td>
         </tr>
         <tr>
-            <td><asp:Button id="decBtn" runat="server" Height="36px" Width="300px" text="December" BackColor="#eaeaea" /></td>
+            <td><asp:Button id="decBtn" runat="server" Height="36px" Width="300px" text="December" BackColor="#cccccc" /></td>
+        </tr>
+        <tr>
+            <td><asp:Button id="janBtn" runat="server" Height="36px" Width="300px" text="January" BackColor="#b4b4b4" /></td>
+        </tr>
+        <tr>
+            <td><asp:Button id="febBtn" runat="server" Height="36px" Width="300px" text="February" BackColor="#9c9c9c" /></td>
         </tr>
     </table>
     
