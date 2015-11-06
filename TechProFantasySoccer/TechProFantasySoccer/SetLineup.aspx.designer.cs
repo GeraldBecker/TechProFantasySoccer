@@ -10,60 +10,60 @@
 namespace TechProFantasySoccer {
     
     
-    public partial class MainPage {
+    public partial class SetLineup {
         
         /// <summary>
-        /// LeagueName control.
+        /// ListBox1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LeagueName;
+        protected global::System.Web.UI.WebControls.ListBox ListBox1;
         
         /// <summary>
-        /// TeamName control.
+        /// tbDefenders control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TeamName;
+        protected global::System.Web.UI.WebControls.DataList tbDefenders;
         
         /// <summary>
-        /// PlayerSearchBtn control.
+        /// tbBench control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button PlayerSearchBtn;
+        protected global::System.Web.UI.WebControls.DataList tbBench;
         
         /// <summary>
-        /// TeamOverviewBtn control.
+        /// tbMidfielders control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button TeamOverviewBtn;
+        protected global::System.Web.UI.WebControls.DataList tbMidfielders;
         
         /// <summary>
-        /// SetLineupBtn control.
+        /// tbStrikers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SetLineupBtn;
+        protected global::System.Web.UI.WebControls.DataList tbStrikers;
         
         /// <summary>
-        /// LeagueChatBtn control.
+        /// lbGoalie control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button LeagueChatBtn;
+        protected global::System.Web.UI.WebControls.ListBox lbGoalie;
     }
 }

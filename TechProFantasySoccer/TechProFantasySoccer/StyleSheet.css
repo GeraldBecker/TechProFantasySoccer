@@ -1,3 +1,89 @@
 ﻿body {
-    background-color: #80ddfc;
+    background-color: #daede2;
 }
+
+td.lineupColumn1 {
+    width: 300px;
+}
+
+.player
+{
+    height: 30px;
+    width: 300px;
+    color: red;
+    border: 2px solid #666666;
+    background-color: black;
+    padding:3px;
+    margin: 0px 2px;
+    text-align: center;
+    cursor: move;
+    
+}
+
+.teamSpots {
+    background-color: white;
+    width: 300px;
+    margin: 0px;
+}
+
+#midDiv {
+    height: 120px;
+    margin: 0;
+}
+
+#defDiv {
+    height: 120px;
+    margin: 0;
+}
+
+#strDiv {
+    height: 60px;
+    margin: 0;
+}
+
+.playerName {
+    text-align: left;
+    float: left;
+}
+
+.playerPosition {
+    text-align: right;
+    float: right;
+}
+
+#MainContent_StatsTable td {
+    padding: 0 5px;
+}
+
+th.stats_spacing {
+    padding: 0 0 0 20px;
+}
+
+#MainContent_PlayerSearchGridView td,  #MainContent_PlayerSearchGridView th,
+#MainContent_TeamGridView td,  #MainContent_TeamGridView th,
+#MainContent_FantasyDetailsGridView td, #MainContent_FantasyDetailsGridView th{
+    padding: 5px;
+    /*cursor: pointer;*/
+}
+
+#MainContent_PlayerSearchGridView th,
+#MainContent_TeamGridView th,
+#MainContent_FantasyDetailsGridView th {
+    background-color: #cccccc;
+    color: #2c3e50;
+}
+
+#MainContent_PlayerSearchGridView a,
+#MainContent_TeamGridView a,
+#MainContent_FantasyDetailsGridView a {
+    color: #2c3e50;
+}
+
+#MainContent_TeamGridView, #MainContent_FantasyDetailsGridView, #MainContent_PlayerSearchGridView {
+    
+    border: none;
+    -moz-box-shadow: 0px 0px 5px 5px #888888;
+    -webkit-box-shadow: 0px 0px 5px 5px #888888;
+    box-shadow: 0px 0px 5px 5px #888888; /*The 3rd parameter sets how far the shadow blurs*/
+}
+

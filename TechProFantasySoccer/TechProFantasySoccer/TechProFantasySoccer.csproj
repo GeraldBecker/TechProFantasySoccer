@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -146,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="AboutToJoin.aspx" />
     <Content Include="Account\Confirm.aspx" />
     <Content Include="Account\Forgot.aspx" />
     <Content Include="Account\Login.aspx" />
@@ -155,12 +157,18 @@
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="Account\ResetPassword.aspx" />
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
+    <Content Include="ChooseMonth.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="EditPlayerInfo.aspx" />
+    <Content Include="FantasyPointsDetails.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="JoinLeague.aspx" />
+    <Content Include="LeagueStandings.aspx" />
     <Content Include="MainPage.aspx" />
+    <Content Include="ManagerMain.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -168,6 +176,8 @@
     <Content Include="Account\Web.config" />
     <None Include="Properties\PublishProfiles\File.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="PlayerSearch.aspx" />
+    <Content Include="Players\ViewPlayer.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -200,12 +210,15 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="SetLineup.aspx" />
     <Content Include="Site.Master" />
     <Content Include="StyleSheet.css" />
     <Content Include="TeamOverview.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
-    <Content Include="Bundle.config" />
+    <Content Include="Bundle.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Site.Mobile.Master" />
@@ -217,6 +230,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutToJoin.aspx.cs">
+      <DependentUpon>AboutToJoin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AboutToJoin.aspx.designer.cs">
+      <DependentUpon>AboutToJoin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\Confirm.aspx.cs">
       <DependentUpon>Confirm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -291,6 +311,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="ChooseMonth.aspx.cs">
+      <DependentUpon>ChooseMonth.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChooseMonth.aspx.designer.cs">
+      <DependentUpon>ChooseMonth.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -305,8 +332,36 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EditPlayerInfo.aspx.cs">
+      <DependentUpon>EditPlayerInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditPlayerInfo.aspx.designer.cs">
+      <DependentUpon>EditPlayerInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FantasyPointsDetails.aspx.cs">
+      <DependentUpon>FantasyPointsDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FantasyPointsDetails.aspx.designer.cs">
+      <DependentUpon>FantasyPointsDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="JoinLeague.aspx.cs">
+      <DependentUpon>JoinLeague.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JoinLeague.aspx.designer.cs">
+      <DependentUpon>JoinLeague.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeagueStandings.aspx.cs">
+      <DependentUpon>LeagueStandings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeagueStandings.aspx.designer.cs">
+      <DependentUpon>LeagueStandings.aspx</DependentUpon>
     </Compile>
     <Compile Include="MainPage.aspx.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
@@ -315,8 +370,37 @@
     <Compile Include="MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ManagerMain.aspx.cs">
+      <DependentUpon>ManagerMain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerMain.aspx.designer.cs">
+      <DependentUpon>ManagerMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="PlayerSearch.aspx.cs">
+      <DependentUpon>PlayerSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlayerSearch.aspx.designer.cs">
+      <DependentUpon>PlayerSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Players\ViewPlayer.aspx.cs">
+      <DependentUpon>ViewPlayer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Players\ViewPlayer.aspx.designer.cs">
+      <DependentUpon>ViewPlayer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetLineup.aspx.cs">
+      <DependentUpon>SetLineup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SetLineup.aspx.designer.cs">
+      <DependentUpon>SetLineup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
