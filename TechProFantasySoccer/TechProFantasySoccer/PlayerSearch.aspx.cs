@@ -28,6 +28,7 @@ namespace TechProFantasySoccer {
             //Populate the grid with all fantasy points earned including each month
             cmd.CommandText =
                 "SELECT " +
+                "Players.PlayerId AS PlayerId, " +
                 "FirstName AS First, " +
                 "LastName AS Last, " +
                 "Cost, " +
@@ -110,7 +111,7 @@ namespace TechProFantasySoccer {
 
             cmd.CommandText += 
                 "GROUP BY FirstName, LastName, Players.PositionRef, Positions.PositionName, Cost, " + 
-                "Clubs.ClubName, Leagues.LeagueName " +
+                "Clubs.ClubName, Leagues.LeagueName, Players.PlayerId " +
                 "ORDER BY LastName, FirstName";
 
             
@@ -118,10 +119,33 @@ namespace TechProFantasySoccer {
             cmd.Connection = con;
             try {
                 DataTable temp = new DataTable();
+
+                
+
                 con.Open();
                 GridView1.EmptyDataText = "No Records Found";
                 temp.Load(cmd.ExecuteReader());
 
+
+                /*HyperLinkColumn hplink = new HyperLinkColumn();
+                hplink.Text = "Link";
+                temp.Columns.Add(hplink.Text);
+
+                for(int i = 0; i < temp.Rows.Count; i++) {
+                    int playerId = (int)temp.Rows[i]["PlayerId"];
+                    //temp.Rows[i]["Link"] = "<a href=\"./Players/ViewPlayer.aspx?player=" + playerId + "\">Click Here</a>";
+                    //HyperLink tempo = new HyperLink();
+
+
+
+                    temp.Rows[i][hplink.Text] = String.Format("<a href='./Players/ViewPlayer.aspx?player=" 
+                        + playerId +"'>HAHA</a>");
+                    //tempo.NavigateUrl = "./Players/ViewPlayer.aspx?player=" + playerId;
+                    //tempo.Text = "Click Here";
+                    //temp.Rows[i]["Link"] = tempo;
+
+                }*/
+                //temp.Columns.Remove("PlayerId");
 
                 GridView1.DataSource = temp;
                 GridView1.DataBind();
