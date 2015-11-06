@@ -97,15 +97,16 @@ namespace TechProFantasySoccer.Players {
             try {
                 temp = new DataTable();
                 con.Open();
-                GridView1.EmptyDataText = "No Records Found";
+                FantasyDetailsGridView.EmptyDataText = "No Records Found";
                 temp.Load(cmd.ExecuteReader());
 
-                GridView1.DataSource = temp;
-                GridView1.DataBind();
+                FantasyDetailsGridView.DataSource = temp;
+                FantasyDetailsGridView.DataBind();
 
                 decimal sumFantasyPts = 0;
                 for(int i = 0; i < temp.Rows.Count; i++) {
-                    sumFantasyPts += (decimal)temp.Rows[i]["Total Fantasy Pts"];
+                    if(temp.Rows[i]["Total Fantasy Pts"].ToString() != "")
+                        sumFantasyPts += (decimal)temp.Rows[i]["Total Fantasy Pts"];
                 }
 
                 FantasyPointsLabel.Text = sumFantasyPts.ToString() + " pts";
@@ -113,7 +114,7 @@ namespace TechProFantasySoccer.Players {
             } catch(System.Data.SqlClient.SqlException ex) {
 
             } catch(System.InvalidCastException ex) {
-                Response.Write("An error has occured.");
+                Response.Write("An error has occured." + ex);
             } finally {
                 con.Close();
             }

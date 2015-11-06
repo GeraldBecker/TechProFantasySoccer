@@ -5,7 +5,8 @@
     <h2><%: Title %></h2>
     <h3><%=UserName%>'s Team</h3>
 
-    <asp:GridView ID="GridView1" runat="server" AllowSorting="True" OnSorting="GridView1_Sorting">
+    <asp:GridView ID="FantasyDetailsGridView" runat="server" AllowSorting="True" OnSorting="FantasyDetailsGridView_Sorting"
+        AlternatingRowStyle-BackColor="#18bc9c">
     </asp:GridView>
     <br />
      <asp:Label ID="FantasyPointsHLabel" runat="server" Font-Size="Large" Text="Total Fantasy Points:"></asp:Label>

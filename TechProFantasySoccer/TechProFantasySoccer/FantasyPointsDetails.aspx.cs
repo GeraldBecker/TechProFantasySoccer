@@ -69,12 +69,12 @@ namespace TechProFantasySoccer {
             try {
                 DataTable temp = new DataTable();
                 con.Open();
-                GridView1.EmptyDataText = "No Records Found";
+                FantasyDetailsGridView.EmptyDataText = "No Records Found";
                 temp.Load(cmd.ExecuteReader());
 
 
-                GridView1.DataSource = temp;
-                GridView1.DataBind();
+                FantasyDetailsGridView.DataSource = temp;
+                FantasyDetailsGridView.DataBind();
             } catch(System.Data.SqlClient.SqlException ex) {
 
             } finally {
@@ -120,11 +120,11 @@ namespace TechProFantasySoccer {
 
 
         }
-        protected void GridView1_Sorting(object sender, GridViewSortEventArgs e) {
-            DataTable temp = (DataTable)GridView1.DataSource;
+        protected void FantasyDetailsGridView_Sorting(object sender, GridViewSortEventArgs e) {
+            DataTable temp = (DataTable)FantasyDetailsGridView.DataSource;
             temp.DefaultView.Sort = e.SortExpression + " " + GetSortDirection(e.SortExpression);
-            GridView1.DataSource = temp;
-            GridView1.DataBind();
+            FantasyDetailsGridView.DataSource = temp;
+            FantasyDetailsGridView.DataBind();
         }
 
         private string GetSortDirection(string column) {
