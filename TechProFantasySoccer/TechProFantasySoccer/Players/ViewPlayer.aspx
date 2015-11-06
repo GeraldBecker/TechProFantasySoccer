@@ -49,7 +49,7 @@
     </asp:Table>
     <br />
     <br />
-    <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+    <asp:GridView ID="FantasyDetailsGridView" runat="server" AlternatingRowStyle-BackColor="#18bc9c"></asp:GridView>
 
     
 

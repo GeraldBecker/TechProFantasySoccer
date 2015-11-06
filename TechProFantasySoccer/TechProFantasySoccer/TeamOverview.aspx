@@ -6,7 +6,8 @@
     <h3>Available Cap Space: <span style="font-size:16px;"><%=AvailCap%></span></h3>
     
     <h4>Players:  (YTD Stats)</h4>
-    <asp:GridView ID="GridView1" runat="server" AllowSorting="True" OnSorting="GridView1_Sorting">
+    <asp:GridView ID="TeamGridView" runat="server" AllowSorting="True" OnSorting="TeamGridView_Sorting"
+        AlternatingRowStyle-BackColor="#18bc9c">
         <%--<columns>
              <asp:BoundField DataField="FirstName" HeaderText="First" SortExpression="FirstName" />
             <asp:BoundField DataField="Cost" HeaderText="Cost" SortExpression="Cost" />
