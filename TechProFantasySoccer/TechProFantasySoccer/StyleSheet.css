@@ -1,5 +1,5 @@
 ﻿body {
-    background-color: #80ddfc;
+    background-color: #daede2;
 }
 
 td.lineupColumn1 {
@@ -51,3 +51,10 @@ td.lineupColumn1 {
     float: right;
 }
 
+#MainContent_StatsTable td {
+    padding: 0 5px;
+}
+
+th.stats_spacing {
+    padding: 0 0 0 20px;
+}
