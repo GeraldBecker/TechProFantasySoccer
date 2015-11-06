@@ -61,9 +61,9 @@ namespace TechProFantasySoccer {
                 "LEFT OUTER JOIN [Positions] ON [Positions].[PositionRef] = Players.PositionRef " +
                 "LEFT OUTER JOIN Clubs ON Players.ClubId = Clubs.ClubId " +
                 "LEFT OUTER JOIN Leagues ON Clubs.LeagueId = Leagues.LeagueId ";
-            System.Diagnostics.Debug.WriteLine("Inside the page load and clear variable is:" + clearButtonPress);
+            //System.Diagnostics.Debug.WriteLine("Inside the page load and clear variable is:" + clearButtonPress);
             if(IsPostBack && !clearButtonPress) {
-                System.Diagnostics.Debug.WriteLine("Inside the WHERE CLAUSE. ");
+                //System.Diagnostics.Debug.WriteLine("Inside the WHERE CLAUSE. ");
                 
 
 
@@ -71,7 +71,7 @@ namespace TechProFantasySoccer {
 
                 if(FirstNameTextBox.Text != "" || LastNameTextBox.Text != "" || ClubTextBox.Text != "" ||
                     LeagueTextBox.Text != "" || PositionDropDown.SelectedIndex != 0) {
-                        System.Diagnostics.Debug.WriteLine("Apparently they are not empty. ");
+                    //System.Diagnostics.Debug.WriteLine("Apparently they are not empty. ");
                     cmd.CommandText += "WHERE ";
                     if(FirstNameTextBox.Text != "") {
                         cmd.CommandText += "FirstName LIKE '%" + FirstNameTextBox.Text + "%' ";
@@ -154,14 +154,38 @@ namespace TechProFantasySoccer {
             } finally {
                 con.Close();
             }
+
+            ModifyRows();
         }
 
+
+        private void ModifyRows() {
+            for(int i = 0; i < PlayerSearchGridView.Rows.Count; i++) {
+                string classList = "selectedblackout";
+
+
+
+                //PlayerSearchGridView.Rows[i].Attributes.Add("class", "selectedblackout");
+                PlayerSearchGridView.Rows[i].Attributes.Add("data-href", "./Players/ViewPlayer.aspx?player=" +
+                    PlayerSearchGridView.Rows[i].Cells[0].Text);
+
+                if((i % 2) == 1)
+                    classList += " alternaterow";
+
+                PlayerSearchGridView.Rows[i].Attributes.Add("class", classList);
+                
+            }
+            
+
+        }
 
         protected void PlayerSearchGridView_Sorting(object sender, GridViewSortEventArgs e) {
             DataTable temp = (DataTable)PlayerSearchGridView.DataSource;
             temp.DefaultView.Sort = e.SortExpression + " " + GetSortDirection(e.SortExpression);
             PlayerSearchGridView.DataSource = temp;
             PlayerSearchGridView.DataBind();
+
+            ModifyRows();
         }
 
         private string GetSortDirection(string column) {
@@ -189,10 +213,10 @@ namespace TechProFantasySoccer {
             return sortDirection;
         }
 
-        protected void PlayerSearchGridView_PageIndexChanging(object sender, GridViewPageEventArgs e) {
+        /*protected void PlayerSearchGridView_PageIndexChanging(object sender, GridViewPageEventArgs e) {
             PlayerSearchGridView.PageIndex = e.NewPageIndex;
             PlayerSearchGridView.DataBind();
-        }
+        }*/
 
         protected void ClearEntries(object sender, EventArgs e) {
             FirstNameTextBox.Text = "";
@@ -203,7 +227,7 @@ namespace TechProFantasySoccer {
             clearButtonPress = true;
         }
 
-        protected void PlayerSearchGridView_SelectedIndexChanged(Object sender, EventArgs e) {
+        /*protected void PlayerSearchGridView_SelectedIndexChanged(Object sender, EventArgs e) {
             // Get the currently selected row using the SelectedRow property.
             GridViewRow row = PlayerSearchGridView.SelectedRow;
 
@@ -212,7 +236,7 @@ namespace TechProFantasySoccer {
             // the first name.
             //FirstNameTextBox.Text = "PICK:" + row.Cells[1].Text + ".";
             Response.Redirect("./Players/ViewPlayer?player=" + row.Cells[1].Text);
-        }
+        }*/
 
 
     }
