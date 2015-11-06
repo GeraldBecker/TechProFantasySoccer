@@ -2,6 +2,55 @@
     background-color: #daede2;
 }
 
+td.lineupColumn1 {
+    width: 300px;
+}
+
+.player
+{
+    height: 30px;
+    width: 300px;
+    color: red;
+    border: 2px solid #666666;
+    background-color: black;
+    padding:3px;
+    margin: 0px 2px;
+    text-align: center;
+    cursor: move;
+    
+}
+
+.teamSpots {
+    background-color: white;
+    width: 300px;
+    margin: 0px;
+}
+
+#midDiv {
+    height: 120px;
+    margin: 0;
+}
+
+#defDiv {
+    height: 120px;
+    margin: 0;
+}
+
+#strDiv {
+    height: 60px;
+    margin: 0;
+}
+
+.playerName {
+    text-align: left;
+    float: left;
+}
+
+.playerPosition {
+    text-align: right;
+    float: right;
+}
+
 #MainContent_StatsTable td {
     padding: 0 5px;
 }

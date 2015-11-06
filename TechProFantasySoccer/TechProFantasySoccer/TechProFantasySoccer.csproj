@@ -210,6 +210,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="SetLineup.aspx" />
     <Content Include="Site.Master" />
     <Content Include="StyleSheet.css" />
     <Content Include="TeamOverview.aspx" />
@@ -393,6 +394,13 @@
       <DependentUpon>ViewPlayer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetLineup.aspx.cs">
+      <DependentUpon>SetLineup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SetLineup.aspx.designer.cs">
+      <DependentUpon>SetLineup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
