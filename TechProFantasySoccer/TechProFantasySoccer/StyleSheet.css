@@ -4,5 +4,21 @@
 
 td.lineupColumn1 {
     width: 343px;
-    
+}
+
+.player
+{
+    height: 50px;
+    width: 300px;
+    color: red;
+    border: 2px solid #666666;
+    background-color: black;
+    padding:3px;
+    margin: 0px 2px;
+    text-align: center;
+    cursor: move;
+}
+
+.teamSpots {
+    background-color: white;
 }

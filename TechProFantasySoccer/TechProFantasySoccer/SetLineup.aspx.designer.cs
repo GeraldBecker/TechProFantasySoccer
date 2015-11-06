@@ -28,7 +28,7 @@ namespace TechProFantasySoccer {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox tbDefenders;
+        protected global::System.Web.UI.WebControls.DataList tbDefenders;
         
         /// <summary>
         /// tbBench control.
@@ -37,7 +37,7 @@ namespace TechProFantasySoccer {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox tbBench;
+        protected global::System.Web.UI.WebControls.DataList tbBench;
         
         /// <summary>
         /// tbMidfielders control.
@@ -46,16 +46,16 @@ namespace TechProFantasySoccer {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox tbMidfielders;
+        protected global::System.Web.UI.WebControls.DataList tbMidfielders;
         
         /// <summary>
-        /// tbAttackers control.
+        /// tbStrikers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox tbAttackers;
+        protected global::System.Web.UI.WebControls.DataList tbStrikers;
         
         /// <summary>
         /// lbGoalie control.

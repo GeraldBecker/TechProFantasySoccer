@@ -8,19 +8,43 @@
                 <h4>Stats</h4>
                 <asp:ListBox ID="ListBox1" runat="server" Height="547px" Width="343px"></asp:ListBox>
             </td>
-            <td class="lineupColumn1">
+            <td>
                 <h4>Defenders</h4>
-                <asp:ListBox ID="tbDefenders" runat="server" Width="343px" Height="150px"></asp:ListBox>
+                <div class="teamSpots">
+                <asp:DataList ID="tbDefenders" runat="server" Width="300px" Height="150px">
+                    <ItemTemplate>
+                        <div class="player" draggable="true">
+                            <div><%# Eval("First") %> <%# Eval("Last") %></div>
+                        </div>
+                    </ItemTemplate>
+                </asp:DataList>
+                </div>
             </td>
             <td>
                 <h4>Bench</h4>
-                <asp:ListBox ID="tbBench" runat="server" Width="343px" Height="150px"></asp:ListBox>
+                <div class="teamSpots">
+                <asp:DataList ID="tbBench" runat="server" Width="343px" Height="150px">
+                    <ItemTemplate>
+                        <div class="player" draggable="true">
+                            <div><%# Eval("First") %> <%# Eval("Last") %></div>
+                        </div>
+                    </ItemTemplate>
+                </asp:DataList>
+                </div>
             </td>
         </tr>
         <tr>
             <td>
                 <h4>Midfielders</h4>
-                <asp:ListBox ID="tbMidfielders" runat="server" Width="343px" Height="150px"></asp:ListBox>
+                <div class="teamSpots">
+                <asp:DataList ID="tbMidfielders" runat="server" Width="343px" Height="150px">
+                    <ItemTemplate>
+                        <div class="player" draggable="true">
+                            <div><%# Eval("First") %> <%# Eval("Last") %></div>
+                        </div>
+                    </ItemTemplate>
+                </asp:DataList>
+                </div>
             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -28,7 +52,15 @@
         <tr>
             <td>
             <h4>Atackers</h4>
-            <asp:ListBox ID="tbAttackers" runat="server" Width="343px" Height="75px"></asp:ListBox>
+            <div class="teamSpots">
+            <asp:DataList ID="tbStrikers" runat="server" Width="343px" Height="75px">
+                <ItemTemplate>
+                    <div class="player" draggable="true">
+                        <div><%# Eval("First") %> <%# Eval("Last") %></div>
+                    </div>
+                </ItemTemplate>
+            </asp:DataList>
+            </div>
             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
