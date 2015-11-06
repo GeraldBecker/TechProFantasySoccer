@@ -5,14 +5,14 @@
 
     <table id="table1">
         <tr>
-            <td class="auto-style4"><strong>LEAGUE:</strong></td>
-            <td class="auto-style3">
+            <td><strong>LEAGUE:</strong></td>
+            <td>
                 <asp:TextBox ID="leagueTextbox" runat="server"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td class="auto-style4"><strong>TEAM:</strong></td>
-            <td class="auto-style3">
+            <td><strong>TEAM:</strong></td>
+            <td>
                 <asp:TextBox ID="teamTextbox" runat="server"></asp:TextBox>
             </td>
         </tr>
@@ -20,16 +20,16 @@
 
     <table id="table2">
         <tr>
-            <td class="auto-style4"><asp:Button id="playerSearchBtn" runat="server" Height="36px" Width="148px" text="Player Search" BackColor="#eaeaea" /></td>
+            <td><asp:Button id="playerSearchBtn" runat="server" Height="36px" Width="148px" text="Player Search" BackColor="#eaeaea" /></td>
         </tr>
         <tr>
-            <td class="auto-style4"><asp:Button id="teamOverviewBtn" runat="server" Height="36px" Width="148px" text="Team Overview" BackColor="#eaeaea" /></td>
+            <td><asp:Button id="teamOverviewBtn" runat="server" Height="36px" Width="148px" text="Team Overview" BackColor="#eaeaea" /></td>
         </tr>
         <tr>
-            <td class="auto-style4"><asp:Button id="setLineupBtn" runat="server" Height="36px" Width="148px" text="Set Team Lineup" BackColor="#eaeaea" /></td>
+            <td><asp:Button id="setLineupBtn" runat="server" Height="36px" Width="148px" text="Set Team Lineup" BackColor="#eaeaea" /></td>
         </tr>
         <tr>
-            <td class="auto-style4"><asp:Button id="leagueChatBtn" runat="server" Height="36px" Width="148px" text="League Chat" BackColor="#ffcc00" /></td>
+            <td><asp:Button id="leagueChatBtn" runat="server" Height="36px" Width="148px" text="League Chat" BackColor="#ffcc00" /></td>
         </tr>
     </table>
     

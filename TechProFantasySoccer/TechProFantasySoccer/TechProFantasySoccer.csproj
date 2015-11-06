@@ -147,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="AboutToJoin.aspx" />
     <Content Include="Account\Confirm.aspx" />
     <Content Include="Account\Forgot.aspx" />
     <Content Include="Account\Login.aspx" />
@@ -222,6 +223,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutToJoin.aspx.cs">
+      <DependentUpon>AboutToJoin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AboutToJoin.aspx.designer.cs">
+      <DependentUpon>AboutToJoin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\Confirm.aspx.cs">
       <DependentUpon>Confirm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
