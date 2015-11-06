@@ -3,19 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %></h2>
 
-    <style type="text/css">
-            .auto-style2 {
-                width: 100%;
-            }
-            .auto-style3 {
-                width: 486px;
-            }
-            .auto-style4 {
-            width: 32px;
-        }
-    </style>
-
-    <table id="table1" class="auto-style2">
+    <table id="table1">
         <tr>
             <td class="auto-style4"><strong>LEAGUE:</strong></td>
             <td class="auto-style3">
@@ -30,7 +18,7 @@
         </tr>
     </table>
 
-    <table id="table2" class="auto-style2">
+    <table id="table2">
         <tr>
             <td class="auto-style4"><asp:Button id="playerSearchBtn" runat="server" Height="36px" Width="148px" text="Player Search" BackColor="#eaeaea" /></td>
         </tr>
