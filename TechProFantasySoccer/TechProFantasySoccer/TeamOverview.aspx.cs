@@ -12,6 +12,8 @@ using Microsoft.AspNet.Identity;
 
 namespace TechProFantasySoccer {
     public partial class TeamOverview : System.Web.UI.Page {
+        private int TOTALCAP = 1000;
+        public string AvailCap = "1000";
         protected void Page_Load(object sender, EventArgs e) {
             if(!HttpContext.Current.User.Identity.IsAuthenticated) {
                 //Server.Transfer("Default.aspx", true);
@@ -20,27 +22,20 @@ namespace TechProFantasySoccer {
             } else {
                 //MembershipUser CurrentUser = Membership.GetUser(User.Identity.Name);
                 if(!IsPostBack) { 
-                    Response.Write(@"<script language='javascript'>alert('" + HttpContext.Current.User.Identity.Name + "|" +
-                    User.Identity.GetUserId() + "|');</script>"); 
+                    //Response.Write(@"<script language='javascript'>alert('" + HttpContext.Current.User.Identity.Name + "|" +
+                    //User.Identity.GetUserId() + "|');</script>"); 
                 }
    
             }
 
-            //GridView1.DataBind();
 
-            //Response.Write(SqlFantasyDataSource.SelectCommand);
+            String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(strConnString);
+            SqlCommand cmd = new SqlCommand();
 
-
-
-
-
-
-            String strConnString1 = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
-            SqlConnection con1 = new SqlConnection(strConnString1);
-            SqlCommand cmd1 = new SqlCommand();
-
-            cmd1.CommandText =
-                "SELECT Players.[PlayerId], " +
+            //Populate the grid of players with fantasy points
+            cmd.CommandText =
+                "SELECT " +
                 "FirstName AS First, LastName AS Last, [Cost], [ClubName] AS Club, [Positions].[PositionName] AS Position," +
                 "SUM([PlayerStats].Goals) AS Goals, SUM([PlayerStats].Shots) AS Shots, SUM([PlayerStats].Assists) AS Assists," +
                 "SUM([PlayerStats].MinPlayed) AS 'Min Played', SUM([PlayerStats].Fouls) AS Fouls, " +
@@ -67,91 +62,28 @@ namespace TechProFantasySoccer {
                 "GROUP BY Players.PlayerId, FirstName, LastName, Players.Cost, Clubs.ClubName, Positions.PositionName, Positions.PositionRef " +
                 "ORDER BY Last";
 
-            cmd1.Connection = con1;
+            cmd.Connection = con;
+            try {
+                DataTable temp = new DataTable();
+                con.Open();
+                GridView1.EmptyDataText = "No Records Found";
+                temp.Load(cmd.ExecuteReader());
 
-            DataTable temp1 = new DataTable();
-            con1.Open();
-            //GridView1.EmptyDataText = "No Records Found";
-            temp1.Load(cmd1.ExecuteReader());
+                for(int i = 0; i < temp.Rows.Count; i++) {
+                    TOTALCAP -= (int)temp.Rows[i]["Cost"];
+                }
+                AvailCap = TOTALCAP.ToString("C");
 
+                GridView1.DataSource = temp;
+                GridView1.DataBind();
+            } catch(System.Data.SqlClient.SqlException ex) {
 
-            GridView1.DataSource = temp1;
-            GridView1.DataBind();
+            } finally {
+                con.Close();
+            }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            /*DataTable table = new DataTable();
-            table.Columns.Add("Name");
-            table.Columns.Add("Cost");
-            table.Columns.Add("Position");
-
-
-            DataRow dr = table.NewRow();
-            dr["Name"] = "gerald";
-            dr["Cost"] = "5000";
-            dr["Position"] = "striker";
-
-
-            table.Rows.Add(dr);
-
-            GridView1.DataSource = table;
-
-            GridView1.DataBind();*/
-
-            String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(strConnString);
-            SqlCommand cmd = new SqlCommand();
-
-            //Calculate fields
-            decimal totalPoints = 0;
-            decimal defenderPoints = 0;
-            decimal midfielderPoints = 0;
-            decimal strikerPoints = 0;
-
-
-            /*cmd.CommandText = 
-                "SELECT "+
-                "Players.PositionRef AS Position, "+
-                "SUM([PlayerStats].Goals) AS Goals, "+
-                "SUM([PlayerStats].Shots) AS Shots,"+
-                "SUM([PlayerStats].Assists) AS Assists,"+
-                "SUM([PlayerStats].MinPlayed) AS MinPlayed,"+
-                "SUM([PlayerStats].Fouls) AS Fouls,"+
-                "SUM([PlayerStats].YellowCards) AS YC,"+
-                "SUM([PlayerStats].RedCards) AS RC,"+
-                "SUM([PlayerStats].GoalsAllowed) AS GA,"+
-                "SUM([PlayerStats].SavesMade) AS Saves,"+
-                "dbo.CalculateTotalFantasyPoints(SUM([PlayerStats].Goals),"+
-								                "SUM([PlayerStats].Shots), "+
-								                "SUM([PlayerStats].Assists),"+
-								                "SUM([PlayerStats].MinPlayed),"+
-								                "SUM([PlayerStats].Fouls),"+
-								                "SUM([PlayerStats].YellowCards),"+
-								                "SUM([PlayerStats].RedCards),"+
-								                "SUM([PlayerStats].GoalsAllowed),"+
-								                "SUM([PlayerStats].SavesMade),"+
-								                "SUM([PlayerStats].CleanSheets),"+
-								                "Players.PositionRef) AS 'Total Fantasy Pts' "+
-                "FROM LineupHistory "+
-                "INNER JOIN Players ON LineupHistory.PlayerId = Players.PlayerId "+
-                "INNER JOIN PlayerStats ON PlayerStats.PlayerId = LineupHistory.PlayerId AND PlayerStats.Month = LineupHistory.Month "+
-                "WHERE LineupHistory.UserId = 1 "+
-                "GROUP BY Players.PositionRef";*/
+            
+            //Populate the fantasy points earned fields
             cmd.CommandText =
             "SELECT " +
             "Players.PositionRef AS Position," +
@@ -165,7 +97,7 @@ namespace TechProFantasySoccer {
             "dbo.CalculateFantasyPointsByPosition(10, SUM([PlayerStats].MinPlayed), Players.PositionRef) AS MinPlayedPts," +
             "SUM([PlayerStats].Fouls) AS Fouls," +
             "dbo.CalculateFantasyPointsByPosition(3, SUM([PlayerStats].Fouls), Players.PositionRef) AS FoulsPts," +
-            "    SUM([PlayerStats].YellowCards) AS YC," +
+            "SUM([PlayerStats].YellowCards) AS YC," +
             "dbo.CalculateFantasyPointsByPosition(4, SUM([PlayerStats].YellowCards), Players.PositionRef) AS YCPts," +
             "SUM([PlayerStats].RedCards) AS RC," +
             "dbo.CalculateFantasyPointsByPosition(5, SUM([PlayerStats].RedCards), Players.PositionRef) AS RCPts," +
@@ -176,8 +108,8 @@ namespace TechProFantasySoccer {
             "SUM([PlayerStats].CleanSheets) AS CleanSheets," +
             "dbo.CalculateFantasyPointsByPosition(7, SUM([PlayerStats].CleanSheets), Players.PositionRef) AS CleanSheetPts," +
             "dbo.CalculateTotalFantasyPoints(SUM([PlayerStats].Goals)," +
-        "						SUM([PlayerStats].Shots), " +
-    "							SUM([PlayerStats].Assists)," +
+            "					SUM([PlayerStats].Shots), " +
+            "					SUM([PlayerStats].Assists)," +
             "					SUM([PlayerStats].MinPlayed)," +
             "					SUM([PlayerStats].Fouls)," +
             "					SUM([PlayerStats].YellowCards)," +
@@ -202,7 +134,6 @@ namespace TechProFantasySoccer {
 
                 DataTable temp = new DataTable();
                 con.Open();
-                //GridView1.EmptyDataText = "No Records Found";
                 temp.Load(cmd.ExecuteReader());
 
                 DataRow[] foundRows;
@@ -254,42 +185,11 @@ namespace TechProFantasySoccer {
                 CleanSheetsPtsLabel.Text = cleanSheets.ToString() + " = " + cleanSheetPts.ToString() + " pts";
 
 
-
-                /*foundRows = temp.Select("Position = 2");
-                if(foundRows.Length > 0) {
-                    MidfieldersPtsLabel.Text = foundRows[0]["Total Fantasy Pts"].ToString() + " pts";
-                    goals += (decimal)foundRows[0]["Goals"];
-                    goalPts += (decimal)foundRows[0]["GoalsPts"];
-                }
-
-                foundRows = temp.Select("Position = 3");
-                if(foundRows.Length > 0) {
-                    DefendersPtsLabel.Text = foundRows[0]["Total Fantasy Pts"].ToString() + " pts";
-                }
-
-                foundRows = temp.Select("Position = 4");
-                if(foundRows.Length > 0) {
-                    GoaliesPtsLabel.Text = foundRows[0]["Total Fantasy Pts"].ToString() + " pts";
-                }*/
-
             } catch(System.Data.SqlClient.SqlException ex) {
 
             } finally {
                 con.Close();
             }
-
-
-
-            /*cmd.CommandText = "SELECT Name FROM ScoringValues WHERE ScoringId = 3";
-
-            cmd.Connection = con;
-            try {
-                //GridView1.EmptyDataText = "No Records Found";
-                string text = (string)cmd.ExecuteScalar();
-                Label1.Text = text;
-            } finally {
-
-            }*/
         }
 
 
@@ -329,88 +229,5 @@ namespace TechProFantasySoccer {
 
 
 
-    /*
-    QUERIES
-
-    //
-    SELECT Players.[PlayerId],
-        FirstName AS First,
-        LastName AS Last,
-        [Cost],
-        [ClubName] AS Club,
-        [Positions].[PositionName] AS Position,
-        [PlayerStats].[Month],[PlayerStats].Goals,[PlayerStats].Shots,[PlayerStats].Assists,
-        [PlayerStats].MinPlayed AS 'Min Played'
-	      ,[PlayerStats].Fouls,
-        [PlayerStats].YellowCards AS YC,
-        [PlayerStats].RedCards AS RC,
-        [PlayerStats].GoalsAllowed AS GA,
-        [PlayerStats].SavesMade AS Saves
-        FROM [Players]
-        INNER JOIN [Positions] ON [Positions].[PositionRef] = Players.PositionRef
-        LEFT OUTER JOIN PlayerStats ON PlayerStats.PlayerId = Players.PlayerId
-        INNER JOIN Clubs ON Clubs.ClubId = Players.ClubId
-
-
-    // All players stats
-    SELECT Players.[PlayerId],
-        FirstName AS First,
-        LastName AS Last,
-        [Cost],
-        [ClubName] AS Club,
-        [Positions].[PositionName] AS Position,
-        SUM([PlayerStats].Goals) AS Goals,
-        SUM([PlayerStats].Shots) AS Shots,
-        SUM([PlayerStats].Assists) AS Assists,
-        SUM([PlayerStats].MinPlayed) AS 'Min Played',
-        SUM([PlayerStats].Fouls) AS Fouls,
-        SUM([PlayerStats].YellowCards) AS YC,
-        SUM([PlayerStats].RedCards) AS RC,
-        SUM([PlayerStats].GoalsAllowed) AS GA,
-        SUM([PlayerStats].SavesMade) AS Saves
-        FROM [Players]
-        INNER JOIN [Positions] ON [Positions].[PositionRef] = Players.PositionRef
-        LEFT OUTER JOIN PlayerStats ON PlayerStats.PlayerId = Players.PlayerId
-        INNER JOIN Clubs ON Clubs.ClubId = Players.ClubId
-        GROUP BY Players.PlayerId, FirstName, LastName, Players.Cost, Clubs.ClubName, Positions.PositionName
-        ORDER BY Last
-
-
-    //Stats for players on your lineup only
-    SELECT Players.[PlayerId],
-    FirstName AS First,
-    LastName AS Last,
-    [Cost],
-    [ClubName] AS Club,
-    [Positions].[PositionName] AS Position,
-    SUM([PlayerStats].Goals) AS Goals,
-    SUM([PlayerStats].Shots) AS Shots,
-    SUM([PlayerStats].Assists) AS Assists,
-    SUM([PlayerStats].MinPlayed) AS 'Min Played',
-    SUM([PlayerStats].Fouls) AS Fouls,
-    SUM([PlayerStats].YellowCards) AS YC,
-    SUM([PlayerStats].RedCards) AS RC,
-    SUM([PlayerStats].GoalsAllowed) AS GA,
-    SUM([PlayerStats].SavesMade) AS Saves
-    FROM [Players]
-    INNER JOIN LineupHistory ON LineupHistory.PlayerId = Players.PlayerId
-    INNER JOIN [Positions] ON [Positions].[PositionRef] = Players.PositionRef
-    LEFT OUTER JOIN PlayerStats ON PlayerStats.PlayerId = Players.PlayerId
-    INNER JOIN Clubs ON Clubs.ClubId = Players.ClubId
-    WHERE LineupHistory.Month = 10--DATEPART(MONTH, GETDATE())
-    AND LineupHistory.UserId = 1
-    GROUP BY Players.PlayerId, FirstName, LastName, Players.Cost, Clubs.ClubName, Positions.PositionName
-    ORDER BY Last
-
-
-
-
-
-
-
-
-
-
-
-    */
+   
 }

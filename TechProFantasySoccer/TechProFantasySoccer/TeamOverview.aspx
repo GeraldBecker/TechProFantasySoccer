@@ -1,9 +1,9 @@
-﻿<%@ Page Title="Team Overview" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="TeamOverview.aspx.cs" 
-    Inherits="TechProFantasySoccer.TeamOverview" %>
+﻿<%@ Page Title="Team Overview" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
+    CodeBehind="TeamOverview.aspx.cs" Inherits="TechProFantasySoccer.TeamOverview" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %></h2>
-    <h3>Available Cap Space: <span style="font-size:16px;">$50,000</span></h3>
+    <h3>Available Cap Space: <span style="font-size:16px;"><%=AvailCap%></span></h3>
     
     <h4>Players:  (YTD Stats)</h4>
     <asp:GridView ID="GridView1" runat="server" AllowSorting="True" OnSorting="GridView1_Sorting">
@@ -23,7 +23,7 @@
             <asp:TableCell>
                 <asp:Label ID="GoalsPtsLabel" runat="server" Text="0 = 0 pts"></asp:Label>
             </asp:TableCell>
-            <asp:TableHeaderCell>
+            <asp:TableHeaderCell CssClass="stats_spacing">
                 <asp:Label ID="Label3" runat="server" Text="Assists"></asp:Label>
             </asp:TableHeaderCell>
             <asp:TableCell>
@@ -37,7 +37,7 @@
             <asp:TableCell>
                 <asp:Label ID="ShotsPtsLabel" runat="server" Text="0 = 0 pts"></asp:Label>
             </asp:TableCell>
-            <asp:TableHeaderCell>
+            <asp:TableHeaderCell CssClass="stats_spacing">
                 <asp:Label ID="Label7" runat="server" Text="Min Played"></asp:Label>
             </asp:TableHeaderCell>
             <asp:TableCell>
@@ -51,7 +51,7 @@
             <asp:TableCell>
                 <asp:Label ID="FoulsPtsLabel" runat="server" Text="0 = 0 pts"></asp:Label>
             </asp:TableCell>
-            <asp:TableHeaderCell>
+            <asp:TableHeaderCell CssClass="stats_spacing">
                 <asp:Label ID="Label11" runat="server" Text="Y Cards"></asp:Label>
             </asp:TableHeaderCell>
             <asp:TableCell>
@@ -65,7 +65,7 @@
             <asp:TableCell>
                 <asp:Label ID="RCPtsLabel" runat="server" Text="0 = 0 pts"></asp:Label>
             </asp:TableCell>
-            <asp:TableHeaderCell>
+            <asp:TableHeaderCell CssClass="stats_spacing">
                 <asp:Label ID="Label15" runat="server" Text="Goals Conceded"></asp:Label>
             </asp:TableHeaderCell>
             <asp:TableCell>
@@ -79,7 +79,7 @@
             <asp:TableCell>
                 <asp:Label ID="SavesMadePtsLabel" runat="server" Text="0 = 0 pts"></asp:Label>
             </asp:TableCell>
-            <asp:TableHeaderCell>
+            <asp:TableHeaderCell CssClass="stats_spacing">
                 <asp:Label ID="Label18" runat="server" Text="Clean Sheets"></asp:Label>
             </asp:TableHeaderCell>
             <asp:TableCell>
@@ -98,7 +98,7 @@
             <asp:TableCell>
                 <asp:Label ID="DefendersPtsLabel" runat="server" Text="0 pts"></asp:Label>
             </asp:TableCell>
-            <asp:TableHeaderCell>
+            <asp:TableHeaderCell CssClass="stats_spacing">
                 <asp:Label ID="MidfieldersLabel" runat="server" Text="Midfielders"></asp:Label>
             </asp:TableHeaderCell>
             <asp:TableCell>
@@ -112,7 +112,7 @@
             <asp:TableCell>
                 <asp:Label ID="StrikersPtsLabel" runat="server" Text="0 pts"></asp:Label>
             </asp:TableCell>
-            <asp:TableHeaderCell>
+            <asp:TableHeaderCell CssClass="stats_spacing">
                 <asp:Label ID="GoaliesLabel" runat="server" Text="Goalies"></asp:Label>
             </asp:TableHeaderCell>
             <asp:TableCell>
@@ -122,7 +122,7 @@
     </asp:Table>
 
     <br />
-    <a href="#">View Scoring Breakdown</a> (Click to see full details)
+    <a href="/FantasyPointsDetails">View Scoring Breakdown</a> (Click to see full details)
 
 
 
