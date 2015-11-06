@@ -11,7 +11,7 @@
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="LeagueName" CssClass="col-md-2 control-label">League:</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="LeagueName" CssClass="form-control" TextMode="SingleLine" Text="Brazil Fans League"/>
+                            <asp:TextBox runat="server" ID="LeagueName" CssClass="form-control" TextMode="SingleLine" Text="Brazil Fans League" Enabled="True" />
                         </div>
                     </div>
 
