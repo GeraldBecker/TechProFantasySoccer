@@ -66,7 +66,7 @@ namespace TechProFantasySoccer {
             try {
                 DataTable temp = new DataTable();
                 con.Open();
-                GridView1.EmptyDataText = "No Records Found";
+                TeamGridView.EmptyDataText = "No Records Found";
                 temp.Load(cmd.ExecuteReader());
 
                 for(int i = 0; i < temp.Rows.Count; i++) {
@@ -74,8 +74,8 @@ namespace TechProFantasySoccer {
                 }
                 AvailCap = TOTALCAP.ToString("C");
 
-                GridView1.DataSource = temp;
-                GridView1.DataBind();
+                TeamGridView.DataSource = temp;
+                TeamGridView.DataBind();
             } catch(System.Data.SqlClient.SqlException ex) {
 
             } finally {
@@ -193,11 +193,11 @@ namespace TechProFantasySoccer {
         }
 
 
-        protected void GridView1_Sorting(object sender, GridViewSortEventArgs e) {
-            DataTable temp = (DataTable)GridView1.DataSource;
+        protected void TeamGridView_Sorting(object sender, GridViewSortEventArgs e) {
+            DataTable temp = (DataTable)TeamGridView.DataSource;
             temp.DefaultView.Sort = e.SortExpression + " " + GetSortDirection(e.SortExpression);
-            GridView1.DataSource = temp;
-            GridView1.DataBind();
+            TeamGridView.DataSource = temp;
+            TeamGridView.DataBind();
         }
 
         private string GetSortDirection(string column) {
