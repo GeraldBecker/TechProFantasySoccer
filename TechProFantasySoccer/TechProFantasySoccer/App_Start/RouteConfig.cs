@@ -13,6 +13,8 @@ namespace TechProFantasySoccer
             var settings = new FriendlyUrlSettings();
             settings.AutoRedirectMode = RedirectMode.Permanent;
             routes.EnableFriendlyUrls(settings);
+            //Commenting the above code and using the below line gets rid of the master mobile site.
+            //routes.EnableFriendlyUrls();
         }
     }
 }
