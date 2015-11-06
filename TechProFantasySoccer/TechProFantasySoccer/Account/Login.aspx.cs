@@ -29,7 +29,7 @@ namespace TechProFantasySoccer.Account
             {
                 // Validate the user password
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                ApplicationUser user = manager.Find(Email.Text, Password.Text);
+                ApplicationUser user = manager.Find(Username.Text, Password.Text);
                 if (user != null)
                 {
                     IdentityHelper.SignIn(manager, user, RememberMe.Checked);
