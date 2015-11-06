@@ -7,6 +7,11 @@
         <p class="lead">This site is going to be killer.</p>
         
     </div>
-
+    <div>
+        <ul>
+            <li><a runat="server" href="~/About">About</a></li>
+            <li><a runat="server" href="~/Contact">Contact</a></li>
+        </ul>
+    </div>
 
 </asp:Content>
