@@ -36,7 +36,7 @@ namespace TechProFantasySoccer {
             //Populate the grid of players with fantasy points
             cmd.CommandText =
                 "SELECT " +
-                "FirstName AS First, LastName AS Last, [Cost], [ClubName] AS Club, [Positions].[PositionName] AS Position," +
+                "Players.PlayerId AS PlayerId, FirstName AS First, LastName AS Last, [Cost], [ClubName] AS Club, [Positions].[PositionName] AS Position," +
                 "SUM([PlayerStats].Goals) AS Goals, SUM([PlayerStats].Shots) AS Shots, SUM([PlayerStats].Assists) AS Assists," +
                 "SUM([PlayerStats].MinPlayed) AS 'Min Played', SUM([PlayerStats].Fouls) AS Fouls, " +
                 "SUM([PlayerStats].YellowCards) AS YC, SUM([PlayerStats].RedCards) AS RC, SUM([PlayerStats].GoalsAllowed) AS GA, " +
@@ -59,7 +59,7 @@ namespace TechProFantasySoccer {
                 "INNER JOIN Clubs ON Clubs.ClubId = Players.ClubId " +
                 "WHERE LineupHistory.Month = DATEPART(MONTH, GETDATE()) " +
                 "AND LineupHistory.UserId = '" + User.Identity.GetUserId()+  "' "+
-                "GROUP BY Players.PlayerId, FirstName, LastName, Players.Cost, Clubs.ClubName, Positions.PositionName, Positions.PositionRef " +
+                "GROUP BY Players.PlayerId, FirstName, LastName, Players.Cost, Clubs.ClubName, Positions.PositionName, Positions.PositionRef, Players.PlayerId " +
                 "ORDER BY Last";
 
             cmd.Connection = con;
@@ -76,6 +76,8 @@ namespace TechProFantasySoccer {
 
                 TeamGridView.DataSource = temp;
                 TeamGridView.DataBind();
+                ModifyRows();
+                //TeamGridView.Columns[0].Visible = false;
             } catch(System.Data.SqlClient.SqlException ex) {
 
             } finally {
@@ -198,6 +200,7 @@ namespace TechProFantasySoccer {
             temp.DefaultView.Sort = e.SortExpression + " " + GetSortDirection(e.SortExpression);
             TeamGridView.DataSource = temp;
             TeamGridView.DataBind();
+            ModifyRows();
         }
 
         private string GetSortDirection(string column) {
@@ -223,6 +226,28 @@ namespace TechProFantasySoccer {
             ViewState["SortExpression"] = column;
 
             return sortDirection;
+        }
+
+        private void ModifyRows() {
+            TeamGridView.HeaderRow.Cells[0].CssClass = "hidden";
+            //TeamGridView.Columns[0].Visible = true;
+            for(int i = 0; i < TeamGridView.Rows.Count; i++) {
+                string classList = "selectedblackout";
+
+                TeamGridView.Rows[i].Cells[0].Attributes.Add("class", "hidden");
+
+
+                //PlayerSearchGridView.Rows[i].Attributes.Add("class", "selectedblackout");
+                TeamGridView.Rows[i].Attributes.Add("data-href", "/Players/ViewPlayer.aspx?player=" +
+                    TeamGridView.Rows[i].Cells[0].Text);
+
+                if((i % 2) == 1)
+                    classList += " alternaterow";
+
+                TeamGridView.Rows[i].Attributes.Add("class", classList);
+                
+            }
+            //TeamGridView.Columns[0].Visible = false;
         }
 
     }

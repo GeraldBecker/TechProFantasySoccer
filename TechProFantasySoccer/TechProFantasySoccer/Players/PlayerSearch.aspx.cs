@@ -166,7 +166,7 @@ namespace TechProFantasySoccer {
 
 
                 //PlayerSearchGridView.Rows[i].Attributes.Add("class", "selectedblackout");
-                PlayerSearchGridView.Rows[i].Attributes.Add("data-href", "./Players/ViewPlayer.aspx?player=" +
+                PlayerSearchGridView.Rows[i].Attributes.Add("data-href", "./ViewPlayer.aspx?player=" +
                     PlayerSearchGridView.Rows[i].Cells[0].Text);
 
                 if((i % 2) == 1)
@@ -175,8 +175,6 @@ namespace TechProFantasySoccer {
                 PlayerSearchGridView.Rows[i].Attributes.Add("class", classList);
                 
             }
-            
-
         }
 
         protected void PlayerSearchGridView_Sorting(object sender, GridViewSortEventArgs e) {

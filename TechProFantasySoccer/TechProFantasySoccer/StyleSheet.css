@@ -100,3 +100,12 @@ tr.selectedblackout:hover {
 tr.alternaterow {
     background-color: #18bc9c;
 }
+
+#MainContent_PlayerSearchGridView th.hidden,
+#MainContent_PlayerSearchGridView td.hidden,
+#MainContent_TeamGridView th.hidden,
+#MainContent_TeamGridView td.hidden,
+#MainContent_FantasyDetailsGridView th.hidden, 
+#MainContent_FantasyDetailsGridView td.hidden {
+    display: none;
+}

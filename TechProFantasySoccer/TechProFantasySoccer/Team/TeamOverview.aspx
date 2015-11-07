@@ -2,17 +2,43 @@
     CodeBehind="TeamOverview.aspx.cs" Inherits="TechProFantasySoccer.TeamOverview" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".selectedblackout").click(function () {
+                window.document.location = $(this).data("href");
+            });
+        });
+    </script>
+
     <h2><%: Title %></h2>
     <h3>Available Cap Space: <span style="font-size:16px;"><%=AvailCap%></span></h3>
     
     <h4>Players:  (YTD Stats)</h4>
     <asp:GridView ID="TeamGridView" runat="server" AllowSorting="True" OnSorting="TeamGridView_Sorting"
-        AlternatingRowStyle-BackColor="#18bc9c">
+        AutoGenerateColumns="false">
         <%--<columns>
              <asp:BoundField DataField="FirstName" HeaderText="First" SortExpression="FirstName" />
             <asp:BoundField DataField="Cost" HeaderText="Cost" SortExpression="Cost" />
             <asp:BoundField DataField="PositionName" HeaderText="Position" SortExpression="PositionName" />
         </columns>--%>
+        <Columns>
+            <asp:BoundField HeaderText="PlayerId" DataField="PlayerId" SortExpression="PlayerId"/>
+            <asp:BoundField HeaderText="First" DataField="First" SortExpression="First"/>
+            <asp:BoundField HeaderText="Last" DataField="Last" SortExpression="Last"/>
+            <asp:BoundField HeaderText="Cost" DataField="Cost" SortExpression="Cost"/>
+            <asp:BoundField HeaderText="Club" DataField="Club" SortExpression="Club"/>
+            <asp:BoundField HeaderText="Position" DataField="Position" SortExpression="Position"/>
+            <asp:BoundField HeaderText="Goals" DataField="Goals" SortExpression="Goals"/>
+            <asp:BoundField HeaderText="Shots" DataField="Shots" SortExpression="Shots"/>
+            <asp:BoundField HeaderText="Assists" DataField="Assists" SortExpression="Assists"/>
+            <asp:BoundField HeaderText="Min Played" DataField="Min Played" SortExpression="Min Played"/>
+            <asp:BoundField HeaderText="Fouls" DataField="Fouls" SortExpression="Fouls"/>
+            <asp:BoundField HeaderText="YC" DataField="YC" SortExpression="YC"/>
+            <asp:BoundField HeaderText="RC" DataField="RC" SortExpression="RC"/>
+            <asp:BoundField HeaderText="GA" DataField="GA" SortExpression="GA"/>
+            <asp:BoundField HeaderText="CS" DataField="CS" SortExpression="CS"/>
+            <asp:BoundField HeaderText="Total Fantasy Pts" DataField="Total Fantasy Pts" SortExpression="Total Fantasy Pts"/>
+        </Columns>
     </asp:GridView>
     <br />
 
@@ -123,7 +149,7 @@
     </asp:Table>
 
     <br />
-    <a href="/FantasyPointsDetails">View Scoring Breakdown</a> (Click to see full details)
+    <a href="./FantasyPointsDetails">View Scoring Breakdown</a> (Click to see full details)
 
 
 
