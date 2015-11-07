@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %></h2>
 
-        <div class="row">
+    <div class="row">
         <div class="col-md-8">
             <section id="mainPageDetails">
                 <div class="form-horizontal">
@@ -34,7 +34,7 @@
 
                     <div class="form-group">
                         <div class="col-md-10">
-                            <asp:Button id="setScoringBtn" runat="server" class="btn btn-warning" Width="300px" text="Set Scoring Values" />
+                            <asp:Button id="setScoringBtn" runat="server" class="btn btn-primary" Width="300px" text="Set Scoring Values" />
                         </div>
                     </div>
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Join A League " Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="JoinLeague.aspx.cs" Inherits="TechProFantasySoccer.JoinLeague" %>
+﻿<%@ Page Title="Join a League " Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="JoinLeague.aspx.cs" Inherits="TechProFantasySoccer.JoinLeague" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %></h2>
@@ -8,54 +8,77 @@
             <section id="mainPageDetails">
                 <div class="form-horizontal">
 
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar" style="width: 48%"></div>
+                    </div>
+
                     <div class="form-group">
                         <div class="col-md-10">
-                            <asp:Label runat="server" AssociatedControlID="LeaguesJoinedListBox">Leagues Joined:</asp:Label>
+                            <h4>Leagues Joined:</h4>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-10">
-                            <asp:ListBox ID="LeaguesJoinedListBox"
-                                runat="server"
-                                Rows="3"
-                                Width="350px" >
-
-                                <asp:ListItem>Example League</asp:ListItem>
-                                <asp:ListItem>Test League</asp:ListItem>
-                                <asp:ListItem>Germans Only League</asp:ListItem>
-
-                            </asp:ListBox>
-                        </div>
-                    </div>
-
-                    <br />
-
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            <asp:Label runat="server" AssociatedControlID="LeaguesAvailListBox">Team:</asp:Label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            <asp:ListBox ID="LeaguesAvailListBox"
-                                runat="server"
-                                Rows="2"
-                                Width="350px" >
-
-                                <asp:ListItem>Brazil Fans League</asp:ListItem>
-                                <asp:ListItem>Portugal League</asp:ListItem>
-
-                            </asp:ListBox>
+                            <table id="leaguesJoinedTable" class="table table-striped table-hover">
+                                <thead>
+                                    <tr class="success">
+                                        <th>#</th>
+                                        <th>League Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Test League</td>
+                                    </tr>
+                                    <tr class="active">
+                                        <td>2</td>
+                                        <td>Germans Only League</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Hello League</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
                     <br />
 
                     <div class="form-group">
-                        <div class="col-md-offset-1 col-md-10">
-                            <asp:Button id="NextBtn" runat="server" Height="36px" Width="148px" text="Next" BackColor="#ffcc00" />
+                        <div class="col-md-10">
+                            <h4>Leagues Available:</h4>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <table id="leaguesAvailTable" class="table table-striped table-hover">
+                                <thead>
+                                    <tr class="success">
+                                        <th>#</th>
+                                        <th>League Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Brazil Fans League</td>
+                                    </tr>
+                                    <tr class="active">
+                                        <td>2</td>
+                                        <td>Protugal League</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-10">
+                            <asp:Button id="NextBtn" runat="server" class="btn btn-primary" Width="148px" text="Next" />
                         </div>
                     </div>
 

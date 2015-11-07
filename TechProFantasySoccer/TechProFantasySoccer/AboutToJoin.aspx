@@ -8,21 +8,27 @@
             <section id="mainPageDetails">
                 <div class="form-horizontal">
 
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            <asp:Label runat="server" AssociatedControlID="LeagueNameLabel">You Are About To Join:</asp:Label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-offset-1 col-md-10">
-                            <asp:Label ID="LeagueNameLabel" runat="server" ForeColor="#666666">Brazil Fans League</asp:Label>
-                        </div>
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar" style="width: 98%"></div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-10">
-                            <asp:Label runat="server" AssociatedControlID="TeamNameTextBox">Team:</asp:Label>
+                            <h4>You are about to join:</h4>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10 panel panel-default">
+                            <div class="panel-body">
+                                Brazil Fans League
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <h4>Name your Team:</h4>
                         </div>
                     </div>
 
@@ -36,7 +42,7 @@
 
                     <div class="form-group">
                         <div class="col-md-offset-1 col-md-10">
-                            <asp:Button id="NextBtn" runat="server" Height="36px" Width="148px" text="JOING LEAGUE" BackColor="#00cc99" />
+                            <asp:Button id="NextBtn" runat="server" class="btn btn-primary" Width="148px" text="JOING LEAGUE" />
                         </div>
                     </div>
 

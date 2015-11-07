@@ -25,25 +25,25 @@
 
                     <div class="form-group">
                         <div class="col-md-offset-3 col-md-10">
-                            <asp:Button id="PlayerSearchBtn" runat="server" Height="36px" Width="148px" text="Player Search" BackColor="#eaeaea" />
+                            <asp:Button id="PlayerSearchBtn" runat="server" class="btn btn-default" Width="148px" text="Player Search" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-offset-3 col-md-10">
-                            <asp:Button id="TeamOverviewBtn" runat="server" Height="36px" Width="148px" text="Team Overview" BackColor="#eaeaea" />
+                            <asp:Button id="TeamOverviewBtn" runat="server" class="btn btn-default" Width="148px" text="Team Overview" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-offset-3 col-md-10">
-                            <asp:Button id="SetLineupBtn" runat="server" Height="36px" Width="148px" text="Set Team Lineup" BackColor="#eaeaea" />
+                            <asp:Button id="SetLineupBtn" runat="server" class="btn btn-default" Width="148px" text="Set Team Lineup" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-offset-3 col-md-10">
-                            <asp:Button id="LeagueChatBtn" runat="server" Height="36px" Width="148px" text="League Chat" BackColor="#ffcc00" />
+                            <asp:Button id="LeagueChatBtn" runat="server" class="btn btn-primary" Width="148px" text="League Chat" />
                         </div>
                     </div>
 
