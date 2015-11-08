@@ -229,15 +229,19 @@ namespace TechProFantasySoccer {
         }
 
         private void ModifyRows() {
-            TeamGridView.HeaderRow.Cells[0].CssClass = "hidden";
-            //TeamGridView.Columns[0].Visible = true;
+            try {
+                if(TeamGridView.Rows.Count > 0)
+                    TeamGridView.HeaderRow.Cells[0].CssClass = "hidden";
+            } catch(System.NullReferenceException ex) {
+
+            }
+
             for(int i = 0; i < TeamGridView.Rows.Count; i++) {
                 string classList = "selectedblackout";
 
                 TeamGridView.Rows[i].Cells[0].Attributes.Add("class", "hidden");
 
 
-                //PlayerSearchGridView.Rows[i].Attributes.Add("class", "selectedblackout");
                 TeamGridView.Rows[i].Attributes.Add("data-href", "/Players/ViewPlayer.aspx?player=" +
                     TeamGridView.Rows[i].Cells[0].Text);
 
@@ -247,7 +251,7 @@ namespace TechProFantasySoccer {
                 TeamGridView.Rows[i].Attributes.Add("class", classList);
                 
             }
-            //TeamGridView.Columns[0].Visible = false;
+
         }
 
     }
