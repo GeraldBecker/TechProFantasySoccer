@@ -17,7 +17,7 @@ namespace TechProFantasySoccer {
 
             if(!HttpContext.Current.User.Identity.IsAuthenticated) {
                 //Server.Transfer("Default.aspx", true);
-
+                Response.Redirect("/Account/Login");
 
             } else {
                 if(!IsPostBack) {
@@ -47,6 +47,7 @@ namespace TechProFantasySoccer {
                 "([PlayerStats].RedCards) AS RC, " +
                 "([PlayerStats].GoalsAllowed) AS GA, " +
                 "([PlayerStats].SavesMade) AS Saves, " +
+                "([PlayerStats].CleanSheets) AS CS, " +
                 "dbo.CalculateTotalFantasyPoints(([PlayerStats].Goals), " +
 				"				                ([PlayerStats].Shots),  " +
 				"				                ([PlayerStats].Assists), " +
@@ -107,10 +108,16 @@ namespace TechProFantasySoccer {
                 /*DataRow[] row = (DataRow[])cmd.ExecuteScalar();
 
                 double points = (double)row[0]["Total Fantasy Pts"];*/
-                decimal points = (decimal)cmd.ExecuteScalar();
-                FantasyPointsLabel.Text = points + " pts";
+                var result = cmd.ExecuteScalar();
+                if(result.ToString() != "") {
+                    decimal points = (decimal)result;
+                    FantasyPointsLabel.Text = points + " pts";
+                }
+                
             } catch(System.Data.SqlClient.SqlException ex) {
 
+            } catch(System.InvalidCastException ex) {
+                Response.Write(ex);
             } finally {
                 con.Close();
             }

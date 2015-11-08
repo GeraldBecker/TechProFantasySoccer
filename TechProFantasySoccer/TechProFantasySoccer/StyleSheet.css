@@ -87,3 +87,25 @@ th.stats_spacing {
     box-shadow: 0px 0px 5px 5px #888888; /*The 3rd parameter sets how far the shadow blurs*/
 }
 
+tr.selectedblackout {
+    /*background-color: black;*/
+}
+
+tr.selectedblackout:hover {
+  background-color: #222222;
+  color: white;
+  cursor: pointer;
+}
+
+tr.alternaterow {
+    background-color: #18bc9c;
+}
+
+#MainContent_PlayerSearchGridView th.hidden,
+#MainContent_PlayerSearchGridView td.hidden,
+#MainContent_TeamGridView th.hidden,
+#MainContent_TeamGridView td.hidden,
+#MainContent_FantasyDetailsGridView th.hidden, 
+#MainContent_FantasyDetailsGridView td.hidden {
+    display: none;
+}

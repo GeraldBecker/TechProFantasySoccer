@@ -47,14 +47,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Fantasy Soccer</a>
+                    <a class="navbar-brand" runat="server" href="~/">Team Home</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/SetLineup">Set Lineup</a></li>
-                        <li><a runat="server" href="~/TeamOverview">Team Overview</a></li>
-                        <li><a runat="server" href="~/PlayerSearch"> Player Search</a></li>
-                        <li><a runat="server" href="~/MainPage">Team Home</a></li>
+                        <li><a runat="server" href="~/Team/TeamOverview">Team Overview</a></li>
+                        <li><a runat="server" href="~/Players/PlayerSearch"> Player Search</a></li>
+                        <li><a runat="server" href="~/Admin/ManagerMain">Admin</a></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>

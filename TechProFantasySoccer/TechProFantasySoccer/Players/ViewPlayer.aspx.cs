@@ -12,16 +12,18 @@ namespace TechProFantasySoccer.Players {
     public partial class ViewPlayer : System.Web.UI.Page {
         public string PlayerName = "View Player";
         protected void Page_Load(object sender, EventArgs e) {
+            if(!HttpContext.Current.User.Identity.IsAuthenticated) {
+                //Server.Transfer("Default.aspx", true);
+                Response.Redirect("/Account/Login");
+            }
+
             if(Request.QueryString["player"] == null) {
                 Response.Redirect("ViewPlayer.aspx?player=2");
                 //Response.Redirect("../PlayerSearch.aspx?player=2");
             }
             int playerId = int.Parse(Request.QueryString["player"]);
 
-            if(!HttpContext.Current.User.Identity.IsAuthenticated) {
-                //Server.Transfer("Default.aspx", true);
-
-            }
+            
 
             String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(strConnString);
@@ -50,17 +52,21 @@ namespace TechProFantasySoccer.Players {
                 con.Open();
                 temp.Load(cmd.ExecuteReader());
 
-                PlayerName = temp.Rows[0]["First"] + " " + temp.Rows[0]["Last"];
+                if(temp.Rows.Count > 0) {
+                    PlayerName = temp.Rows[0]["First"] + " " + temp.Rows[0]["Last"];
 
-                LeagueNameLabel.Text = (string)temp.Rows[0]["LeagueName"];
-                ClubNameLabel.Text = (string)temp.Rows[0]["ClubName"];
-                PositionLabel.Text = (string)temp.Rows[0]["Position"];
-                CostLabel.Text = ((int)temp.Rows[0]["Cost"]).ToString();
+                    LeagueNameLabel.Text = (string)temp.Rows[0]["LeagueName"];
+                    ClubNameLabel.Text = (string)temp.Rows[0]["ClubName"];
+                    PositionLabel.Text = (string)temp.Rows[0]["Position"];
+                    CostLabel.Text = ((int)temp.Rows[0]["Cost"]).ToString();
+                }
 
             } catch(System.Data.SqlClient.SqlException ex) {
 
             } catch(System.InvalidCastException ex) {
                 Response.Write("An error has occured converting a value.");
+            } catch(System.IndexOutOfRangeException ex) {
+                //Enter a valid player id.
             } finally {
                 con.Close();
             }
