@@ -11,37 +11,37 @@
 
                     <div class="form-group">
                         <div class="col-md-10">
-                            <asp:Button id="sepBtn" runat="server" class="btn btn-default btn-lg btn-block" text="September" />
+                            <asp:Button id="sepBtn" runat="server" class="btn btn-default btn-lg btn-block" text="September" OnClick="MonthButton_Click"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-10">
-                            <asp:Button id="octBtn" runat="server" class="btn btn-default btn-lg btn-block" text="October" />
+                            <asp:Button id="octBtn" runat="server" class="btn btn-default btn-lg btn-block" text="October" OnClick="MonthButton_Click"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-10">
-                            <asp:Button id="novBtn" runat="server" class="btn btn-default btn-lg btn-block" text="November" />
+                            <asp:Button id="novBtn" runat="server" class="btn btn-default btn-lg btn-block" text="November" OnClick="MonthButton_Click"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-10">
-                            <asp:Button id="decBtn" runat="server" class="btn btn-default btn-lg btn-block" text="December" />
+                            <asp:Button id="decBtn" runat="server" class="btn btn-default btn-lg btn-block" text="December" OnClick="MonthButton_Click"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-10">
-                            <asp:Button id="janBtn" runat="server" class="btn btn-default btn-lg btn-block" text="January" />
+                            <asp:Button id="janBtn" runat="server" class="btn btn-default btn-lg btn-block" text="January" OnClick="MonthButton_Click"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-10">
-                            <asp:Button id="febBtn" runat="server" class="btn btn-default btn-lg btn-block" text="February" />
+                            <asp:Button id="febBtn" runat="server" class="btn btn-default btn-lg btn-block" text="February" OnClick="MonthButton_Click"/>
                         </div>
                     </div>
 

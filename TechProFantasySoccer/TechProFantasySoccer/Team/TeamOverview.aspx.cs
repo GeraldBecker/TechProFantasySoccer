@@ -17,7 +17,7 @@ namespace TechProFantasySoccer {
         protected void Page_Load(object sender, EventArgs e) {
             if(!HttpContext.Current.User.Identity.IsAuthenticated) {
                 //Server.Transfer("Default.aspx", true);
-                
+                Response.Redirect("/Account/Login");
 
             } else {
                 //MembershipUser CurrentUser = Membership.GetUser(User.Identity.Name);

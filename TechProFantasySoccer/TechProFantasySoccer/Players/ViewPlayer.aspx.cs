@@ -12,16 +12,18 @@ namespace TechProFantasySoccer.Players {
     public partial class ViewPlayer : System.Web.UI.Page {
         public string PlayerName = "View Player";
         protected void Page_Load(object sender, EventArgs e) {
+            if(!HttpContext.Current.User.Identity.IsAuthenticated) {
+                //Server.Transfer("Default.aspx", true);
+                Response.Redirect("/Account/Login");
+            }
+
             if(Request.QueryString["player"] == null) {
                 Response.Redirect("ViewPlayer.aspx?player=2");
                 //Response.Redirect("../PlayerSearch.aspx?player=2");
             }
             int playerId = int.Parse(Request.QueryString["player"]);
 
-            if(!HttpContext.Current.User.Identity.IsAuthenticated) {
-                //Server.Transfer("Default.aspx", true);
-
-            }
+            
 
             String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(strConnString);

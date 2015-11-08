@@ -10,31 +10,36 @@
 
                     <div class="form-group">
                         <div class="col-md-10">
-                            <asp:Button id="editMnthPStatBtn" runat="server" class="btn btn-default" Width="300px" text="Edit Monthly Player Stats" />
+                            <asp:Button id="editMnthPStatBtn" runat="server" class="btn btn-default" Width="300px" 
+                                text="Edit Monthly Player Stats" OnClick="ManagerButton_Click"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-10">
-                            <asp:Button id="editPInfoBtn" runat="server" class="btn btn-default" Width="300px" text="Edit Player Information" />
+                            <asp:Button id="editPInfoBtn" runat="server" class="btn btn-default" Width="300px" 
+                                text="Edit Player Information" OnClick="ManagerButton_Click"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-10">
-                            <asp:Button id="createTeamBtn" runat="server" class="btn btn-info" Width="300px" text="Create Teams" />
+                            <asp:Button id="createTeamBtn" runat="server" class="btn btn-info" Width="300px" 
+                                text="Create Teams" OnClick="ManagerButton_Click"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-10">
-                            <asp:Button id="editLineupBtn" runat="server" class="btn btn-info" Width="300px" text="Edit Team Lineups" />
+                            <asp:Button id="editLineupBtn" runat="server" class="btn btn-info" Width="300px" 
+                                text="Edit Team Lineups" OnClick="ManagerButton_Click"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-10">
-                            <asp:Button id="setScoringBtn" runat="server" class="btn btn-primary" Width="300px" text="Set Scoring Values" />
+                            <asp:Button id="setScoringBtn" runat="server" class="btn btn-primary" Width="300px" 
+                                text="Set Scoring Values" OnClick="ManagerButton_Click"/>
                         </div>
                     </div>
 

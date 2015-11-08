@@ -17,7 +17,7 @@ namespace TechProFantasySoccer {
 
             if(!HttpContext.Current.User.Identity.IsAuthenticated) {
                 //Server.Transfer("Default.aspx", true);
-
+                Response.Redirect("/Account/Login");
 
             } else {
                 if(!IsPostBack) {

@@ -158,18 +158,17 @@
     <Content Include="Account\ResetPassword.aspx" />
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Admin\EditPlayerStats.aspx" />
-    <Content Include="ChooseMonth.aspx" />
+    <Content Include="Admin\ChooseMonth.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="EditPlayerInfo.aspx" />
+    <Content Include="Admin\EditPlayerInfo.aspx" />
     <Content Include="Team\FantasyPointsDetails.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="JoinLeague.aspx" />
     <Content Include="LeagueStandings.aspx" />
-    <Content Include="MainPage.aspx" />
-    <Content Include="ManagerMain.aspx" />
+    <Content Include="Admin\ManagerMain.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -319,11 +318,11 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="ChooseMonth.aspx.cs">
+    <Compile Include="Admin\ChooseMonth.aspx.cs">
       <DependentUpon>ChooseMonth.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ChooseMonth.aspx.designer.cs">
+    <Compile Include="Admin\ChooseMonth.aspx.designer.cs">
       <DependentUpon>ChooseMonth.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
@@ -340,11 +339,11 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EditPlayerInfo.aspx.cs">
+    <Compile Include="Admin\EditPlayerInfo.aspx.cs">
       <DependentUpon>EditPlayerInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EditPlayerInfo.aspx.designer.cs">
+    <Compile Include="Admin\EditPlayerInfo.aspx.designer.cs">
       <DependentUpon>EditPlayerInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Team\FantasyPointsDetails.aspx.cs">
@@ -371,18 +370,11 @@
     <Compile Include="LeagueStandings.aspx.designer.cs">
       <DependentUpon>LeagueStandings.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.aspx.cs">
-      <DependentUpon>MainPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MainPage.aspx.designer.cs">
-      <DependentUpon>MainPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ManagerMain.aspx.cs">
+    <Compile Include="Admin\ManagerMain.aspx.cs">
       <DependentUpon>ManagerMain.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ManagerMain.aspx.designer.cs">
+    <Compile Include="Admin\ManagerMain.aspx.designer.cs">
       <DependentUpon>ManagerMain.aspx</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
