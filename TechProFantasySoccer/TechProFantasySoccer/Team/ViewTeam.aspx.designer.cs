@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TechProFantasySoccer {
+namespace TechProFantasySoccer.Team {
     
     
-    public partial class TeamOverview {
+    public partial class ViewTeam {
         
         /// <summary>
         /// TeamGridView control.

@@ -5,29 +5,26 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Microsoft.AspNet.Identity; 
+using Microsoft.AspNet.Identity;
 
-namespace TechProFantasySoccer {
-    public partial class TeamOverview : System.Web.UI.Page {
+namespace TechProFantasySoccer.Team {
+    public partial class ViewTeam : System.Web.UI.Page {
+        public string UserName = "";
         private int TOTALCAP = 1000;
         public string AvailCap = "1000";
         protected void Page_Load(object sender, EventArgs e) {
-            if(!HttpContext.Current.User.Identity.IsAuthenticated) {
-                //Server.Transfer("Default.aspx", true);
+            if (!HttpContext.Current.User.Identity.IsAuthenticated) {
                 Response.Redirect("/Account/Login");
-
-            } else {
-                //MembershipUser CurrentUser = Membership.GetUser(User.Identity.Name);
-                if(!IsPostBack) { 
-                    //Response.Write(@"<script language='javascript'>alert('" + HttpContext.Current.User.Identity.Name + "|" +
-                    //User.Identity.GetUserId() + "|');</script>"); 
-                }
-   
             }
 
+            if (Request.QueryString["team"] == null) {
+                Response.Redirect("./Standings"); //use this one
+                //Response.Redirect("./ViewTeam?team=f15eagleger");
+            }
+            string team = Request.QueryString["team"];
+            UserName = team;
 
             String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(strConnString);
@@ -35,8 +32,9 @@ namespace TechProFantasySoccer {
 
             //Populate the grid of players with fantasy points
             cmd.CommandText =
-                "SELECT " +
-                "Players.PlayerId AS PlayerId, FirstName AS First, LastName AS Last, [Cost], [ClubName] AS Club, [Positions].[PositionName] AS Position," +
+                "SELECT Players.PlayerId AS PlayerId, " +
+                "FirstName AS First, LastName AS Last, [Cost], [ClubName] AS Club, [Positions].[PositionName] AS Position, " +
+                "LineupHistory.Active AS Active, " +
                 "SUM([PlayerStats].Goals) AS Goals, SUM([PlayerStats].Shots) AS Shots, SUM([PlayerStats].Assists) AS Assists," +
                 "SUM([PlayerStats].MinPlayed) AS 'Min Played', SUM([PlayerStats].Fouls) AS Fouls, " +
                 "SUM([PlayerStats].YellowCards) AS YC, SUM([PlayerStats].RedCards) AS RC, SUM([PlayerStats].GoalsAllowed) AS GA, " +
@@ -57,11 +55,13 @@ namespace TechProFantasySoccer {
                 "INNER JOIN [Positions] ON [Positions].[PositionRef] = Players.PositionRef " +
                 "LEFT OUTER JOIN PlayerStats ON PlayerStats.PlayerId = Players.PlayerId " +
                 "INNER JOIN Clubs ON Clubs.ClubId = Players.ClubId " +
+                "INNER JOIN AspNetUsers ON AspNetUsers.Id = LineupHistory.UserId " + 
                 "WHERE LineupHistory.Month = DATEPART(MONTH, GETDATE()) " +
-                "AND LineupHistory.UserId = '" + User.Identity.GetUserId()+  "' "+
-                "GROUP BY Players.PlayerId, FirstName, LastName, Players.Cost, Clubs.ClubName, Positions.PositionName, Positions.PositionRef, Players.PlayerId " +
+                "AND AspNetUsers.UserName = '" + team + "' " +
+                "GROUP BY Players.PlayerId, FirstName, LastName, Players.Cost, Clubs.ClubName, Positions.PositionName, " +
+                "Positions.PositionRef, Players.PlayerId, LineupHistory.Active " +
                 "ORDER BY Last";
-            
+
             cmd.Connection = con;
             try {
                 DataTable temp = new DataTable();
@@ -69,7 +69,7 @@ namespace TechProFantasySoccer {
                 TeamGridView.EmptyDataText = "No Records Found";
                 temp.Load(cmd.ExecuteReader());
 
-                for(int i = 0; i < temp.Rows.Count; i++) {
+                for (int i = 0; i < temp.Rows.Count; i++) {
                     TOTALCAP -= (int)temp.Rows[i]["Cost"];
                 }
                 AvailCap = TOTALCAP.ToString("C");
@@ -78,13 +78,13 @@ namespace TechProFantasySoccer {
                 TeamGridView.DataBind();
                 ModifyRows();
                 //TeamGridView.Columns[0].Visible = false;
-            } catch(System.Data.SqlClient.SqlException ex) {
-
+            } catch (System.Data.SqlClient.SqlException ex) {
+                Response.Write(ex);
             } finally {
                 con.Close();
             }
 
-            
+
             //Populate the fantasy points earned fields
             cmd.CommandText =
             "SELECT " +
@@ -123,7 +123,8 @@ namespace TechProFantasySoccer {
             "FROM LineupHistory " +
             "INNER JOIN Players ON LineupHistory.PlayerId = Players.PlayerId " +
             "INNER JOIN PlayerStats ON PlayerStats.PlayerId = LineupHistory.PlayerId AND PlayerStats.Month = LineupHistory.Month " +
-            "WHERE LineupHistory.UserId = '" + User.Identity.GetUserId() + "' " +
+            "INNER JOIN AspNetUsers ON AspNetUsers.Id = LineupHistory.UserId " +
+            "WHERE AspNetUsers.UserName = '" + team + "' " +
             "GROUP BY Players.PositionRef";
 
 
@@ -140,16 +141,16 @@ namespace TechProFantasySoccer {
 
                 DataRow[] foundRows;
 
-                for(int i = 1; i <= 4; i++) {
+                for (int i = 1; i <= 4; i++) {
                     foundRows = temp.Select("Position = " + i);
-                    if(foundRows.Length > 0) {
-                        if(i == 1)
+                    if (foundRows.Length > 0) {
+                        if (i == 1)
                             StrikersPtsLabel.Text = foundRows[0]["Total Fantasy Pts"].ToString() + " pts";
-                        else if(i == 2)
+                        else if (i == 2)
                             MidfieldersPtsLabel.Text = foundRows[0]["Total Fantasy Pts"].ToString() + " pts";
-                        else if(i == 3)
+                        else if (i == 3)
                             DefendersPtsLabel.Text = foundRows[0]["Total Fantasy Pts"].ToString() + " pts";
-                        else if(i == 4)
+                        else if (i == 4)
                             GoaliesPtsLabel.Text = foundRows[0]["Total Fantasy Pts"].ToString() + " pts";
 
                         goals += (int)foundRows[0]["Goals"];
@@ -197,7 +198,7 @@ namespace TechProFantasySoccer {
                 CleanSheetsPtsLabel.Text = cleanSheetPts.ToString() + " pts";
 
 
-            } catch(System.Data.SqlClient.SqlException ex) {
+            } catch (System.Data.SqlClient.SqlException ex) {
 
             } finally {
                 con.Close();
@@ -221,12 +222,12 @@ namespace TechProFantasySoccer {
             // Retrieve the last column that was sorted.
             string sortExpression = ViewState["SortExpression"] as string;
 
-            if(sortExpression != null) {
+            if (sortExpression != null) {
                 // Check if the same column is being sorted.
                 // Otherwise, the default value can be returned.
-                if(sortExpression == column) {
+                if (sortExpression == column) {
                     string lastDirection = ViewState["SortDirection"] as string;
-                    if((lastDirection != null) && (lastDirection == "ASC")) {
+                    if ((lastDirection != null) && (lastDirection == "ASC")) {
                         sortDirection = "DESC";
                     }
                 }
@@ -240,13 +241,13 @@ namespace TechProFantasySoccer {
 
         private void ModifyRows() {
             try {
-                if(TeamGridView.Rows.Count > 0)
+                if (TeamGridView.Rows.Count > 0)
                     TeamGridView.HeaderRow.Cells[0].CssClass = "hidden";
-            } catch(System.NullReferenceException ex) {
+            } catch (System.NullReferenceException ex) {
 
             }
 
-            for(int i = 0; i < TeamGridView.Rows.Count; i++) {
+            for (int i = 0; i < TeamGridView.Rows.Count; i++) {
                 string classList = "selectedblackout";
 
                 TeamGridView.Rows[i].Cells[0].Attributes.Add("class", "hidden");
@@ -255,18 +256,13 @@ namespace TechProFantasySoccer {
                 TeamGridView.Rows[i].Attributes.Add("data-href", "/Players/ViewPlayer.aspx?player=" +
                     TeamGridView.Rows[i].Cells[0].Text);
 
-                if((i % 2) == 1)
+                if ((i % 2) == 1)
                     classList += " alternaterow";
 
                 TeamGridView.Rows[i].Attributes.Add("class", classList);
-                
+
             }
 
         }
-
     }
-
-
-
-   
 }

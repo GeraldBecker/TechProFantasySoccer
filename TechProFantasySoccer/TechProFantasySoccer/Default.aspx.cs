@@ -19,6 +19,8 @@ namespace TechProFantasySoccer {
                 Response.Redirect("./Players/PlayerSearch");
             else if(sender.Equals(SetLineupBtn))
                 Response.Redirect("./SetLineup");
+            else if(sender.Equals(StandingsBtn))
+                Response.Redirect("./Team/Standings");
         }
     }
 }
