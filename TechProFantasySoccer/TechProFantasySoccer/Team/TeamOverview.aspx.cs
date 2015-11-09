@@ -173,18 +173,28 @@ namespace TechProFantasySoccer {
                         cleanSheets += (int)foundRows[0]["CleanSheets"];
                         cleanSheetPts += (decimal)foundRows[0]["CleanSheetPts"];
                     }
-                } 
+                }
 
-                GoalsPtsLabel.Text = goals.ToString() + " = " + goalPts.ToString() + " pts";
-                ShotsPtsLabel.Text = shots.ToString() + " = " + shotPts.ToString() + " pts";
-                AssistsPtsLabel.Text = assists.ToString() + " = " + assistPts.ToString() + " pts";
-                MinPlayedPtsLabel.Text = minPlayed.ToString() + " = " + minPlayedPts.ToString() + " pts";
-                FoulsPtsLabel.Text = fouls.ToString() + " = " + foulPts.ToString() + " pts";
-                YCPtsLabel.Text = YC.ToString() + " = " + YCPts.ToString() + " pts";
-                RCPtsLabel.Text = RC.ToString() + " = " + RCPts.ToString() + " pts";
-                GCPtsLabel.Text = GC.ToString() + " = " + GCPts.ToString() + " pts";
-                SavesMadePtsLabel.Text = saves.ToString() + " = " + savePts.ToString() + " pts";
-                CleanSheetsPtsLabel.Text = cleanSheets.ToString() + " = " + cleanSheetPts.ToString() + " pts";
+                GoalsLabel.Text = goals.ToString();
+                GoalsPtsLabel.Text = goalPts.ToString() + " pts";
+                ShotsLabel.Text = shots.ToString();
+                ShotsPtsLabel.Text = shotPts.ToString() + " pts";
+                AssistsLabel.Text = assists.ToString();
+                AssistsPtsLabel.Text = assistPts.ToString() + " pts";
+                MinPlayedLabel.Text = minPlayed.ToString();
+                MinPlayedPtsLabel.Text = minPlayedPts.ToString() + " pts";
+                FoulsLabel.Text = fouls.ToString();
+                FoulsPtsLabel.Text = foulPts.ToString() + " pts";
+                YCLabel.Text = YC.ToString();
+                YCPtsLabel.Text = YCPts.ToString() + " pts";
+                RCLabel.Text = RC.ToString();
+                RCPtsLabel.Text = RCPts.ToString() + " pts";
+                GCLabel.Text = GC.ToString();
+                GCPtsLabel.Text = GCPts.ToString() + " pts";
+                SavesMadeLabel.Text = saves.ToString();
+                SavesMadePtsLabel.Text = savePts.ToString() + " pts";
+                CleanSheetsLabel.Text = cleanSheets.ToString();
+                CleanSheetsPtsLabel.Text = cleanSheetPts.ToString() + " pts";
 
 
             } catch(System.Data.SqlClient.SqlException ex) {

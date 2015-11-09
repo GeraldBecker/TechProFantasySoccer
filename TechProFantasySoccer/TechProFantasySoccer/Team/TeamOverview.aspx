@@ -16,11 +16,6 @@
     <h4>Players:  (YTD Stats)</h4>
     <asp:GridView ID="TeamGridView" runat="server" AllowSorting="True" OnSorting="TeamGridView_Sorting"
         AutoGenerateColumns="false">
-        <%--<columns>
-             <asp:BoundField DataField="FirstName" HeaderText="First" SortExpression="FirstName" />
-            <asp:BoundField DataField="Cost" HeaderText="Cost" SortExpression="Cost" />
-            <asp:BoundField DataField="PositionName" HeaderText="Position" SortExpression="PositionName" />
-        </columns>--%>
         <Columns>
             <asp:BoundField HeaderText="PlayerId" DataField="PlayerId" SortExpression="PlayerId"/>
             <asp:BoundField HeaderText="First" DataField="First" SortExpression="First"/>
@@ -138,7 +133,13 @@
                 <asp:Label ID="Label15" runat="server" Text="Goals Conceded"></asp:Label>
             </asp:TableHeaderCell>
             <asp:TableCell>
-                <asp:Label ID="GCPtsLabel" runat="server" Text="0 = 0 pts"></asp:Label>
+                <asp:Label ID="GCLabel" runat="server" Text="0"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
+                <asp:Label ID="Label19" runat="server" Text=" = "></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
+                <asp:Label ID="GCPtsLabel" runat="server" Text="0 pts"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
@@ -146,13 +147,25 @@
                 <asp:Label ID="Label17" runat="server" Text="Saves Made"></asp:Label>
             </asp:TableHeaderCell>
             <asp:TableCell>
-                <asp:Label ID="SavesMadePtsLabel" runat="server" Text="0 = 0 pts"></asp:Label>
+                <asp:Label ID="SavesMadeLabel" runat="server" Text="0"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
+                <asp:Label ID="Label20" runat="server" Text=" = "></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
+                <asp:Label ID="SavesMadePtsLabel" runat="server" Text="0 pts"></asp:Label>
             </asp:TableCell>
             <asp:TableHeaderCell CssClass="stats_spacing">
                 <asp:Label ID="Label18" runat="server" Text="Clean Sheets"></asp:Label>
             </asp:TableHeaderCell>
             <asp:TableCell>
-                <asp:Label ID="CleanSheetsPtsLabel" runat="server" Text="0 = 0 pts"></asp:Label>
+                <asp:Label ID="CleanSheetsLabel" runat="server" Text="0"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
+                <asp:Label ID="Label21" runat="server" Text=" = "></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell>
+                <asp:Label ID="CleanSheetsPtsLabel" runat="server" Text="0 pts"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
@@ -164,13 +177,13 @@
             <asp:TableHeaderCell>
                 <asp:Label ID="DefendersLabel" runat="server" Text="Defenders"></asp:Label>
             </asp:TableHeaderCell>
-            <asp:TableCell>
+            <asp:TableCell ColumnSpan="3">
                 <asp:Label ID="DefendersPtsLabel" runat="server" Text="0 pts"></asp:Label>
             </asp:TableCell>
             <asp:TableHeaderCell CssClass="stats_spacing">
                 <asp:Label ID="MidfieldersLabel" runat="server" Text="Midfielders"></asp:Label>
             </asp:TableHeaderCell>
-            <asp:TableCell>
+            <asp:TableCell ColumnSpan="3">
                 <asp:Label ID="MidfieldersPtsLabel" runat="server" Text="0 pts"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
@@ -178,13 +191,13 @@
             <asp:TableHeaderCell>
                 <asp:Label ID="StrikersLabel" runat="server" Text="Strikers"></asp:Label>
             </asp:TableHeaderCell>
-            <asp:TableCell>
+            <asp:TableCell ColumnSpan="3">
                 <asp:Label ID="StrikersPtsLabel" runat="server" Text="0 pts"></asp:Label>
             </asp:TableCell>
             <asp:TableHeaderCell CssClass="stats_spacing">
                 <asp:Label ID="GoaliesLabel" runat="server" Text="Goalies"></asp:Label>
             </asp:TableHeaderCell>
-            <asp:TableCell>
+            <asp:TableCell ColumnSpan="3">
                 <asp:Label ID="GoaliesPtsLabel" runat="server" Text="0 pts"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
