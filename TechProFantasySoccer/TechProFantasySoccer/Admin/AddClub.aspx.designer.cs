@@ -7,54 +7,63 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TechProFantasySoccer {
+namespace TechProFantasySoccer.Admin {
     
     
-    public partial class ManagerMain {
+    public partial class AddTeam {
         
         /// <summary>
-        /// editMnthPStatBtn control.
+        /// Table1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button editMnthPStatBtn;
+        protected global::System.Web.UI.WebControls.Table Table1;
         
         /// <summary>
-        /// editPInfoBtn control.
+        /// TeamNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button editPInfoBtn;
+        protected global::System.Web.UI.WebControls.TextBox TeamNameTextBox;
         
         /// <summary>
-        /// createTeamBtn control.
+        /// LeagueDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button createTeamBtn;
+        protected global::System.Web.UI.WebControls.DropDownList LeagueDropDown;
         
         /// <summary>
-        /// editLineupBtn control.
+        /// SubmitButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button editLineupBtn;
+        protected global::System.Web.UI.WebControls.Button SubmitButton;
         
         /// <summary>
-        /// setScoringBtn control.
+        /// ClubGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button setScoringBtn;
+        protected global::System.Web.UI.WebControls.GridView ClubGridView;
+        
+        /// <summary>
+        /// FantasyDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource FantasyDataSource;
     }
 }

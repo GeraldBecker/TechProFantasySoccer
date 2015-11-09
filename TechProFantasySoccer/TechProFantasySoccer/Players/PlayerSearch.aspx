@@ -8,7 +8,17 @@
             document.getElementById("#MainContent_PlayerSearchGridView").backgroundColor = "red";
         }
 
+
+        jQuery(document).ready(function ($) {
+            $(".selectedblackout").click(function () {
+                window.document.location = $(this).data("href");
+            });
+        });
     </script>
+
+    
+
+
     <h2><%: Title %></h2>
 
     <div id="SearchBar">
@@ -55,8 +65,8 @@
             </asp:TableRow>
             <asp:TableFooterRow>
                 <asp:TableCell ColumnSpan="5">
-                    <asp:Button ID="ClearButton" CommandName="ClearButton" runat="server" Text="Search" /><asp:Button runat="server" 
-                        Text="Clear" OnClick="ClearEntries"/>
+                    <asp:Button ID="SubmitButton" CommandName="SubmitButton" runat="server" Text="Search" />
+                    <asp:Button runat="server" Text="Clear" OnClick="ClearEntries"/>
                 </asp:TableCell>
             </asp:TableFooterRow>
         </asp:Table>
@@ -64,12 +74,7 @@
     </div>
     <br />
     <asp:GridView ID="PlayerSearchGridView" runat="server" AllowSorting="True" OnSorting="PlayerSearchGridView_Sorting" 
-        AllowPaging="true" PageSize="40" OnPageIndexChanging="PlayerSearchGridView_PageIndexChanging" 
-        AlternatingRowStyle-BackColor="#18bc9c" AutoGenerateSelectButton="true" 
-        OnSelectedIndexChanged="PlayerSearchGridView_SelectedIndexChanged">
-        <selectedrowstyle 
-         forecolor="DarkBlue"
-         font-bold="true"/> 
+        AllowPaging="true" PageSize="40" OnPageIndexChanging="PlayerSearchGridView_PageIndexChanging">
     </asp:GridView>
 
 </asp:Content>

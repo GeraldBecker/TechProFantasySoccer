@@ -13,30 +13,21 @@ namespace TechProFantasySoccer {
     public partial class AboutToJoin {
         
         /// <summary>
-        /// leagueLabel control.
+        /// TeamNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label leagueLabel;
+        protected global::System.Web.UI.WebControls.TextBox TeamNameTextBox;
         
         /// <summary>
-        /// teamName control.
+        /// NextBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox teamName;
-        
-        /// <summary>
-        /// joinLeagueBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button joinLeagueBtn;
+        protected global::System.Web.UI.WebControls.Button NextBtn;
     }
 }
