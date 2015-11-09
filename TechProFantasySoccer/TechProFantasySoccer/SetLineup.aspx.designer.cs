@@ -22,13 +22,13 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.ListBox ListBox1;
         
         /// <summary>
-        /// tbDefenders control.
+        /// DefenderPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList tbDefenders;
+        protected global::System.Web.UI.WebControls.Panel DefenderPanel;
         
         /// <summary>
         /// tbBench control.
@@ -40,30 +40,48 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.DataList tbBench;
         
         /// <summary>
-        /// tbMidfielders control.
+        /// MidfielderPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList tbMidfielders;
+        protected global::System.Web.UI.WebControls.Panel MidfielderPanel;
         
         /// <summary>
-        /// tbStrikers control.
+        /// StrikerPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList tbStrikers;
+        protected global::System.Web.UI.WebControls.Panel StrikerPanel;
         
         /// <summary>
-        /// lbGoalie control.
+        /// GoaliePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList lbGoalie;
+        protected global::System.Web.UI.WebControls.Panel GoaliePanel;
+        
+        /// <summary>
+        /// CancelButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CancelButton;
+        
+        /// <summary>
+        /// SubmitButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SubmitButton;
     }
 }

@@ -5,7 +5,17 @@
 td.lineupColumn1 {
     width: 300px;
 }
+#buttonDiv {
+    margin: auto;
+    text-align: center;
+}
+#CancelButton {
+    margin: 5px 15px;
+}
+#SubmitButton {
 
+    margin: 5px 15px;
+}
 .player
 {
     height: 30px;
