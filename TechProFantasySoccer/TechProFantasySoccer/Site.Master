@@ -54,6 +54,7 @@
                         <li><a runat="server" href="~/SetLineup">Set Lineup</a></li>
                         <li><a runat="server" href="~/Team/TeamOverview">Team Overview</a></li>
                         <li><a runat="server" href="~/Players/PlayerSearch"> Player Search</a></li>
+                        <li><a runat="server" href="~/Team/Standings"> Standings</a></li>
                         <li><a runat="server" href="~/Admin/ManagerMain">Admin</a></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">

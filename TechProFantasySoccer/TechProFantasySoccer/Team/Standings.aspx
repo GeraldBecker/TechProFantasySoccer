@@ -4,12 +4,6 @@
     <h2><%: Title %></h2>
 
     <script type="text/javascript">
-
-        function myFunction() {
-            document.getElementById("#MainContent_standingsTable").backgroundColor = "red";
-        }
-
-
         jQuery(document).ready(function ($) {
             $(".selectedblackout").click(function () {
                 window.document.location = $(this).data("href");

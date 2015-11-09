@@ -18,10 +18,16 @@ namespace TechProFantasySoccer.Players {
             }
 
             if(Request.QueryString["player"] == null) {
-                Response.Redirect("ViewPlayer.aspx?player=2");
-                //Response.Redirect("../PlayerSearch.aspx?player=2");
+                Response.Redirect("PlayerSearch");
+                //Response.Redirect("ViewPlayer.aspx?player=2");
             }
-            int playerId = int.Parse(Request.QueryString["player"]);
+            int playerId = 0;
+            try {
+                playerId = int.Parse(Request.QueryString["player"]);
+            } catch(FormatException ex) {
+                Response.Redirect("PlayerSearch");
+            }
+            
 
             
 
