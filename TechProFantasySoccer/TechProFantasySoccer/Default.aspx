@@ -51,6 +51,13 @@
 
                     <div class="form-group">
                         <div class="col-md-offset-3 col-md-10">
+                            <asp:Button id="StandingsBtn" runat="server" class="btn btn-default" Width="148px" text="Standings" 
+                                OnClick="MainPageBtn_Click"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-10">
                             <asp:Button id="LeagueChatBtn" runat="server" class="btn btn-primary" Width="148px" text="League Chat" />
                         </div>
                     </div>

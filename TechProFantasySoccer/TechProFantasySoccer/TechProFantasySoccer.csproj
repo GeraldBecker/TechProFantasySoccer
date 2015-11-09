@@ -169,7 +169,7 @@
     <Content Include="Team\FantasyPointsDetails.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="JoinLeague.aspx" />
-    <Content Include="Standings.aspx" />
+    <Content Include="Team\Standings.aspx" />
     <Content Include="Admin\ManagerMain.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -380,11 +380,11 @@
     <Compile Include="JoinLeague.aspx.designer.cs">
       <DependentUpon>JoinLeague.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Standings.aspx.cs">
+    <Compile Include="Team\Standings.aspx.cs">
       <DependentUpon>Standings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Standings.aspx.designer.cs">
+    <Compile Include="Team\Standings.aspx.designer.cs">
       <DependentUpon>Standings.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ManagerMain.aspx.cs">
