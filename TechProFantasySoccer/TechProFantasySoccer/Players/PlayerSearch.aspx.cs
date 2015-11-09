@@ -209,10 +209,11 @@ namespace TechProFantasySoccer {
             return sortDirection;
         }
 
-        /*protected void PlayerSearchGridView_PageIndexChanging(object sender, GridViewPageEventArgs e) {
+        protected void PlayerSearchGridView_PageIndexChanging(object sender, GridViewPageEventArgs e) {
             PlayerSearchGridView.PageIndex = e.NewPageIndex;
             PlayerSearchGridView.DataBind();
-        }*/
+            ModifyRows();
+        }
 
         protected void ClearEntries(object sender, EventArgs e) {
             FirstNameTextBox.Text = "";

@@ -61,7 +61,7 @@ namespace TechProFantasySoccer {
                 "AND LineupHistory.UserId = '" + User.Identity.GetUserId()+  "' "+
                 "GROUP BY Players.PlayerId, FirstName, LastName, Players.Cost, Clubs.ClubName, Positions.PositionName, Positions.PositionRef, Players.PlayerId " +
                 "ORDER BY Last";
-
+            
             cmd.Connection = con;
             try {
                 DataTable temp = new DataTable();
