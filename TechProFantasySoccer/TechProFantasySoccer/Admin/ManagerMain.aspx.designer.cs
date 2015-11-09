@@ -31,6 +31,24 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.Button editPInfoBtn;
         
         /// <summary>
+        /// addPlayerBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button addPlayerBtn;
+        
+        /// <summary>
+        /// addClubBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button addClubBtn;
+        
+        /// <summary>
         /// createTeamBtn control.
         /// </summary>
         /// <remarks>

@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TechProFantasySoccer {
+namespace TechProFantasySoccer.Admin {
     
     
-    public partial class PlayerSearch {
+    public partial class AddTeam {
         
         /// <summary>
         /// Table1 control.
@@ -22,49 +22,22 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.Table Table1;
         
         /// <summary>
-        /// FirstNameTextBox control.
+        /// TeamNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FirstNameTextBox;
+        protected global::System.Web.UI.WebControls.TextBox TeamNameTextBox;
         
         /// <summary>
-        /// LastNameTextBox control.
+        /// LeagueDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LastNameTextBox;
-        
-        /// <summary>
-        /// LeagueTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LeagueTextBox;
-        
-        /// <summary>
-        /// ClubTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ClubTextBox;
-        
-        /// <summary>
-        /// PositionDropDown control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList PositionDropDown;
+        protected global::System.Web.UI.WebControls.DropDownList LeagueDropDown;
         
         /// <summary>
         /// SubmitButton control.
@@ -76,12 +49,21 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.Button SubmitButton;
         
         /// <summary>
-        /// PlayerSearchGridView control.
+        /// ClubGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView PlayerSearchGridView;
+        protected global::System.Web.UI.WebControls.GridView ClubGridView;
+        
+        /// <summary>
+        /// FantasyDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource FantasyDataSource;
     }
 }

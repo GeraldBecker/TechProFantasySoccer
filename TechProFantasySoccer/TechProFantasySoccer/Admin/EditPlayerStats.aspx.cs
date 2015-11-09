@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
 
 namespace TechProFantasySoccer.Admin {
     public partial class EditPlayerStats : System.Web.UI.Page {
@@ -13,6 +14,31 @@ namespace TechProFantasySoccer.Admin {
         protected void Page_Load(object sender, EventArgs e) {
             if(!HttpContext.Current.User.Identity.IsAuthenticated) {
                 Response.Redirect("/Account/Login");
+            }
+
+            String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(strConnString);
+            SqlCommand cmd = new SqlCommand();
+
+            //Check if the user is an Admin
+            string user = User.Identity.GetUserId();
+            cmd.CommandText =
+                "SELECT Access " +
+                "FROM AccessLevel " +
+                "WHERE UserId = '" + user + "'";
+
+            cmd.Connection = con;
+            try {
+                con.Open();
+                int accessLevel = (int)cmd.ExecuteScalar();
+
+                if(accessLevel != 1)
+                    Response.Redirect("~/");
+
+            } catch(System.Data.SqlClient.SqlException ex) {
+                Response.Redirect("~/");
+            } finally {
+                con.Close();
             }
 
             try {

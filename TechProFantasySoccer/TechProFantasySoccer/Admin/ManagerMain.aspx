@@ -24,6 +24,20 @@
 
                     <div class="form-group">
                         <div class="col-md-10">
+                            <asp:Button id="addPlayerBtn" runat="server" class="btn btn-default" Width="300px" 
+                                text="Add Player" OnClick="ManagerButton_Click"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <asp:Button id="addClubBtn" runat="server" class="btn btn-default" Width="300px" 
+                                text="Add Club" OnClick="ManagerButton_Click"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
                             <asp:Button id="createTeamBtn" runat="server" class="btn btn-info" Width="300px" 
                                 text="Create Teams" OnClick="ManagerButton_Click"/>
                         </div>

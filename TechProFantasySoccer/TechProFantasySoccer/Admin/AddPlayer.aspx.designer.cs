@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TechProFantasySoccer {
+namespace TechProFantasySoccer.Admin {
     
     
-    public partial class PlayerSearch {
+    public partial class CreatePlayer {
         
         /// <summary>
         /// Table1 control.
@@ -40,22 +40,13 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.TextBox LastNameTextBox;
         
         /// <summary>
-        /// LeagueTextBox control.
+        /// ClubDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LeagueTextBox;
-        
-        /// <summary>
-        /// ClubTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ClubTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList ClubDropDown;
         
         /// <summary>
         /// PositionDropDown control.
@@ -67,6 +58,15 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.DropDownList PositionDropDown;
         
         /// <summary>
+        /// CostTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CostTextBox;
+        
+        /// <summary>
         /// SubmitButton control.
         /// </summary>
         /// <remarks>
@@ -76,12 +76,21 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.Button SubmitButton;
         
         /// <summary>
-        /// PlayerSearchGridView control.
+        /// PlayerGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView PlayerSearchGridView;
+        protected global::System.Web.UI.WebControls.GridView PlayerGridView;
+        
+        /// <summary>
+        /// ClubsDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource ClubsDataSource;
     }
 }

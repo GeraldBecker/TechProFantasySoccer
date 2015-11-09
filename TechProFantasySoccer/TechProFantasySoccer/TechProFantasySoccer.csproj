@@ -157,6 +157,8 @@
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="Account\ResetPassword.aspx" />
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
+    <Content Include="Admin\AddPlayer.aspx" />
+    <Content Include="Admin\AddClub.aspx" />
     <Content Include="Admin\EditPlayerStats.aspx" />
     <Content Include="Admin\ChooseMonth.aspx" />
     <Content Include="Contact.aspx" />
@@ -299,6 +301,20 @@
     </Compile>
     <Compile Include="Account\ResetPasswordConfirmation.aspx.designer.cs">
       <DependentUpon>ResetPasswordConfirmation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddPlayer.aspx.cs">
+      <DependentUpon>AddPlayer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddPlayer.aspx.designer.cs">
+      <DependentUpon>AddPlayer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddClub.aspx.cs">
+      <DependentUpon>AddClub.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddClub.aspx.designer.cs">
+      <DependentUpon>AddClub.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\EditPlayerStats.aspx.cs">
       <DependentUpon>EditPlayerStats.aspx</DependentUpon>
