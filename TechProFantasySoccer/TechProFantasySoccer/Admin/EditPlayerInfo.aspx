@@ -14,7 +14,7 @@
         </tr>
         <tr>
             <td>
-                <strong>Clumb Team:</strong>
+                <strong>Club:</strong>
             </td>
             <td>
                 <asp:TextBox id="cteamTextbox" runat="server">Bayern Munich</asp:TextBox>
