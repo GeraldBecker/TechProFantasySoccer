@@ -1,5 +1,5 @@
-﻿<%@ Page Title="Team Overview" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
-    CodeBehind="TeamOverview.aspx.cs" Inherits="TechProFantasySoccer.TeamOverview" %>
+﻿<%@ Page Title="View Team" Language="C#" MasterPageFile="~/Site.Master"  AutoEventWireup="true" 
+    CodeBehind="ViewTeam.aspx.cs" Inherits="TechProFantasySoccer.Team.ViewTeam" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
@@ -10,17 +10,12 @@
         });
     </script>
 
-    <h2><%: Title %></h2>
+    <h2><%=UserName%>'s Team</h2>
     <h3>Available Cap Space: <span style="font-size:16px;"><%=AvailCap%></span></h3>
     
     <h4>Players:  (YTD Stats)</h4>
     <asp:GridView ID="TeamGridView" runat="server" AllowSorting="True" OnSorting="TeamGridView_Sorting"
         AutoGenerateColumns="false">
-        <%--<columns>
-             <asp:BoundField DataField="FirstName" HeaderText="First" SortExpression="FirstName" />
-            <asp:BoundField DataField="Cost" HeaderText="Cost" SortExpression="Cost" />
-            <asp:BoundField DataField="PositionName" HeaderText="Position" SortExpression="PositionName" />
-        </columns>--%>
         <Columns>
             <asp:BoundField HeaderText="PlayerId" DataField="PlayerId" SortExpression="PlayerId"/>
             <asp:BoundField HeaderText="First" DataField="First" SortExpression="First"/>
@@ -28,6 +23,7 @@
             <asp:BoundField HeaderText="Cost" DataField="Cost" SortExpression="Cost"/>
             <asp:BoundField HeaderText="Club" DataField="Club" SortExpression="Club"/>
             <asp:BoundField HeaderText="Position" DataField="Position" SortExpression="Position"/>
+            <asp:BoundField HeaderText="Active" DataField="Active" SortExpression="Active"/>
             <asp:BoundField HeaderText="Goals" DataField="Goals" SortExpression="Goals"/>
             <asp:BoundField HeaderText="Shots" DataField="Shots" SortExpression="Shots"/>
             <asp:BoundField HeaderText="Assists" DataField="Assists" SortExpression="Assists"/>
@@ -48,25 +44,13 @@
                 <asp:Label ID="Label1" runat="server" Text="Goals"></asp:Label>
             </asp:TableHeaderCell>
             <asp:TableCell>
-                <asp:Label ID="GoalsLabel" runat="server" Text="0"></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Label ID="Label4" runat="server" Text=" = "></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Label ID="GoalsPtsLabel" runat="server" Text="0 pts"></asp:Label>
+                <asp:Label ID="GoalsPtsLabel" runat="server" Text="0 = 0 pts"></asp:Label>
             </asp:TableCell>
             <asp:TableHeaderCell CssClass="stats_spacing">
                 <asp:Label ID="Label3" runat="server" Text="Assists"></asp:Label>
             </asp:TableHeaderCell>
             <asp:TableCell>
-                <asp:Label ID="AssistsLabel" runat="server" Text="0"></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Label ID="Label6" runat="server" Text=" = "></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Label ID="AssistsPtsLabel" runat="server" Text="0 pts"></asp:Label>
+                <asp:Label ID="AssistsPtsLabel" runat="server" Text="0 = 0 pts"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
@@ -74,25 +58,13 @@
                 <asp:Label ID="Label5" runat="server" Text="Shots"></asp:Label>
             </asp:TableHeaderCell>
             <asp:TableCell>
-                <asp:Label ID="ShotsLabel" runat="server" Text="0"></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Label ID="Label8" runat="server" Text=" = "></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Label ID="ShotsPtsLabel" runat="server" Text="0 pts"></asp:Label>
+                <asp:Label ID="ShotsPtsLabel" runat="server" Text="0 = 0 pts"></asp:Label>
             </asp:TableCell>
             <asp:TableHeaderCell CssClass="stats_spacing">
                 <asp:Label ID="Label7" runat="server" Text="Min Played"></asp:Label>
             </asp:TableHeaderCell>
             <asp:TableCell>
-                <asp:Label ID="MinPlayedLabel" runat="server" Text="0"></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Label ID="Label10" runat="server" Text=" = "></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Label ID="MinPlayedPtsLabel" runat="server" Text="0 pts"></asp:Label>
+                <asp:Label ID="MinPlayedPtsLabel" runat="server" Text="0 = 0 pts"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
@@ -100,25 +72,13 @@
                 <asp:Label ID="Label9" runat="server" Text="Fouls"></asp:Label>
             </asp:TableHeaderCell>
             <asp:TableCell>
-                <asp:Label ID="FoulsLabel" runat="server" Text="0"></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Label ID="Label12" runat="server" Text=" = "></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Label ID="FoulsPtsLabel" runat="server" Text="0 pts"></asp:Label>
+                <asp:Label ID="FoulsPtsLabel" runat="server" Text="0 = 0 pts"></asp:Label>
             </asp:TableCell>
             <asp:TableHeaderCell CssClass="stats_spacing">
                 <asp:Label ID="Label11" runat="server" Text="Y Cards"></asp:Label>
             </asp:TableHeaderCell>
             <asp:TableCell>
-                <asp:Label ID="YCLabel" runat="server" Text="0"></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Label ID="Label14" runat="server" Text=" = "></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Label ID="YCPtsLabel" runat="server" Text="0 pts"></asp:Label>
+                <asp:Label ID="YCPtsLabel" runat="server" Text="0 = 0 pts"></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow>
@@ -126,13 +86,7 @@
                 <asp:Label ID="Label13" runat="server" Text="R Cards"></asp:Label>
             </asp:TableHeaderCell>
             <asp:TableCell>
-                <asp:Label ID="RCLabel" runat="server" Text="0"></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Label ID="Label16" runat="server" Text=" = "></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:Label ID="RCPtsLabel" runat="server" Text="0 pts"></asp:Label>
+                <asp:Label ID="RCPtsLabel" runat="server" Text="0 = 0 pts"></asp:Label>
             </asp:TableCell>
             <asp:TableHeaderCell CssClass="stats_spacing">
                 <asp:Label ID="Label15" runat="server" Text="Goals Conceded"></asp:Label>
@@ -191,10 +145,6 @@
     </asp:Table>
 
     <br />
-    <a href="./FantasyPointsDetails">View Scoring Breakdown</a> (Click to see full details)
-
-
-
 
 
     <asp:SqlDataSource ID="SqlFantasyDataSource" runat="server" 

@@ -216,6 +216,7 @@
     <Content Include="Site.Master" />
     <Content Include="StyleSheet.css" />
     <Content Include="Team\TeamOverview.aspx" />
+    <Content Include="Team\ViewTeam.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config">
@@ -438,6 +439,13 @@
     </Compile>
     <Compile Include="Team\TeamOverview.aspx.designer.cs">
       <DependentUpon>TeamOverview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Team\ViewTeam.aspx.cs">
+      <DependentUpon>ViewTeam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Team\ViewTeam.aspx.designer.cs">
+      <DependentUpon>ViewTeam.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
