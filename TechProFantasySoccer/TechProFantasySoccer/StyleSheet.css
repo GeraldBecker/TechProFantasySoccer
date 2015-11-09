@@ -1,7 +1,7 @@
 ﻿body {
     background-color: #daede2;
 }
-
+/* SetLineup Page*/
 td.lineupColumn1 {
     width: 300px;
 }
@@ -10,9 +10,9 @@ td.lineupColumn1 {
 {
     height: 30px;
     width: 300px;
-    color: red;
+    color: black;
     border: 2px solid #666666;
-    background-color: black;
+    background-color: whitesmoke;
     padding:3px;
     margin: 0px 2px;
     text-align: center;
@@ -31,6 +31,11 @@ td.lineupColumn1 {
     margin: 0;
 }
 
+#goalieDiv {
+    height: 30px;
+    margin: 0;
+}
+
 #defDiv {
     height: 120px;
     margin: 0;
@@ -38,6 +43,11 @@ td.lineupColumn1 {
 
 #strDiv {
     height: 60px;
+    margin: 0;
+}
+
+#benchDiv {
+    height: 450px;
     margin: 0;
 }
 
@@ -50,6 +60,12 @@ td.lineupColumn1 {
     text-align: right;
     float: right;
 }
+
+.highlight {
+
+}
+/* END OF SET LINEUP */
+
 
 #MainContent_StatsTable td {
     padding: 0 5px;

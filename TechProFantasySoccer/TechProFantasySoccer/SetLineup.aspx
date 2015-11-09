@@ -1,8 +1,14 @@
 ﻿<%@ Page Title="Set Lineup" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SetLineup.aspx.cs" Inherits="TechProFantasySoccer.SetLineup" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-<script type="text/javascript">
+<script>
     $(document).ready(function () {
+        //initialize player counters
+        var defenderCount = "<%= DefenderCount %>";
+        var midfielderCount = "<%= MidfielderCount %>";
+        var strikerCount = "<%= StrikerCount %>";
+        var goalieCount = "<%= GoalieCount %>";
+
         //Add listeners to the player boxes and position drop boxes
         $("div .player").each(function () {
             this.addEventListener('dragstart', OnDragStart, false);
@@ -21,7 +27,13 @@
             this.style.opacity = '0.3';
             srcElement = this;
             e.dataTransfer.effectAllowed = 'move';
+            //window.alert($(this).find('div')[0].innerHTML + " " + $(this).find("div")[1].innerHTML);
             e.dataTransfer.setData('text/html', $(this).find("div")[0].innerHTML);
+            e.dataTransfer.setData('position', $(this).find("div")[1].innerHTML);
+        }
+        
+        function RemoveItem(e) {
+
         }
 
         function OnDragOver(e) {
@@ -45,6 +57,29 @@
             if (e.stopPropagation) {
                 e.stopPropagation();
             }
+            
+            //window.alert(defenderCount);
+            if (e.target.id == 'defDiv' && defenderCount < 5) {
+                if (e.dataTransfer.getData('position') != 'Defender')
+                    return;
+                //var option = document.createElement('option');
+                //option.innerHTML = 'value = ' + srcElement.innerHTML;
+                //document.getElementById('tbDefenders').appendChild(option);
+                //document.findElementById('tbDefenders').append(srcElement);
+                defenderCount++;
+            } else if (e.target.id == 'midDiv' && midfielderCount < 5) {
+                if (e.dataTransfer.getData('position') != 'Mid-fielder')
+                    return;
+                midfielderCount++;
+            } else if (e.target.id == 'strDiv' && strikerCount < 3) {
+                if (e.dataTransfer.getData('position') != 'Striker')
+                    return;
+                strikerCount++;
+            } else if (e.target.id == 'goalieDiv' && goalieCount < 2) {
+                if (e.dataTransfer.getData('position') != 'Goalie')
+                    return;
+                goalieCount++;
+            } else return;
 
             srcElement.style.opacity = '1';
             $(this).removeClass('highlight');
@@ -52,23 +87,12 @@
             if (count <= 0) {
                 $(this).append("<div class='player' data-player-name='" + e.dataTransfer.getData('text/html') + "'>" + e.dataTransfer.getData('text/html') + "</div>");
                 $(this).find('div').attr('draggable', 'true');
-                $(this).find('div').bind('dragstart', OnDragStart);
+                //$(this).find('div').bind('click', OnDragStartAfterPlaced);
+                srcElement.parentNode.removeChild(srcElement);
             }
-            else {
-                
-            }
+            else { ;}
             return false;
         }
-
-        document.addEventListener("drop", function (event) {
-            event.preventDefault();
-            if (event.target.className == "droptarget") {
-                document.getElementById("demo").style.color = "";
-                event.target.style.border = "";
-                var data = event.dataTransfer.getData("Text");
-                event.target.appendChild(document.getElementById(data));
-            }
-        });
 
         function OnDragEnd(e) {
             $("div .bag").removeClass('highlight');
@@ -89,21 +113,21 @@
                 <asp:DataList ID="tbDefenders" runat="server" Width="300px" Height="120px">
                     <ItemTemplate>
                         <div class="player" draggable="true">
-                            <header><%# Eval("First") %> <%# Eval("Last") %></header>
+                            <div class="playerName"><%# Eval("First") %> <%# Eval("Last") %></div>
+                            <div class="playerPosition"><%# Eval("Position") %></div>
                         </div>
                     </ItemTemplate>
                 </asp:DataList>
                 </div>
             </td>
-            <td class="lineupColumn1" rowspan="2">
+            <td class="lineupColumn1" rowspan="3">
                 <h4>Bench</h4>
                 <div class="teamSpots" id="benchDiv">
                 <asp:DataList ID="tbBench" runat="server" Width="300px" Height="150px">
                     <ItemTemplate>
                         <div class="player" draggable="true">
                             <div class="playerName"><%# Eval("First") %> <%# Eval("Last") %></div>
-                                <div class="playerPosition"><%# Eval("Position") %></div>
-                            
+                            <div class="playerPosition"><%# Eval("Position") %></div>
                         </div>
                     </ItemTemplate>
                 </asp:DataList>
@@ -117,7 +141,8 @@
                 <asp:DataList ID="tbMidfielders" runat="server" Width="300px" Height="120px">
                     <ItemTemplate>
                         <div class="player" draggable="true">   
-                            <header><%# Eval("First") %> <%# Eval("Last") %></header>
+                            <div class="playerName"><%# Eval("First") %> <%# Eval("Last") %></div>
+                            <div class="playerPosition"><%# Eval("Position") %></div>
                         </div>
                     </ItemTemplate>
                 </asp:DataList>
@@ -128,12 +153,13 @@
         </tr>
         <tr>
             <td class="lineupColumn1">
-            <h4>Atackers</h4>
+            <h4>Strikers</h4>
             <div class="teamSpots" id="strDiv">
             <asp:DataList ID="tbStrikers" runat="server" Width="300px" Height="60px">
                 <ItemTemplate>
                     <div class="player" draggable="true">
-                        <header><%# Eval("First") %> <%# Eval("Last") %></header>
+                            <div class="playerName"><%# Eval("First") %> <%# Eval("Last") %></div>
+                            <div class="playerPosition"><%# Eval("Position") %></div>
                     </div>
                 </ItemTemplate>
             </asp:DataList>
@@ -145,7 +171,16 @@
         <tr>
             <td>
             <h4>Goalie</h4>
-            <asp:ListBox ID="lbGoalie" runat="server" Width="300px" Height="32px"></asp:ListBox></td>
+            <div class="teamSpots" id="goalieDiv">
+            <asp:DataList ID="lbGoalie" runat="server" Width="300px" Height="32px">
+                <ItemTemplate>
+                    <div class="player" draggable="true">
+                            <div class="playerName"><%# Eval("First") %> <%# Eval("Last") %></div>
+                            <div class="playerPosition"><%# Eval("Position") %></div>
+                    </div>
+                </ItemTemplate>
+            </asp:DataList></td>
+            </div>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
