@@ -1,13 +1,7 @@
 ﻿<%@ Page Title="Add Club" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddClub.aspx.cs" Inherits="TechProFantasySoccer.Admin.AddTeam" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <script type="text/javascript">
-        jQuery(document).ready(function ($) {
-            $(".selectedblackout").click(function () {
-                window.document.location = $(this).data("href");
-            });
-        });
-    </script>
+    
     <br />
     <div id="SearchBar">
         <asp:Table ID="Table1" runat="server">
