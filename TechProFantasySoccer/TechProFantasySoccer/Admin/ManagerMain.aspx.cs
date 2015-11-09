@@ -31,7 +31,10 @@ namespace TechProFantasySoccer
             cmd.Connection = con;
             try {
                 con.Open();
-                int accessLevel = (int)cmd.ExecuteScalar();
+                var response = cmd.ExecuteScalar();
+                if(response == null)
+                    Response.Redirect("~/");
+                int accessLevel = (int)response;
 
                 if(accessLevel != 1)
                     Response.Redirect("~/");
