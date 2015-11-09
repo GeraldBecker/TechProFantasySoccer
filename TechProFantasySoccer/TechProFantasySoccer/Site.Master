@@ -80,7 +80,13 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Tech Pro Crew</p>
+                <p>
+                    &copy; <%: DateTime.Now.Year %> - Tech Pro Crew
+                    &nbsp;
+                    <a runat="server" href="~/About">About</a>
+                    &nbsp;
+                    <a runat="server" href="~/Contact">Contact</a>
+                </p>
             </footer>
         </div>
     </form>

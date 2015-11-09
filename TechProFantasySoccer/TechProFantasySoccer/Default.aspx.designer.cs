@@ -13,15 +13,6 @@ namespace TechProFantasySoccer {
     public partial class _Default {
         
         /// <summary>
-        /// LeagueName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LeagueName;
-        
-        /// <summary>
         /// TeamName control.
         /// </summary>
         /// <remarks>
@@ -56,14 +47,5 @@ namespace TechProFantasySoccer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button SetLineupBtn;
-        
-        /// <summary>
-        /// LeagueChatBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button LeagueChatBtn;
     }
 }
