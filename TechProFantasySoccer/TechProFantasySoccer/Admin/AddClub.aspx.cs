@@ -42,8 +42,15 @@ namespace TechProFantasySoccer.Admin {
             }
 
 
+            DisplayClubs();
+            
+        }
 
-            //
+        private void DisplayClubs() {
+            String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(strConnString);
+            SqlCommand cmd = new SqlCommand();
+
             cmd.CommandText =
                 "SELECT " +
                 "Clubs.ClubName AS 'Club Name', " +
@@ -83,6 +90,8 @@ namespace TechProFantasySoccer.Admin {
             FantasyDataSource.InsertParameters["League"].DefaultValue = league;
 
             FantasyDataSource.Insert();
+
+            DisplayClubs();
         }
 
         private void ModifyRows() {
