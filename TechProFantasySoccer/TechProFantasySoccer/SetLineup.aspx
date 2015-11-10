@@ -60,7 +60,7 @@
         </tr>
     </table>
     <div id="buttonDiv">
-        <asp:Button ID="CancelButton" runat="server" Text="Cancel" BackColor="#CC0000" BorderColor="White" ForeColor="White" Height="50px" Width="300px" />
-        <asp:Button ID="SubmitButton" runat="server" Text="Submit" BackColor="#269926" BorderColor="White" ForeColor="White" Height="50px" Width="300px" />
+        <asp:Button ID="CancelButton" runat="server" Text="Cancel" BackColor="#CC0000" BorderColor="White" ForeColor="White" Height="50px" Width="300px" Enabled="False" />
+        <asp:Button ID="SubmitButton" runat="server" Text="Submit" BackColor="#269926" BorderColor="White" ForeColor="White" Height="50px" Width="300px" Enabled="False" />
     </div>
     </asp:Content>

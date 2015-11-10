@@ -47,20 +47,22 @@ namespace TechProFantasySoccer
 
         }
         protected void ManagerButton_Click(object sender, EventArgs e) {
-            if(sender.Equals(editMnthPStatBtn))
+            if (sender.Equals(editMnthPStatBtn))
                 Response.Redirect("./ChooseMonth");
-            else if(sender.Equals(editPInfoBtn))
+            else if (sender.Equals(editPInfoBtn))
                 Response.Redirect("./EditPlayerInfo");
-            else if(sender.Equals(createTeamBtn))
+            else if (sender.Equals(createTeamBtn))
                 Response.Redirect("./ManagerMain");
-            else if(sender.Equals(editLineupBtn))
+            else if (sender.Equals(editLineupBtn))
                 Response.Redirect("./ManagerMain");
-            else if(sender.Equals(setScoringBtn))
-                Response.Redirect("./ManagerMain");
-            else if(sender.Equals(addClubBtn))
+            else if (sender.Equals(setScoringBtn))
+                Response.Redirect("./EditScoringValues");
+            else if (sender.Equals(addClubBtn))
                 Response.Redirect("./AddClub");
-            else if(sender.Equals(addPlayerBtn))
+            else if (sender.Equals(addPlayerBtn))
                 Response.Redirect("./AddPlayer");
+            else if (sender.Equals(addLeagueBtn))
+                Response.Redirect("./AddLeague");
         }
     }
 }

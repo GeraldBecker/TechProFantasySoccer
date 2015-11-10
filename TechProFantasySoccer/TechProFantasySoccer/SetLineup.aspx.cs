@@ -132,7 +132,6 @@ namespace TechProFantasySoccer {
                 "WHERE LineupHistory.Month = DATEPART(MONTH, GETDATE()) " +
                 "AND LineupHistory.UserId = '" + User.Identity.GetUserId() + "' " +
                 "AND Players.PositionRef = 1 " +
-                "AND LineupHistory.Active = 0 " +
                 "ORDER BY Name";
 
             strikercmd.Connection = con1;
@@ -231,10 +230,6 @@ namespace TechProFantasySoccer {
             tbBench.DataSource = benchtbl;
             tbBench.Visible = true;
             tbBench.DataBind();
-
-
- 
-
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿<%@ Page Title="Edit Player Stats" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="True" 
-    CodeBehind="EditPlayerStats.aspx.cs" Inherits="TechProFantasySoccer.Admin.EditPlayerStats" %>
+﻿<%@ Page Title="Edit Player Stats" Language="C#" MasterPageFile="~/Site.Master" 
+    AutoEventWireup="True" 
+    CodeBehind="EditPlayerStats.aspx.cs" 
+    Inherits="TechProFantasySoccer.Admin.EditPlayerStats" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">

@@ -36,6 +36,13 @@
                         </div>
                     </div>
 
+                      <div class="form-group">
+                        <div class="col-md-10">
+                            <asp:Button id="addLeagueBtn" runat="server" class="btn btn-default" Width="300px" 
+                                text="Add League" OnClick="ManagerButton_Click"/>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div class="col-md-10">
                             <asp:Button id="createTeamBtn" runat="server" class="btn btn-info" Width="300px" 

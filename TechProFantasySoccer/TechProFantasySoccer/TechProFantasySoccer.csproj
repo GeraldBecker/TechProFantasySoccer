@@ -157,10 +157,12 @@
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="Account\ResetPassword.aspx" />
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
+    <Content Include="Admin\AddLeague.aspx" />
     <Content Include="Admin\AddPlayer.aspx" />
     <Content Include="Admin\AddClub.aspx" />
     <Content Include="Admin\EditPlayerStats.aspx" />
     <Content Include="Admin\ChooseMonth.aspx" />
+    <Content Include="Admin\EditScoringValues.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -302,6 +304,13 @@
     <Compile Include="Account\ResetPasswordConfirmation.aspx.designer.cs">
       <DependentUpon>ResetPasswordConfirmation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\AddLeague.aspx.cs">
+      <DependentUpon>AddLeague.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddLeague.aspx.designer.cs">
+      <DependentUpon>AddLeague.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AddPlayer.aspx.cs">
       <DependentUpon>AddPlayer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -322,6 +331,13 @@
     </Compile>
     <Compile Include="Admin\EditPlayerStats.aspx.designer.cs">
       <DependentUpon>EditPlayerStats.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EditScoringValues.aspx.cs">
+      <DependentUpon>EditScoringValues.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EditScoringValues.aspx.designer.cs">
+      <DependentUpon>EditScoringValues.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
