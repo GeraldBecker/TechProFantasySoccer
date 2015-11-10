@@ -90,6 +90,7 @@ th.stats_spacing {
 #MainContent_LeagueGridView td,  #MainContent_LeagueGridView th,
 #MainContent_FantasyDetailsGridView td, #MainContent_FantasyDetailsGridView th,
 #MainContent_ClubGridView td, #MainContent_ClubGridView th,
+#MainContent_StandingsGridView td, #MainContent_StandingsGridView th,
 #MainContent_PlayerGridView td, #MainContent_PlayerGridView th {
     padding: 5px;
     /*cursor: pointer;*/
@@ -100,6 +101,7 @@ th.stats_spacing {
 #MainContent_TeamGridView th,
 #MainContent_ClubGridView th,
 #MainContent_LeagueGridView th,
+#MainContent_StandingsGridView th,
 #MainContent_FantasyDetailsGridView th {
     background-color: #cccccc;
     color: #2c3e50;
@@ -109,13 +111,14 @@ th.stats_spacing {
 #MainContent_PlayerGridView a,
 #MainContent_TeamGridView a,
 #MainContent_ClubGridView a,
+#MainContent_StandingsGridView a,
 #MainContent_FantasyDetailsGridView a {
     color: #2c3e50;
 }
 
 #MainContent_TeamGridView, #MainContent_FantasyDetailsGridView, #MainContent_PlayerSearchGridView, 
-#MainContent_PlayerGridView, #MainContent_ClubGridView, #MainContent_LeagueGridView {
-    
+#MainContent_PlayerGridView, #MainContent_ClubGridView, #MainContent_LeagueGridView,  
+#MainContent_StandingsGridView {    
     border: none;
     -moz-box-shadow: 0px 0px 5px 5px #888888;
     -webkit-box-shadow: 0px 0px 5px 5px #888888;

@@ -171,7 +171,7 @@
     <Content Include="Team\FantasyPointsDetails.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="JoinLeague.aspx" />
-    <Content Include="LeagueStandings.aspx" />
+    <Content Include="Team\Standings.aspx" />
     <Content Include="Admin\ManagerMain.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -218,6 +218,7 @@
     <Content Include="Site.Master" />
     <Content Include="StyleSheet.css" />
     <Content Include="Team\TeamOverview.aspx" />
+    <Content Include="Team\ViewTeam.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config">
@@ -395,12 +396,12 @@
     <Compile Include="JoinLeague.aspx.designer.cs">
       <DependentUpon>JoinLeague.aspx</DependentUpon>
     </Compile>
-    <Compile Include="LeagueStandings.aspx.cs">
-      <DependentUpon>LeagueStandings.aspx</DependentUpon>
+    <Compile Include="Team\Standings.aspx.cs">
+      <DependentUpon>Standings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="LeagueStandings.aspx.designer.cs">
-      <DependentUpon>LeagueStandings.aspx</DependentUpon>
+    <Compile Include="Team\Standings.aspx.designer.cs">
+      <DependentUpon>Standings.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ManagerMain.aspx.cs">
       <DependentUpon>ManagerMain.aspx</DependentUpon>
@@ -454,6 +455,13 @@
     </Compile>
     <Compile Include="Team\TeamOverview.aspx.designer.cs">
       <DependentUpon>TeamOverview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Team\ViewTeam.aspx.cs">
+      <DependentUpon>ViewTeam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Team\ViewTeam.aspx.designer.cs">
+      <DependentUpon>ViewTeam.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

@@ -1,5 +1,5 @@
-﻿<%@ Page Title="Team Overview" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
-    CodeBehind="TeamOverview.aspx.cs" Inherits="TechProFantasySoccer.TeamOverview" %>
+﻿<%@ Page Title="View Team" Language="C#" MasterPageFile="~/Site.Master"  AutoEventWireup="true" 
+    CodeBehind="ViewTeam.aspx.cs" Inherits="TechProFantasySoccer.Team.ViewTeam" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
@@ -10,7 +10,7 @@
         });
     </script>
 
-    <h2><%: Title %></h2>
+    <h2><%=UserName%>'s Team</h2>
     <h3>Available Cap Space: <span style="font-size:16px;"><%=AvailCap%></span></h3>
     
     <h4>Players:  (YTD Stats)</h4>
@@ -23,6 +23,7 @@
             <asp:BoundField HeaderText="Cost" DataField="Cost" SortExpression="Cost"/>
             <asp:BoundField HeaderText="Club" DataField="Club" SortExpression="Club"/>
             <asp:BoundField HeaderText="Position" DataField="Position" SortExpression="Position"/>
+            <asp:BoundField HeaderText="Active" DataField="Active" SortExpression="Active"/>
             <asp:BoundField HeaderText="Goals" DataField="Goals" SortExpression="Goals"/>
             <asp:BoundField HeaderText="Shots" DataField="Shots" SortExpression="Shots"/>
             <asp:BoundField HeaderText="Assists" DataField="Assists" SortExpression="Assists"/>
@@ -204,10 +205,6 @@
     </asp:Table>
 
     <br />
-    <a href="./FantasyPointsDetails">View Scoring Breakdown</a> (Click to see full details)
-
-
-
 
 
     <asp:SqlDataSource ID="SqlFantasyDataSource" runat="server" 

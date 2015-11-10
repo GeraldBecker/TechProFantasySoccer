@@ -37,7 +37,13 @@ namespace TechProFantasySoccer.Admin {
                 con.Close();
             }
 
-            //
+            DisplayPlayers();
+        }
+
+        private void DisplayPlayers() {
+            String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(strConnString);
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandText =
                 "SELECT " +
                 "Players.PlayerId AS PlayerId, " +
@@ -51,15 +57,15 @@ namespace TechProFantasySoccer.Admin {
                 "LEFT OUTER JOIN [Positions] ON [Positions].[PositionRef] = Players.PositionRef " +
                 "LEFT OUTER JOIN Clubs ON Players.ClubId = Clubs.ClubId " +
                 "LEFT OUTER JOIN Leagues ON Clubs.LeagueId = Leagues.LeagueId " +
-                "ORDER BY Leagues.LeagueName, Clubs.ClubName, LastName, FirstName"; 
-                
-            
+                "ORDER BY Leagues.LeagueName, Clubs.ClubName, LastName, FirstName";
+
+
 
             cmd.Connection = con;
             try {
                 DataTable temp = new DataTable();
 
-                
+
 
                 con.Open();
                 PlayerGridView.EmptyDataText = "No Records Found";
@@ -109,6 +115,7 @@ namespace TechProFantasySoccer.Admin {
             ClubsDataSource.InsertParameters["Club"].DefaultValue = club;
 
             ClubsDataSource.Insert();
+            DisplayPlayers();
         }
 
         protected void PlayerGridView_PageIndexChanging(object sender, GridViewPageEventArgs e) {

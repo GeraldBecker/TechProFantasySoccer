@@ -40,7 +40,7 @@
         </asp:TableRow>
         <asp:TableRow>
             <asp:TableHeaderCell>
-                <asp:Label ID="Label2" runat="server" Text="Total Fantasy Points Earned:"></asp:Label>
+                <asp:Label ID="Label2" runat="server" Text="Total Fantasy Points:"></asp:Label>
             </asp:TableHeaderCell>
             <asp:TableCell>
                 <asp:Label ID="FantasyPointsLabel" runat="server" Text=""></asp:Label>
