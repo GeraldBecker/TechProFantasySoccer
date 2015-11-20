@@ -147,3 +147,16 @@ tr.alternaterow {
 #MainContent_FantasyDetailsGridView td.hidden {
     display: none;
 }
+
+th.playerdesc {
+    padding-right: 10px;
+}
+
+.fantasy_points_label {
+    font-size: 22px;
+}
+
+.fantasy_points {
+    font-size: 22px;
+    color: #18bc9c;
+}
