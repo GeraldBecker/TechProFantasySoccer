@@ -32,15 +32,19 @@ namespace TechProFantasySoccer.Players {
             } catch(FormatException ex) {
                 Response.Redirect("PlayerSearch");
             }
-            
+            Session["playerId"] = playerId;
 
-            
+            //Turn off transaction buttons for now
+            AddPlayerBtn.Visible = false;
+            TradePlayerBtn.Visible = false;
+            DropPlayerBtn.Visible = false;
+
 
             String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(strConnString);
             SqlCommand cmd = new SqlCommand();
 
-            //
+            //Get player information
             cmd.CommandText =
                 "SELECT " +
                 "FirstName AS First, " +
@@ -48,6 +52,7 @@ namespace TechProFantasySoccer.Players {
                 "Cost, " +
                 "Clubs.ClubName, " +
                 "Leagues.LeagueName, " +
+                "Players.Owned, " +
                 "Positions.PositionName AS Position " +
                 "FROM Players " +
                 "LEFT OUTER JOIN [Positions] ON [Positions].[PositionRef] = Players.PositionRef " +
@@ -70,6 +75,10 @@ namespace TechProFantasySoccer.Players {
                     ClubNameLabel.Text = (string)temp.Rows[0]["ClubName"];
                     PositionLabel.Text = (string)temp.Rows[0]["Position"];
                     CostLabel.Text = ((int)temp.Rows[0]["Cost"]).ToString();
+
+                    if(temp.Rows[0]["Owned"].ToString() == "False") {
+                        AddPlayerBtn.Visible = true;
+                    }
                 }
 
             } catch(System.Data.SqlClient.SqlException ex) {
@@ -136,6 +145,100 @@ namespace TechProFantasySoccer.Players {
                 con.Close();
             }
 
+
+            //Configure Add, Drop buttons and set the owner's team name
+            cmd.CommandText = "SELECT AspNetUsers.UserName, " +
+		                        "LineupHistory.Month " +
+                                "FROM Players " +
+                                "LEFT OUTER JOIN LineUpHistory ON Players.PlayerId = LineupHistory.PlayerId " +
+                                "LEFT OUTER JOIN AspNetUsers ON LineupHistory.UserId = AspNetUsers.Id " +
+                                "WHERE Players.PlayerId = " + playerId + " AND(DATEPART(MONTH, GETDATE()) = Month " +
+                                "                            OR DATEPART(MONTH, DATEADD(MONTH, 1, GETDATE())) = Month) " +
+                                "ORDER BY Month";
+            try {
+                temp = new DataTable();
+                con.Open();
+                temp.Load(cmd.ExecuteReader());
+
+                DataRow[] row = temp.Select("Month = " + DateTime.Now.Month);
+                if(row.Length > 0) {
+                    OwnedByLabel.Text = (string)row[0]["Username"];
+                    //AddPlayerBtn.Visible = false;
+
+                    if(row[0]["Username"].ToString() == User.Identity.Name) {
+                        DropPlayerBtn.Visible = true;
+                        TradePlayerBtn.Visible = true;
+                    }
+                } else {
+                    OwnedByLabel.Text = "This player is a free agent.";
+                }
+                
+
+            } catch (System.Data.SqlClient.SqlException ex) {
+
+            } catch (System.InvalidCastException ex) {
+                Response.Write("An error has occured." + ex);
+            } finally {
+                con.Close();
+            }
+
+        }
+
+        protected void PlayerFunctionBtn_Click(object sender, EventArgs e) {
+            String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(strConnString);
+            SqlCommand cmd = new SqlCommand();
+
+            int playerId = int.Parse(Session["playerId"].ToString());
+            
+            
+
+            if (sender == AddPlayerBtn) {
+                bool ableToAdd = false;
+                cmd.CommandText =
+                "SELECT " +
+                "Players.Owned " +
+                "FROM Players " +
+                "WHERE Players.PlayerId = " + playerId;
+
+
+                DataTable temp;
+                cmd.Connection = con;
+                try {
+                    temp = new DataTable();
+                    con.Open();
+                    temp.Load(cmd.ExecuteReader());
+
+                    if (temp.Rows.Count > 0 && temp.Rows[0]["Owned"].ToString() == "False") {
+                        System.Diagnostics.Debug.WriteLine("Able to add the player");
+                        ableToAdd = true;
+                    } else {
+                        System.Diagnostics.Debug.WriteLine("NOT add the player");
+                    }
+
+                } catch (System.Data.SqlClient.SqlException ex) {
+
+                } catch (System.InvalidCastException ex) {
+                    Response.Write("An error has occured converting a value.");
+                } catch (System.IndexOutOfRangeException ex) {
+                    //Enter a valid player id.
+                } finally {
+                    con.Close();
+                }
+
+                if(ableToAdd) {
+                    /*cmd.CommandText =
+                        "INSERT INTO LineupHistory (UserId, PlayerId, Month, Active)" +
+                        "VALUES
+                        "WHERE Players.PlayerId = " + playerId;*/
+                }
+
+
+
+
+            } else if(sender == DropPlayerBtn) {
+
+            }
         }
     }
 }
