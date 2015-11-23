@@ -7,15 +7,20 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
 
 namespace TechProFantasySoccer.Players {
     public partial class ViewPlayer : System.Web.UI.Page {
         public string PlayerName = "View Player";
         protected void Page_Load(object sender, EventArgs e) {
             if(!HttpContext.Current.User.Identity.IsAuthenticated) {
-                //Server.Transfer("Default.aspx", true);
                 Response.Redirect("/Account/Login");
             }
+
+            //Check if the user is a member of the fantasy pool
+            string user = User.Identity.GetUserId();
+            if(!AuthLevelCheck.isUser(user))
+                Response.Redirect("~/AccessDenied");
 
             if(Request.QueryString["player"] == null) {
                 Response.Redirect("PlayerSearch");

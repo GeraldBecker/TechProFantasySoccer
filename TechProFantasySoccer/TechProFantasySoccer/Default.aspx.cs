@@ -7,24 +7,22 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
 
 namespace TechProFantasySoccer {
     public partial class _Default : Page {
+
         protected void Page_Load(object sender, EventArgs e) {
             if(!HttpContext.Current.User.Identity.IsAuthenticated) {
                 Response.Redirect("/Account/Login");
             }
 
-            String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(strConnString);
-            SqlCommand cmd = new SqlCommand();
-
-            // populate team name field with username
-            cmd.CommandText =
-                "SELECT " +
-                "UserName AS TeamName " +
-                "FROM AspNetUsers";
-
+            //Check if the user is a member of the fantasy pool
+            string user = User.Identity.GetUserId();
+            if(!AuthLevelCheck.isUser(user))
+                Response.Redirect("~/AccessDenied");
+            
+            TeamName.Text = HttpContext.Current.User.Identity.Name;
         }
 
         protected void MainPageBtn_Click(object sender, EventArgs e) {

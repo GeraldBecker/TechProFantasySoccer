@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
 
 namespace TechProFantasySoccer {
     public partial class PlayerSearch : System.Web.UI.Page {
@@ -15,9 +16,13 @@ namespace TechProFantasySoccer {
 
         protected void Page_Load(object sender, EventArgs e) {
             if(!HttpContext.Current.User.Identity.IsAuthenticated) {
-                //Server.Transfer("Default.aspx", true);
                 Response.Redirect("/Account/Login");
             }
+
+            //Check if the user is a member of the fantasy pool
+            string user = User.Identity.GetUserId();
+            if(!AuthLevelCheck.isUser(user))
+                Response.Redirect("~/AccessDenied");
 
             String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(strConnString);

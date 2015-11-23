@@ -13,30 +13,19 @@ using Microsoft.AspNet.Identity;
 namespace TechProFantasySoccer.Admin {
     public partial class AddLeague : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
+            if(!HttpContext.Current.User.Identity.IsAuthenticated) {
+                Response.Redirect("/Account/Login");
+            }
+
+            //Check if the user is an Admin
+            string user = User.Identity.GetUserId();
+            if(!AuthLevelCheck.isAdmin(user))
+                Response.Redirect("~/AccessDenied");
+
             String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(strConnString);
             SqlCommand cmd = new SqlCommand();
-
-            string user = User.Identity.GetUserId();
-            cmd.CommandText =
-                "SELECT Access " +
-                "FROM AccessLevel " +
-                "WHERE UserId = '" + user + "'";
-
-            cmd.Connection = con;
-            try {
-                con.Open();
-                int accessLevel = (int)cmd.ExecuteScalar();
-
-                if (accessLevel != 1)
-                    Response.Redirect("~/");
-
-            } catch (System.Data.SqlClient.SqlException ex) {
-                Response.Redirect("~/");
-            } finally {
-                con.Close();
-            }
-
+            
             cmd.CommandText =
                 "SELECT " +
                 "Leagues.LeagueName AS 'League Name' " +

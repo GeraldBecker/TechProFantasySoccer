@@ -14,18 +14,16 @@ namespace TechProFantasySoccer {
         public string UserName;
 
         protected void Page_Load(object sender, EventArgs e) {
-
             if(!HttpContext.Current.User.Identity.IsAuthenticated) {
-                //Server.Transfer("Default.aspx", true);
                 Response.Redirect("/Account/Login");
-
-            } else {
-                if(!IsPostBack) {
-                    //Response.Write(@"<script language='javascript'>alert('" + HttpContext.Current.User.Identity.Name + "|" +
-                    //User.Identity.GetUserId() + "|');</script>");
-                }
-                UserName = HttpContext.Current.User.Identity.Name;
             }
+
+            //Check if the user is a member of the fantasy pool
+            string user = User.Identity.GetUserId();
+            if(!AuthLevelCheck.isUser(user))
+                Response.Redirect("~/AccessDenied");
+            
+            UserName = HttpContext.Current.User.Identity.Name;
 
             String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(strConnString);
