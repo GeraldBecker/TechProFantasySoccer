@@ -15,9 +15,14 @@ namespace TechProFantasySoccer.Team {
         private int TOTALCAP = 1000;
         public string AvailCap = "1000";
         protected void Page_Load(object sender, EventArgs e) {
-            if (!HttpContext.Current.User.Identity.IsAuthenticated) {
+            if(!HttpContext.Current.User.Identity.IsAuthenticated) {
                 Response.Redirect("/Account/Login");
             }
+
+            //Check if the user is a member of the fantasy pool
+            string user = User.Identity.GetUserId();
+            if(!AuthLevelCheck.isUser(user))
+                Response.Redirect("~/AccessDenied");
 
             if (Request.QueryString["team"] == null) {
                 Response.Redirect("./Standings"); //use this one

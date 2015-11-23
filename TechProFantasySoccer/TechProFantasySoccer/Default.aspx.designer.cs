@@ -19,7 +19,7 @@ namespace TechProFantasySoccer {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TeamName;
+        protected global::System.Web.UI.WebControls.Label TeamName;
         
         /// <summary>
         /// PlayerSearchBtn control.

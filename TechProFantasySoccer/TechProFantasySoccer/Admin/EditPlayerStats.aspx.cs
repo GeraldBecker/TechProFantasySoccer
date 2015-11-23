@@ -16,31 +16,15 @@ namespace TechProFantasySoccer.Admin {
                 Response.Redirect("/Account/Login");
             }
 
+            //Check if the user is an Admin
+            string user = User.Identity.GetUserId();
+            if(!AuthLevelCheck.isAdmin(user))
+                Response.Redirect("~/AccessDenied");
+
             String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(strConnString);
             SqlCommand cmd = new SqlCommand();
-
-            //Check if the user is an Admin
-            string user = User.Identity.GetUserId();
-            cmd.CommandText =
-                "SELECT Access " +
-                "FROM AccessLevel " +
-                "WHERE UserId = '" + user + "'";
-
-            cmd.Connection = con;
-            try {
-                con.Open();
-                int accessLevel = (int)cmd.ExecuteScalar();
-
-                if(accessLevel != 1)
-                    Response.Redirect("~/");
-
-            } catch(System.Data.SqlClient.SqlException ex) {
-                Response.Redirect("~/");
-            } finally {
-                con.Close();
-            }
-
+            
             try {
                 if(Request.QueryString["month"] == null) {
                     month = DateTime.Now.Month;
