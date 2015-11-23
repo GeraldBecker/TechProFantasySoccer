@@ -148,6 +148,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="AboutToJoin.aspx" />
+    <Content Include="AccessDenied.aspx" />
     <Content Include="Account\Confirm.aspx" />
     <Content Include="Account\Forgot.aspx" />
     <Content Include="Account\Login.aspx" />
@@ -163,6 +164,7 @@
     <Content Include="Admin\EditPlayerStats.aspx" />
     <Content Include="Admin\ChooseMonth.aspx" />
     <Content Include="Admin\EditScoringValues.aspx" />
+    <Content Include="Admin\SelectUsers.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -241,6 +243,13 @@
     </Compile>
     <Compile Include="AboutToJoin.aspx.designer.cs">
       <DependentUpon>AboutToJoin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AccessDenied.aspx.cs">
+      <DependentUpon>AccessDenied.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AccessDenied.aspx.designer.cs">
+      <DependentUpon>AccessDenied.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\Confirm.aspx.cs">
       <DependentUpon>Confirm.aspx</DependentUpon>
@@ -340,6 +349,13 @@
     <Compile Include="Admin\EditScoringValues.aspx.designer.cs">
       <DependentUpon>EditScoringValues.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\SelectUsers.aspx.cs">
+      <DependentUpon>SelectUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SelectUsers.aspx.designer.cs">
+      <DependentUpon>SelectUsers.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -358,6 +374,7 @@
     <Compile Include="Admin\ChooseMonth.aspx.designer.cs">
       <DependentUpon>ChooseMonth.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AuthLevelCheck.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

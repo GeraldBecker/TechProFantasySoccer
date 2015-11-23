@@ -13,10 +13,8 @@
 
                 <div class="form-horizontal" style="margin-left:auto; margin-right:auto;">
 
-                    <asp:Label runat="server" AssociatedControlID="TeamName" CssClass="col-md-2 control-label">Team:</asp:Label>
-
-                    <asp:TextBox runat="server" ID="TeamName" TextMode="SingleLine" CssClass="form-control" Text="DeutscheWelle" />
-
+                    <asp:Label runat="server" CssClass="control-label">Team:</asp:Label>
+                    <asp:Label runat="server" ID="TeamName" Text=""></asp:Label>
                     <br />
                     
                     <asp:Button id="PlayerSearchBtn" runat="server" class="btn btn-primary" Width="40%" text="Player Search" OnClick="MainPageBtn_Click"/>
