@@ -188,7 +188,7 @@ namespace TechProFantasySoccer.Players {
             String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(strConnString);
             SqlCommand cmd = new SqlCommand();
-
+            cmd.Connection = con;
             int playerId = int.Parse(Session["playerId"].ToString());
             
             
@@ -203,7 +203,7 @@ namespace TechProFantasySoccer.Players {
 
 
                 DataTable temp;
-                cmd.Connection = con;
+                
                 try {
                     temp = new DataTable();
                     con.Open();
@@ -227,17 +227,52 @@ namespace TechProFantasySoccer.Players {
                 }
 
                 if(ableToAdd) {
-                    /*cmd.CommandText =
-                        "INSERT INTO LineupHistory (UserId, PlayerId, Month, Active)" +
-                        "VALUES
-                        "WHERE Players.PlayerId = " + playerId;*/
+                    try {
+                        cmd.CommandText =
+                            "INSERT INTO LineupHistory (UserId, PlayerId, Month, Active) " +
+                            "VALUES ('" + User.Identity.GetUserId() + "', " + playerId + ", " +
+                            DateTime.Now.Month + ", 'False')";
+
+                        con.Open();
+                        cmd.ExecuteScalar();
+
+                        cmd.CommandText = "UPDATE Players SET Owned = 'True' WHERE PlayerId = " + playerId;
+                        cmd.ExecuteScalar();
+                        Response.Redirect("/Team/TeamOverview");
+                    } catch(InvalidOperationException ex) {
+                        System.Diagnostics.Debug.WriteLine(ex);
+                    } catch(SqlException ex) {
+                        System.Diagnostics.Debug.WriteLine(ex);
+
+                    } finally {
+                        con.Close();
+                    }
                 }
 
 
 
 
             } else if(sender == DropPlayerBtn) {
+                try {
+                    cmd.CommandText =
+                        "DELETE FROM LineupHistory " +
+                        "WHERE UserId = '" + User.Identity.GetUserId() + "' AND PlayerId = " + playerId +
+                        " AND Month = " + DateTime.Now.Month;
 
+                    con.Open();
+                    cmd.ExecuteScalar();
+
+                    cmd.CommandText = "UPDATE Players SET Owned = 'False' WHERE PlayerId = " + playerId;
+                    cmd.ExecuteScalar();
+                    Response.Redirect("/Team/TeamOverview");
+                } catch(InvalidOperationException ex) {
+                    System.Diagnostics.Debug.WriteLine(ex);
+                } catch(SqlException ex) {
+                    System.Diagnostics.Debug.WriteLine(ex);
+
+                } finally {
+                    con.Close();
+                }
             }
         }
     }
