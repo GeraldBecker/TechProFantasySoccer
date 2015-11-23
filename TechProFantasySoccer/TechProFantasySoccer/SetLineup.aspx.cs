@@ -59,6 +59,7 @@ namespace TechProFantasySoccer {
             inActiveDefenders.RowFilter = ("Active = 0");
 
             DropDownList[] defenderddls = new DropDownList[4];
+
             for (int i = 0; i < 4; i++) {
                 DropDownList ddlDefender = new DropDownList();
                 ddlDefender.Width = 300;
@@ -68,7 +69,7 @@ namespace TechProFantasySoccer {
                 ddlDefender.DataBind();
                 //ddlDefender.AutoPostBack = true;
 
-                //If there are active players, set the initial value to those players
+                //If there are active players, set the initial value of the dropdown to those players
                 if (activeDefenders.Length > i) {
                     ddlDefender.Items.Insert(0, activeDefenders[i]["Name"].ToString());
                 } else {
