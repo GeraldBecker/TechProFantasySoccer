@@ -71,7 +71,7 @@ namespace TechProFantasySoccer.Admin {
             for(int i = 0; i < PlayerGridView.Rows.Count; i++) {
                 string classList = "selectedblackout";
 
-                PlayerGridView.Rows[i].Attributes.Add("data-href", "../Players/ViewPlayer.aspx?player=" +
+                PlayerGridView.Rows[i].Attributes.Add("data-href", "./EditPlayerInfo.aspx?player=" +
                     PlayerGridView.Rows[i].Cells[0].Text);
 
                 if((i % 2) == 1)

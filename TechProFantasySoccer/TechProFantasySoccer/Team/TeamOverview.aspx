@@ -10,7 +10,7 @@
         });
     </script>
 
-    <h2><%: Title %></h2>
+    <h2>My Team</h2>
     <h3>Available Cap Space: <span style="font-size:16px;"><%=AvailCap%></span></h3>
     
     <h4>Players:  (YTD Stats)</h4>
@@ -202,11 +202,14 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
-
+    <br />
+    <asp:Label ID="Label2" runat="server" Text="Total Fantasy Points:" CssClass="fantasy_points_label"></asp:Label>
+    &nbsp;&nbsp;<asp:Label ID="FantasyPointsLabel" runat="server" Text="" CssClass="fantasy_points"></asp:Label>
+    <br />
     <br />
     <a href="./FantasyPointsDetails">View Scoring Breakdown</a> (Click to see full details)
 
-
+    
 
 
 

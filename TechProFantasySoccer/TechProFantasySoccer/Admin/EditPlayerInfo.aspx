@@ -9,36 +9,69 @@
                 <asp:TextBox id="playerImg" runat="server" Height="200px" Width="200px">PLACE HOLDER FOR IMAGE</asp:TextBox>
             </td>
             <td>
-                <strong><asp:Label id="playerNameLabel" runat="server" Text="Phillip Lahm Defender" /></strong>
+                <asp:TextBox id="PlayerFNameTextBox" runat="server"></asp:TextBox>
+                <asp:TextBox id="PlayerLNameTextBox" runat="server"></asp:TextBox>
             </td>
         </tr>
+        
         <tr>
             <td>
                 <strong>Club:</strong>
             </td>
             <td>
-                <asp:TextBox id="cteamTextbox" runat="server">Bayern Munich</asp:TextBox>
+                <asp:DropDownList ID="ClubDropDown" runat="server" DataSourceID="ClubsDataSource" 
+                        DataTextField="ClubName" DataValueField="ClubId"></asp:DropDownList>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>League:</strong>
+            </td>
+            <td>
+                <asp:Label ID="LeagueLabel" runat="server"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Position:
+            </th>
+            <td>
+                <asp:DropDownList ID="PositionDropDown" runat="server" >
+                    <asp:ListItem></asp:ListItem>
+                    <asp:ListItem Value="1" Text="Striker"></asp:ListItem>
+                    <asp:ListItem Value="2" Text="Midfielder"></asp:ListItem>
+                    <asp:ListItem Value="3" Text="Defender"></asp:ListItem>
+                    <asp:ListItem Value="4" Text="Goalie"></asp:ListItem>
+                </asp:DropDownList>
             </td>
         </tr>
         <tr>
             <td><strong>Cost:</strong></td>
             <td>
-                <asp:TextBox id="costTextBox" runat="server">$950</asp:TextBox>
+                $<asp:TextBox id="costTextBox" runat="server"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <br />
+                <asp:Button id="saveBtn" runat="server" text="SAVE" CssClass="btn btn-success btn-block" OnClick="editBtn_Click"/>
+                <asp:Button id="editScoreSatsBtn" runat="server" text="Edit Scoring Stats Instead" CssClass="btn btn-default btn-block" />
             </td>
         </tr>
     </table>
 
-    <table id="table2">
-        <tr>
-            <td>
-                <asp:Button id="saveBtn" runat="server" Height="36px" Width="148px" text="SAVE" BackColor="#99ff99" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Button id="editScoreSatsBtn" runat="server" Height="30px" Width="600px" text="Edit Scoring Stats Instead" BackColor="#eaeaea" />
-            </td>
-        </tr>
-    </table>
+    <asp:SqlDataSource ID="ClubsDataSource" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:FantasySoccerConnectionString %>" 
+        SelectCommand="SELECT * FROM Clubs ORDER BY ClubName"
+        UpdateCommand="UPDATE Players SET FirstName = @FirstName, LastName = @LastName, Cost = @Cost, PositionRef = @Position, ClubId = @Club WHERE PlayerId = @PlayerId">
+        <UpdateParameters>
+            <asp:Parameter Name="PlayerId" Type="Int32" />
+            <asp:Parameter Name="FirstName" Type="String" />
+            <asp:Parameter Name="LastName" Type="String" />
+            <asp:Parameter Name="Cost" Type="Int32" />
+            <asp:Parameter Name="Position" Type="Int32" />
+            <asp:Parameter Name="Club" Type="Int32" />
+        </UpdateParameters>
+    </asp:SqlDataSource>
     
 </asp:Content>
