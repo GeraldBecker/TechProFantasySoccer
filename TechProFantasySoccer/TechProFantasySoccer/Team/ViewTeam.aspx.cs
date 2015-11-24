@@ -39,7 +39,7 @@ namespace TechProFantasySoccer.Team {
             cmd.CommandText =
                 "SELECT Players.PlayerId AS PlayerId, " +
                 "FirstName AS First, LastName AS Last, [Cost], [ClubName] AS Club, [Positions].[PositionName] AS Position, " +
-                "LineupHistory.Active AS Active, " +
+                "IIF(LineupHistory.Active ='True', 'Active', 'Benched') AS Active, " +
                 "SUM([PlayerStats].Goals) AS Goals, SUM([PlayerStats].Shots) AS Shots, SUM([PlayerStats].Assists) AS Assists," +
                 "SUM([PlayerStats].MinPlayed) AS 'Min Played', SUM([PlayerStats].Fouls) AS Fouls, " +
                 "SUM([PlayerStats].YellowCards) AS YC, SUM([PlayerStats].RedCards) AS RC, SUM([PlayerStats].GoalsAllowed) AS GA, " +
@@ -129,7 +129,7 @@ namespace TechProFantasySoccer.Team {
             "INNER JOIN Players ON LineupHistory.PlayerId = Players.PlayerId " +
             "INNER JOIN PlayerStats ON PlayerStats.PlayerId = LineupHistory.PlayerId AND PlayerStats.Month = LineupHistory.Month " +
             "INNER JOIN AspNetUsers ON AspNetUsers.Id = LineupHistory.UserId " +
-            "WHERE AspNetUsers.UserName = '" + team + "' " +
+            "WHERE AspNetUsers.UserName = '" + team + "' AND LineupHistory.Active = 'True' " +
             "GROUP BY Players.PositionRef";
 
 
@@ -202,7 +202,7 @@ namespace TechProFantasySoccer.Team {
                 CleanSheetsLabel.Text = cleanSheets.ToString();
                 CleanSheetsPtsLabel.Text = cleanSheetPts.ToString() + " pts";
 
-
+                FantasyPointsLabel.Text = "" + (goalPts + shotPts + assistPts + minPlayedPts + foulPts + YCPts + RCPts + GCPts + savePts + cleanSheetPts) + " pts";
             } catch (System.Data.SqlClient.SqlException ex) {
 
             } finally {

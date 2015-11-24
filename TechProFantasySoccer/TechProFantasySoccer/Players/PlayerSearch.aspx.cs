@@ -58,7 +58,8 @@ namespace TechProFantasySoccer {
                 "				                SUM([PlayerStats].GoalsAllowed), " +
                 "				                SUM([PlayerStats].SavesMade), " +
                 "				                SUM([PlayerStats].CleanSheets), " +
-                "				                Players.PositionRef) AS 'Total Fantasy Pts' " +
+                "				                Players.PositionRef) AS 'Total Fantasy Pts', " +
+                "IIF (Players.Owned = 'False', 'Free', 'Owned' ) AS Avail " +
                 "FROM Players " +
                 "LEFT OUTER JOIN PlayerStats ON PlayerStats.PlayerId = Players.PlayerId " +
                 "LEFT OUTER JOIN [Positions] ON [Positions].[PositionRef] = Players.PositionRef " +
@@ -113,8 +114,8 @@ namespace TechProFantasySoccer {
             clearButtonPress = false;
 
             cmd.CommandText += 
-                "GROUP BY FirstName, LastName, Players.PositionRef, Positions.PositionName, Cost, " + 
-                "Clubs.ClubName, Leagues.LeagueName, Players.PlayerId " +
+                "GROUP BY FirstName, LastName, Players.PositionRef, Positions.PositionName, Cost, " +
+                "Clubs.ClubName, Leagues.LeagueName, Players.PlayerId, Players.Owned " +
                 "ORDER BY LastName, FirstName";
 
             
