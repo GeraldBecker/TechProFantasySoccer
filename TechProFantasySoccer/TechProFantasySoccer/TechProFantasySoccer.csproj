@@ -396,6 +396,7 @@
     <Compile Include="Admin\EditPlayerInfo.aspx.designer.cs">
       <DependentUpon>EditPlayerInfo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SessionHandler.cs" />
     <Compile Include="Team\FantasyPointsDetails.aspx.cs">
       <DependentUpon>FantasyPointsDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
