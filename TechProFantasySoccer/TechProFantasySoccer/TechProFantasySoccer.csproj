@@ -165,6 +165,7 @@
     <Content Include="Admin\ChooseMonth.aspx" />
     <Content Include="Admin\EditScoringValues.aspx" />
     <Content Include="Admin\SelectUsers.aspx" />
+    <Content Include="Admin\Settings.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -355,6 +356,13 @@
     </Compile>
     <Compile Include="Admin\SelectUsers.aspx.designer.cs">
       <DependentUpon>SelectUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Settings.aspx.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Settings.aspx.designer.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
