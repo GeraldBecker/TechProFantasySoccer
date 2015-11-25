@@ -61,7 +61,7 @@ namespace TechProFantasySoccer {
                 "INNER JOIN Players ON LineupHistory.PlayerId = Players.PlayerId " +
                 "INNER JOIN PlayerStats ON PlayerStats.PlayerId = LineupHistory.PlayerId AND PlayerStats.Month = LineupHistory.Month " +
                 "INNER JOIN [Positions] ON [Positions].[PositionRef] = Players.PositionRef " +
-                "WHERE LineupHistory.UserId = '" + User.Identity.GetUserId() + "' " +
+                "WHERE LineupHistory.UserId = '" + User.Identity.GetUserId() + "' AND LineupHistory.Active = 'True' " +
                 "ORDER BY Month, LastName";
 
             cmd.Connection = con;
@@ -75,7 +75,7 @@ namespace TechProFantasySoccer {
                 FantasyDetailsGridView.DataSource = temp;
                 FantasyDetailsGridView.DataBind();
             } catch(System.Data.SqlClient.SqlException ex) {
-
+                System.Diagnostics.Debug.WriteLine(ex);
             } finally {
                 con.Close();
             }
@@ -98,7 +98,7 @@ namespace TechProFantasySoccer {
                 "FROM LineupHistory " +
                 "INNER JOIN Players ON LineupHistory.PlayerId = Players.PlayerId " +
                 "INNER JOIN PlayerStats ON PlayerStats.PlayerId = LineupHistory.PlayerId AND PlayerStats.Month = LineupHistory.Month " +
-                "WHERE LineupHistory.UserId = '" + User.Identity.GetUserId() + "'";
+                "WHERE LineupHistory.UserId = '" + User.Identity.GetUserId() + "' AND LineupHistory.Active = 'True' ";
 
             cmd.Connection = con;
             try {

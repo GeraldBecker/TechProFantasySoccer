@@ -118,7 +118,7 @@ namespace TechProFantasySoccer {
             "FROM LineupHistory " +
             "INNER JOIN Players ON LineupHistory.PlayerId = Players.PlayerId " +
             "INNER JOIN PlayerStats ON PlayerStats.PlayerId = LineupHistory.PlayerId AND PlayerStats.Month = LineupHistory.Month " +
-            "WHERE LineupHistory.UserId = '" + User.Identity.GetUserId() + "' " +
+            "WHERE LineupHistory.UserId = '" + User.Identity.GetUserId() + "' AND LineupHistory.Active = 'True' " +
             "GROUP BY Players.PositionRef";
 
 
@@ -191,6 +191,7 @@ namespace TechProFantasySoccer {
                 CleanSheetsLabel.Text = cleanSheets.ToString();
                 CleanSheetsPtsLabel.Text = cleanSheetPts.ToString() + " pts";
 
+                FantasyPointsLabel.Text = "" + (goalPts + shotPts + assistPts + minPlayedPts + foulPts + YCPts + RCPts + GCPts + savePts + cleanSheetPts) + " pts";
 
             } catch(System.Data.SqlClient.SqlException ex) {
 
