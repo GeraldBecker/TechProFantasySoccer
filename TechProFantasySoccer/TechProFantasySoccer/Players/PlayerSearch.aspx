@@ -65,8 +65,8 @@
             </asp:TableRow>
             <asp:TableFooterRow>
                 <asp:TableCell ColumnSpan="5">
-                    <asp:Button ID="SubmitButton" CommandName="SubmitButton" runat="server" Text="Search" />
-                    <asp:Button runat="server" Text="Clear" OnClick="ClearEntries"/>
+                    <asp:Button ID="SubmitButton" CommandName="SubmitButton" runat="server" Text="Search" class="btn btn-info"/>
+                    <asp:Button runat="server" Text="Clear" OnClick="ClearEntries" class="btn btn-default"/>
                 </asp:TableCell>
             </asp:TableFooterRow>
         </asp:Table>

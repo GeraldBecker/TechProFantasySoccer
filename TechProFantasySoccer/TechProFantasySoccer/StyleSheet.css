@@ -162,3 +162,16 @@ th.playerdesc {
     font-size: 22px;
     color: #18bc9c;
 }
+
+.player_info {
+    float: left;
+}
+
+.player_functions {
+    float: left;
+    margin-left: 30px;
+}
+
+.clear {
+    clear: both;
+}

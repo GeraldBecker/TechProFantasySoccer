@@ -54,7 +54,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/SetLineup">Set Lineup</a></li>
-                        <li><a runat="server" href="~/Team/TeamOverview">Team Overview</a></li>
+                        <li><a runat="server" href="~/Team/TeamOverview">My Team</a></li>
                         <li><a runat="server" href="~/Players/PlayerSearch"> Player Search</a></li>
                         <li><a runat="server" href="~/Team/Standings"> Standings</a></li>
                         <li><a runat="server" href="~/Admin/ManagerMain">Admin</a></li>

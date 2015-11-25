@@ -203,7 +203,10 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
-
+     <br />
+    <asp:Label ID="Label2" runat="server" Text="Total Fantasy Points:" CssClass="fantasy_points_label"></asp:Label>
+    &nbsp;&nbsp;<asp:Label ID="FantasyPointsLabel" runat="server" Text="" CssClass="fantasy_points"></asp:Label>
+    <br />
     <br />
 
 

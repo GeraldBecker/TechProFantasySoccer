@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Set Lineup" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SetLineup.aspx.cs" Inherits="TechProFantasySoccer.SetLineup" %>
+﻿<%@ Page Title="Set Lineup" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SetLineup.aspx.cs" Inherits="TechProFantasySoccer.SetLineup" EnableViewState="true"%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <script>
@@ -22,8 +22,9 @@
                 <asp:DataList ID="tbBench" runat="server" Width="300px" Height="150px">
                     <ItemTemplate>
                         <div class="player" draggable="true">
-                            <div class="playerName"><%# Eval("First") %> <%# Eval("Last") %></div>
-                            <div class="playerPosition"><%# Eval("Position") %></div>
+                            <%--<div class="playerName"><%# Eval("First") %> <%# Eval("Last") %></div>
+                            <div class="playerPosition"><%# Eval("Position") %></div>--%>
+                            <%# Container.DataItem %>
                         </div>
                     </ItemTemplate>
                 </asp:DataList>

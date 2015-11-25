@@ -9,7 +9,7 @@
         AlternatingRowStyle-BackColor="#18bc9c">
     </asp:GridView>
     <br />
-     <asp:Label ID="FantasyPointsHLabel" runat="server" Font-Size="Large" Text="Total Fantasy Points:"></asp:Label>
-     <asp:Label ID="FantasyPointsLabel" runat="server" Font-Size="Large" Text="0 pts"></asp:Label>
+     <asp:Label ID="FantasyPointsHLabel" runat="server" Text="Total Fantasy Points:" CssClass="fantasy_points_label"></asp:Label>&nbsp;&nbsp;
+     <asp:Label ID="FantasyPointsLabel" runat="server" Text="0 pts" CssClass="fantasy_points"></asp:Label>
 
 </asp:Content>

@@ -15,17 +15,17 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <div class="col-md-10">
                             <asp:Button id="editPInfoBtn" runat="server" class="btn btn-default" Width="300px" 
                                 text="Edit Player Information" OnClick="ManagerButton_Click"/>
                         </div>
-                    </div>
+                    </div>-->
 
                     <div class="form-group">
                         <div class="col-md-10">
                             <asp:Button id="addPlayerBtn" runat="server" class="btn btn-default" Width="300px" 
-                                text="Add Player" OnClick="ManagerButton_Click"/>
+                                text="Add/Edit Players" OnClick="ManagerButton_Click"/>
                         </div>
                     </div>
 
@@ -68,6 +68,13 @@
                         <div class="col-md-10">
                             <asp:Button id="selectUsersBtn" runat="server" class="btn btn-primary" Width="300px" 
                                 text="Select Users" OnClick="ManagerButton_Click"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <asp:Button id="settingsBtn" runat="server" class="btn btn-primary" Width="300px" 
+                                text="Settings" OnClick="ManagerButton_Click"/>
                         </div>
                     </div>
 

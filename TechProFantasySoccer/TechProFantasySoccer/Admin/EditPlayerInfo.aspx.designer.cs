@@ -22,22 +22,49 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.TextBox playerImg;
         
         /// <summary>
-        /// playerNameLabel control.
+        /// PlayerFNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label playerNameLabel;
+        protected global::System.Web.UI.WebControls.TextBox PlayerFNameTextBox;
         
         /// <summary>
-        /// cteamTextbox control.
+        /// PlayerLNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox cteamTextbox;
+        protected global::System.Web.UI.WebControls.TextBox PlayerLNameTextBox;
+        
+        /// <summary>
+        /// ClubDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ClubDropDown;
+        
+        /// <summary>
+        /// LeagueLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LeagueLabel;
+        
+        /// <summary>
+        /// PositionDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList PositionDropDown;
         
         /// <summary>
         /// costTextBox control.
@@ -65,5 +92,14 @@ namespace TechProFantasySoccer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button editScoreSatsBtn;
+        
+        /// <summary>
+        /// ClubsDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource ClubsDataSource;
     }
 }

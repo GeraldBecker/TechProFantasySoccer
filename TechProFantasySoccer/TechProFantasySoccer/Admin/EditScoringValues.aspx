@@ -6,7 +6,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
         function fieldEdited(id) {
-            document.getElementById(id).style.backgroundColor = '#ffb2b2';
+            document.getElementById(id).style.backgroundColor = '#83F52C';
         } 
     </script>
     <br />

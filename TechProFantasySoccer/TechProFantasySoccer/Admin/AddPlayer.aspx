@@ -9,6 +9,7 @@
             });
         });
     </script>
+    <h2>Add or Edit Players</h2>
     <br />
     <div id="SearchBar">
         <asp:Table ID="Table1" runat="server">
@@ -54,9 +55,9 @@
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableFooterRow>
-                <asp:TableCell ColumnSpan="4">
+                <asp:TableCell ColumnSpan="5">
                     <asp:Button ID="SubmitButton" OnClick="SubmitButton_Click" runat="server" Text="Add Player" 
-                        style="background-color:#99ffa9; height:50px; width:200px; margin-right:20px;"/>
+                        CssClass="btn btn-success btn-block"/>
                 </asp:TableCell>
             </asp:TableFooterRow>
         </asp:Table>
