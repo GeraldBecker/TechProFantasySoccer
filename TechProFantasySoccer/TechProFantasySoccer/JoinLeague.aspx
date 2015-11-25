@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="Join a League " Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="JoinLeague.aspx.cs" Inherits="TechProFantasySoccer.JoinLeague" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    
+    <div class="banner"></div>
+
     <h2><%: Title %></h2>
 
     <div class="row">
