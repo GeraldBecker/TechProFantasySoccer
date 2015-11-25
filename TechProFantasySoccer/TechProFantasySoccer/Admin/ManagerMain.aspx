@@ -71,6 +71,13 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <asp:Button id="settingsBtn" runat="server" class="btn btn-primary" Width="300px" 
+                                text="Settings" OnClick="ManagerButton_Click"/>
+                        </div>
+                    </div>
+
                  </div>
             </section>
         </div>

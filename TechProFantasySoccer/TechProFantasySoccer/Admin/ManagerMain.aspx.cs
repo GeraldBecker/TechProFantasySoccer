@@ -43,6 +43,8 @@ namespace TechProFantasySoccer
                 Response.Redirect("./AddLeague");
             else if(sender.Equals(selectUsersBtn))
                 Response.Redirect("./SelectUsers");
+            else if(sender.Equals(settingsBtn))
+                Response.Redirect("./Settings");
         }
     }
 }
