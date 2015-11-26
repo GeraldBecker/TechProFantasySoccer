@@ -32,14 +32,13 @@ namespace TechProFantasySoccer
             cmd.CommandText =
                 "SELECT " +
                 "UserName AS 'Team Name', " +
-                "UserName AS 'Salary Cap', " +
-                "UserName AS 'Points Earned', " +
-                "UserName AS 'Position', " +
-                "UserName AS 'Striker Rank', " +
-                "UserName AS 'Midfielder Rank', " +
-                "UserName AS 'Defensive Rank', " +
-                "UserName AS 'Goalie Rank', " +
-                "UserName AS 'Current Month Points' " +
+                "dbo.GetSalaryCap(AspNetUsers.Id) AS 'Salary Cap', " +
+                "dbo.GetTotalFantasyPointsByUser(AspNetUsers.Id) AS 'Points Earned', " +
+                "dbo.GetTotalFantasyPointsByUserPosition(AspNetUsers.Id, 1) AS 'Striker Pts', " +
+                "dbo.GetTotalFantasyPointsByUserPosition(AspNetUsers.Id, 2) AS 'Midfielder Pts', " +
+                "dbo.GetTotalFantasyPointsByUserPosition(AspNetUsers.Id, 3) AS 'Defensive Pts', " +
+                "dbo.GetTotalFantasyPointsByUserPosition(AspNetUsers.Id, 4) AS 'Goalie Pts', " +
+                "dbo.GetTotalFantasyPointsByUserAndMonth(AspNetUsers.Id, " + DateTime.Now.Month + ") AS 'Current Month Points' " +
                 "FROM AspNetUsers " + 
                 "INNER JOIN AccessLevel ON AspNetUsers.Id = AccessLevel.UserId " +
                 "WHERE Access IN (1, 2)";
@@ -55,7 +54,7 @@ namespace TechProFantasySoccer
                 StandingsGridView.DataBind();
                 ModifyRows();
             } catch(System.Data.SqlClient.SqlException ex) {
-
+                System.Diagnostics.Debug.WriteLine(ex);
             } finally {
                 con.Close();
             }
@@ -75,5 +74,6 @@ namespace TechProFantasySoccer
 
             }
         }
+        
     }
 }

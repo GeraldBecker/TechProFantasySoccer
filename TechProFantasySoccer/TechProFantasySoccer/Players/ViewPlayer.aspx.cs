@@ -44,6 +44,20 @@ namespace TechProFantasySoccer.Players {
             SqlConnection con = new SqlConnection(strConnString);
             SqlCommand cmd = new SqlCommand();
 
+            cmd.CommandText = "SELECT Value FROM Settings WHERE KeyId = 1";
+            cmd.Connection = con;
+            bool transfersEnabled = false;
+            try {
+                con.Open();
+                int value = (int)cmd.ExecuteScalar();
+                if(value == 1)
+                    transfersEnabled = true;
+            } catch(NullReferenceException) {
+
+            } finally {
+                con.Close();
+            }
+
             //Get player information
             cmd.CommandText =
                 "SELECT " +
@@ -76,7 +90,7 @@ namespace TechProFantasySoccer.Players {
                     PositionLabel.Text = (string)temp.Rows[0]["Position"];
                     CostLabel.Text = ((int)temp.Rows[0]["Cost"]).ToString();
 
-                    if(temp.Rows[0]["Owned"].ToString() == "False") {
+                    if(temp.Rows[0]["Owned"].ToString() == "False" && transfersEnabled) {
                         AddPlayerBtn.Visible = true;
                     }
                 }
@@ -165,7 +179,7 @@ namespace TechProFantasySoccer.Players {
                     OwnedByLabel.Text = (string)row[0]["Username"];
                     //AddPlayerBtn.Visible = false;
 
-                    if(row[0]["Username"].ToString() == User.Identity.Name) {
+                    if(row[0]["Username"].ToString() == User.Identity.Name && transfersEnabled) {
                         DropPlayerBtn.Visible = true;
                         TradePlayerBtn.Visible = true;
                     }
