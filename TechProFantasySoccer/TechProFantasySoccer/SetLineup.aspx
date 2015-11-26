@@ -5,6 +5,7 @@
  
 </script>
     <h2><%: Title %></h2>
+    <asp:Label ID="NotifyLabel" runat="server"></asp:Label>
     <table class="nav-justified">
         <tr>
             <td rowspan="5" class="lineupColumn1">
@@ -21,7 +22,7 @@
                 <div class="teamSpots" id="benchDiv">
                 <asp:DataList ID="tbBench" runat="server" Width="300px" Height="150px">
                     <ItemTemplate>
-                        <div class="player" draggable="true">
+                        <div class="player draggable="true">
                             <%--<div class="playerName"><%# Eval("First") %> <%# Eval("Last") %></div>
                             <div class="playerPosition"><%# Eval("Position") %></div>--%>
                             <%# Container.DataItem %>
@@ -61,7 +62,7 @@
         </tr>
     </table>
     <div id="buttonDiv">
-        <asp:Button ID="CancelButton" runat="server" Text="Cancel" BackColor="#CC0000" BorderColor="White" ForeColor="White" Height="50px" Width="300px" Enabled="False" />
-        <asp:Button ID="SubmitButton" runat="server" Text="Submit" BackColor="#269926" BorderColor="White" ForeColor="White" Height="50px" Width="300px" Enabled="False" />
+        <asp:Button ID="CancelButton" runat="server" Text="Cancel" BackColor="#CC0000" BorderColor="White" ForeColor="White" Height="50px" Width="300px" OnClick="CancelButton_Click" />
+        <asp:Button ID="SubmitButton" runat="server" Text="Submit" BackColor="#269926" BorderColor="White" ForeColor="White" Height="50px" Width="300px" OnClick="SubmitButton_Click" />
     </div>
     </asp:Content>

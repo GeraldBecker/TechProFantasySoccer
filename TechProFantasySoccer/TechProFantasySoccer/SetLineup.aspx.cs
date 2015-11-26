@@ -16,14 +16,18 @@ namespace TechProFantasySoccer {
         DropDownList[] midfielderddls;
         DropDownList[] strikerddls;
         DropDownList[] goalieddls;
-        
         static String strConnString1 = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
         SqlConnection con1 = new SqlConnection(strConnString1);
         DataRow[] activeDefenders;
         DataRow[] inActiveDefenders;
+        DataRow[] activeMidfielders;
+        DataRow[] inActiveMidfielders;
+        DataRow[] activeStrikers;
+        DataRow[] inActiveStrikers;
+        DataRow[] activeGoalies;
+        DataRow[] inActiveGoalies;
 
-        protected void Page_Load(object sender, EventArgs e) {
-            
+        protected void Page_Load(object sender, EventArgs e) {        
             SqlCommand getPlayersCommand = new SqlCommand();
 
             if (!Page.IsPostBack) {
@@ -43,15 +47,6 @@ namespace TechProFantasySoccer {
                 con1.Open();
 
                 playersTable.Load(getPlayersCommand.ExecuteReader());
-                
-                //------------------------------------------------------------------------
-                //BENCH
-                //------------------------------------------------------------------------
-                //tbBench.DataSource = benchtbl;
-                //tbBench.Visible = true;
-                //tbBench.DataBind();
-                
-
 
                 //------------------------------------------------------------------------
                 //DEFENDERS
@@ -60,94 +55,81 @@ namespace TechProFantasySoccer {
                 //Get the defenders that are currently active
                 activeDefenders = playersTable.Select("Active = 1 AND Position = 3");
                 SessionHandler.ActiveDefenders = new ArrayList();
-                for (int i = 0; i < activeDefenders.Length; i++) {
-                    SessionHandler.ActiveDefenders.Add(activeDefenders[i]["Name"].ToString());
-                }
+                SetSessionData(activeDefenders, SessionHandler.ActiveDefenders);
+
+                //////////////////////////////////////////////////////////////////////////////
+                
+                /////////////////////////////////////////////////////////////////////////////////
 
                 //Get the bench defenders and add them into a string array session variable
                 inActiveDefenders = playersTable.Select("Active = 0 AND Position = 3");
                 SessionHandler.BenchDefenders = new ArrayList();
-                for (int i = 0; i < inActiveDefenders.Length; i++) {
-                    SessionHandler.BenchDefenders.Add(inActiveDefenders[i]["Name"].ToString());
-                }
-
-
+                SetSessionData(inActiveDefenders, SessionHandler.BenchDefenders);
 
                 //------------------------------------------------------------------------
                 //MIDFIELDERS
                 //------------------------------------------------------------------------
 
                 //get the active midfielders and add them into a string array session variable
-                DataRow[] activeMidfielders = playersTable.Select("Active = 1 AND Position = 2");
+                activeMidfielders = playersTable.Select("Active = 1 AND Position = 2");
                 SessionHandler.ActiveMidfielders = new ArrayList();
-                for (int i = 0; i < activeMidfielders.Length; i++) {
-                    SessionHandler.ActiveMidfielders.Add(activeMidfielders[i]["Name"].ToString());
-                }
+                SetSessionData(activeMidfielders, SessionHandler.ActiveMidfielders);
 
                 //Get the bench midfielders and add them into a string array session variable
-                DataRow[] inActiveMidfielders = playersTable.Select("Active = 0 AND Position = 2");
+                inActiveMidfielders = playersTable.Select("Active = 0 AND Position = 2");
                 SessionHandler.BenchMidfielders = new ArrayList();
-                for (int i = 0; i < inActiveMidfielders.Length; i++) {
-                    SessionHandler.BenchMidfielders.Add(inActiveMidfielders[i]["Name"].ToString());
-                }
+                SetSessionData(inActiveMidfielders, SessionHandler.BenchMidfielders);
 
                 //---------------------------------------------------------------------------
                 //STRIKERS
                 //---------------------------------------------------------------------------
 
                 //get the active strikers and add them into a string array session variable
-                DataRow[] activeStrikers = playersTable.Select("Active = 1 AND Position = 1");
+                activeStrikers = playersTable.Select("Active = 1 AND Position = 1");
                 SessionHandler.ActiveStrikers = new ArrayList();
-                for (int i = 0; i < activeStrikers.Length; i++) {
-                    SessionHandler.ActiveStrikers.Add(activeStrikers[i]["Name"].ToString());
-                }
+                SetSessionData(activeStrikers, SessionHandler.ActiveStrikers);
                 
                 //Get the bench strikers
-                DataRow[] inActiveStrikers = playersTable.Select("Active = 0 AND Position = 1");
+                inActiveStrikers = playersTable.Select("Active = 0 AND Position = 1");
                 SessionHandler.BenchStrikers = new ArrayList();
-                for (int i = 0; i < inActiveStrikers.Length; i++) {
-                    SessionHandler.BenchStrikers.Add(inActiveStrikers[i]["Name"].ToString());
-                }
+                SetSessionData(inActiveStrikers, SessionHandler.BenchStrikers);
 
                 //-----------------------------------------------------------------------------
                 //GOALIES
                 //-----------------------------------------------------------------------------
 
-                DataRow[] activeGoalies = playersTable.Select("Active = 1 AND Position = 4");
+                activeGoalies = playersTable.Select("Active = 1 AND Position = 4");
                 SessionHandler.ActiveGoalies = new ArrayList();
-                for (int i = 0; i < activeGoalies.Length; i++) {
-                    SessionHandler.ActiveGoalies.Add(activeGoalies[i]["Name"].ToString());
-                }
+                SetSessionData(activeGoalies, SessionHandler.ActiveGoalies);
 
-                DataRow[] inActiveGoalies = playersTable.Select("Active = 0 AND Position = 4");
+                inActiveGoalies = playersTable.Select("Active = 0 AND Position = 4");
                 SessionHandler.BenchGoalies = new ArrayList();
-                for (int i = 0; i < inActiveGoalies.Length; i++) {
-                    SessionHandler.BenchGoalies.Add(inActiveGoalies[i]["Name"].ToString());
-                }
+                SetSessionData(inActiveGoalies, SessionHandler.BenchGoalies);
             } 
 
             InitDropDownLists();
         }
 
-        private static void CreateListItemArray(ListItem[] benchList, ArrayList Bench) {
-            for (int i = 0; i < benchList.Length; i++) {
-                benchList[i] = new ListItem(Bench[i].ToString());
+        private void SetSessionData(DataRow[] data, ArrayList sessionList) {
+            sessionList.Clear();
+            for (int i = 0; i < data.Length; i++) {
+                sessionList.Add(data[i]["Name"].ToString());
             }
         }
 
         private void InitDropDownLists() {
             //Create arrays of ListItems to be added to the dropdown lists
             ListItem[] benchDefenderList = new ListItem[SessionHandler.BenchDefenders.Count];
-            CreateListItemArray(benchDefenderList, SessionHandler.BenchDefenders);
+            PopulateListItemArray(benchDefenderList, SessionHandler.BenchDefenders);
 
             ListItem[] benchMidfielderList = new ListItem[SessionHandler.BenchMidfielders.Count];
-            CreateListItemArray(benchMidfielderList, SessionHandler.BenchMidfielders);
+            PopulateListItemArray(benchMidfielderList, SessionHandler.BenchMidfielders);
 
             ListItem[] benchStrikersList = new ListItem[SessionHandler.BenchStrikers.Count];
-            CreateListItemArray(benchStrikersList, SessionHandler.BenchStrikers);
+            PopulateListItemArray(benchStrikersList, SessionHandler.BenchStrikers);
 
             ListItem[] benchGoaliesList = new ListItem[SessionHandler.BenchGoalies.Count];
-            CreateListItemArray(benchGoaliesList, SessionHandler.BenchGoalies);
+            PopulateListItemArray(benchGoaliesList, SessionHandler.BenchGoalies);
 
             ArrayList bench = new ArrayList(SessionHandler.BenchDefenders);
             bench.AddRange(SessionHandler.BenchMidfielders);
@@ -220,7 +202,7 @@ namespace TechProFantasySoccer {
 
             }
 
-            goalieddls = new DropDownList[2];
+            goalieddls = new DropDownList[1];
             for (int i = 0; i < 1; i++) {
                 DropDownList ddlGoalie = new DropDownList();
                 ddlGoalie.Width = 300;
@@ -277,9 +259,15 @@ namespace TechProFantasySoccer {
 
 
             UpdateDropDownLists();
-
         }
 
+        /// <summary>
+        /// Update both the bench and active players lists.
+        /// </summary>
+        /// <param name="index">The index of the dropdownlist to use to modify the lists.</param>
+        /// <param name="benchList">The list of bench players to be updated.</param>
+        /// <param name="activeList">The list of active players to be updated.</param>
+        /// <param name="ddlArray">The array of dropdownlists.</param>
         private void UpdateActiveAndBench(int index, ArrayList benchList, ArrayList activeList, DropDownList[] ddlArray) {
             if (ddlArray[index].Items[0].ToString() != "Select a player") {
                 benchList.Add(ddlArray[index].Items[0].ToString());
@@ -289,28 +277,30 @@ namespace TechProFantasySoccer {
             activeList.Add(ddlArray[index].SelectedValue);
         }
 
+        /// <summary>
+        /// Populate an array of ListItems based on an ArrayList.
+        /// </summary>
+        /// <param name="benchList">The array to be populated</param>
+        /// <param name="Bench">The list to base the array on</param>
+        private static void PopulateListItemArray(ListItem[] benchList, ArrayList Bench) {
+            for (int i = 0; i < benchList.Length; i++) {
+                benchList[i] = new ListItem(Bench[i].ToString());
+            }
+        }
+
         private void UpdateDropDownLists() {
             //Create arrays of ListItems to be added to the dropdown lists
             ListItem[] benchDefenderList = new ListItem[SessionHandler.BenchDefenders.Count];
-            for (int i = 0; i < benchDefenderList.Length; i++) {
-                benchDefenderList[i] = new ListItem(SessionHandler.BenchDefenders[i].ToString());
-            }
+            PopulateListItemArray(benchDefenderList, SessionHandler.BenchDefenders);
 
             ListItem[] benchMidfielderList = new ListItem[SessionHandler.BenchMidfielders.Count];
-            for (int i = 0; i < benchMidfielderList.Length; i++) {
-                benchMidfielderList[i] = new ListItem(SessionHandler.BenchMidfielders[i].ToString());
-            }
+            PopulateListItemArray(benchMidfielderList, SessionHandler.BenchMidfielders);
 
             ListItem[] benchStrikersList = new ListItem[SessionHandler.BenchStrikers.Count];
-            for (int i = 0; i < benchStrikersList.Length; i++) {
-                benchStrikersList[i] = new ListItem(SessionHandler.BenchStrikers[i].ToString());
-            }
-
+            PopulateListItemArray(benchStrikersList, SessionHandler.BenchStrikers);
 
             ListItem[] benchGoaliesList = new ListItem[SessionHandler.BenchGoalies.Count];
-            for (int i = 0; i < benchGoaliesList.Length; i++) {
-                benchGoaliesList[i] = new ListItem(SessionHandler.BenchGoalies[i].ToString());
-            }
+            PopulateListItemArray(benchGoaliesList, SessionHandler.BenchGoalies);
 
             ArrayList bench = new ArrayList(SessionHandler.BenchDefenders);
             bench.AddRange(SessionHandler.BenchMidfielders);
@@ -360,7 +350,7 @@ namespace TechProFantasySoccer {
                 }
             }
 
-            //Add the dropdown lists for strikers and populate them
+            //Add the dropdown lists for goalies and populate them
             for (int i = 0; i < 1; i++) {
                 goalieddls[i].ClearSelection();
                 goalieddls[i].Items.Clear();
@@ -373,6 +363,106 @@ namespace TechProFantasySoccer {
                     goalieddls[i].Items.Insert(0, "Select a player");
                 }
             }
+        }
+
+        protected void SubmitButton_Click(object sender, EventArgs e) {
+            SqlConnection con = new SqlConnection(strConnString1);
+            con.Open();
+            SqlCommand updateCommand = new SqlCommand();
+            updateCommand.Connection = con;
+
+            if (!CheckSelections(defenderddls) || !CheckSelections(midfielderddls) || 
+                        !CheckSelections(strikerddls)  || !CheckSelections(goalieddls)) {
+                NotifyLabel.Text = "Please select a player for all active slots";
+                return;
+            }
+
+            //Update Defenders
+            foreach (Object player in SessionHandler.ActiveDefenders) {
+                UpdateActive(updateCommand, player);
+            }
+            foreach (Object player in SessionHandler.BenchDefenders) {
+                UpdateInactive(updateCommand, player);
+            }
+
+            //Update Midfielders
+            foreach (Object player in SessionHandler.ActiveMidfielders) {
+                UpdateActive(updateCommand, player);
+            }
+            foreach (Object player in SessionHandler.BenchMidfielders) {
+                UpdateInactive(updateCommand, player);
+            }
+
+            //Update Strikers
+            foreach (Object player in SessionHandler.ActiveStrikers) {
+                UpdateActive(updateCommand, player);
+            }
+            foreach (Object player in SessionHandler.BenchStrikers) {
+                UpdateInactive(updateCommand, player);
+            }
+
+            //Update Goalies
+            foreach (Object player in SessionHandler.ActiveGoalies) {
+                UpdateActive(updateCommand, player);
+            }
+            foreach (Object player in SessionHandler.BenchGoalies) {
+                UpdateInactive(updateCommand, player);
+            }
+            NotifyLabel.Text = "Your lineup has been set!";
+        }
+
+        private bool CheckSelections(DropDownList[] ddls) {
+            foreach (DropDownList name in ddls) {
+                if (name.SelectedValue == "Select a player") {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private static void UpdateInactive(SqlCommand updateCommand, Object player) {
+            updateCommand.CommandText =
+                 "UPDATE LineupHistory " +
+                 "SET LineupHistory.Active = 0 " +
+                 "FROM LineupHistory " +
+                 "JOIN Players ON LineupHistory.PlayerId = Players.PlayerId " +
+                 "WHERE concat(Players.FirstName, ' ', Players.LastName) " +
+                     " = '" + player.ToString() + "'";
+
+            updateCommand.ExecuteNonQuery();
+        }
+
+        private static void UpdateActive(SqlCommand updateCommand, Object player) {
+            updateCommand.CommandText =
+                "UPDATE LineupHistory " +
+                "SET LineupHistory.Active = 1 " +
+                "FROM LineupHistory " +
+                "JOIN Players ON LineupHistory.PlayerId = Players.PlayerId " +
+                "WHERE concat(Players.FirstName, ' ', Players.LastName) " +
+                    " = '" + player.ToString() + "'";
+
+            updateCommand.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// RESET ALL SESSION DATA TO ORIGINAL
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void CancelButton_Click(object sender, EventArgs e) {
+            //SetSessionData(activeDefenders, SessionHandler.ActiveDefenders);
+            //SetSessionData(inActiveDefenders, SessionHandler.BenchDefenders);
+
+            //SetSessionData(activeMidfielders, SessionHandler.ActiveMidfielders);
+            //SetSessionData(inActiveMidfielders, SessionHandler.BenchMidfielders);
+
+            //SetSessionData(activeStrikers, SessionHandler.ActiveStrikers);
+            //SetSessionData(inActiveStrikers, SessionHandler.BenchStrikers);
+
+            //SetSessionData(activeGoalies, SessionHandler.ActiveGoalies);
+            //SetSessionData(inActiveGoalies, SessionHandler.BenchGoalies);
+            
+            Response.Redirect(Request.RawUrl);
         }
     }
 }
