@@ -14,7 +14,6 @@
                     <h2>Welcome to Fantasy Soccer</h2>
                     <hr />
 
-                    <div class="form_panel center_content">
                       <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                         <p class="text-danger">
                             <asp:Literal runat="server" ID="FailureText" />
@@ -47,7 +46,6 @@
                         </div>
                     </div>
 
-                </div>
 
                 <br/>
                 <br/>
