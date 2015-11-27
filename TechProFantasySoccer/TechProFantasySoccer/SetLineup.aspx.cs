@@ -12,6 +12,10 @@ using System.Collections;
 
 namespace TechProFantasySoccer {
     public partial class SetLineup : System.Web.UI.Page {
+        private const int NUM_ACTIVE_STRIKERS = 2;
+        private const int NUM_ACTIVE_MIDFIELDERS = 4;
+        private const int NUM_ACTIVE_DEFENDERS = 4;
+        private const int NUM_ACTIVE_GOALIES = 1;
         DropDownList[] defenderddls;
         DropDownList[] midfielderddls;
         DropDownList[] strikerddls;
@@ -135,8 +139,8 @@ namespace TechProFantasySoccer {
             tbBench.DataBind();
 
             //Add the dropdown lists for defenders and populate them
-            defenderddls = new DropDownList[4];
-            for (int i = 0; i < 4; i++) {
+            defenderddls = new DropDownList[NUM_ACTIVE_DEFENDERS];
+            for (int i = 0; i < NUM_ACTIVE_DEFENDERS; i++) {
                 DropDownList ddl = new DropDownList();
                 SetDropDownList(benchDefenderList, i, ddl, SessionHandler.ActiveDefenders, defenderddls);
 
@@ -144,8 +148,8 @@ namespace TechProFantasySoccer {
             }
 
             //Add the dropdown lists for midfielders and populate them
-            midfielderddls = new DropDownList[4];
-            for (int i = 0; i < 4; i++) {
+            midfielderddls = new DropDownList[NUM_ACTIVE_MIDFIELDERS];
+            for (int i = 0; i < NUM_ACTIVE_MIDFIELDERS; i++) {
                 DropDownList ddlMidfielder = new DropDownList();
                 SetDropDownList(benchMidfielderList, i, ddlMidfielder, SessionHandler.ActiveMidfielders, midfielderddls);
 
@@ -153,8 +157,8 @@ namespace TechProFantasySoccer {
             }
 
             //Add the dropdown lists for strikers and populate them
-            strikerddls = new DropDownList[2];
-            for (int i = 0; i < 2; i++) {
+            strikerddls = new DropDownList[NUM_ACTIVE_STRIKERS];
+            for (int i = 0; i < NUM_ACTIVE_STRIKERS; i++) {
                 DropDownList ddlStriker = new DropDownList();
                 SetDropDownList(benchStrikersList, i, ddlStriker, SessionHandler.ActiveStrikers, strikerddls);
 
@@ -162,8 +166,8 @@ namespace TechProFantasySoccer {
 
             }
 
-            goalieddls = new DropDownList[1];
-            for (int i = 0; i < 1; i++) {
+            goalieddls = new DropDownList[NUM_ACTIVE_GOALIES];
+            for (int i = 0; i < NUM_ACTIVE_GOALIES; i++) {
                 DropDownList ddlGoalie = new DropDownList();
                 SetDropDownList(benchGoaliesList, i, ddlGoalie, SessionHandler.ActiveGoalies, goalieddls);
 
@@ -191,35 +195,55 @@ namespace TechProFantasySoccer {
         private void playerddls_SelectedIndexChanged(Object sender, EventArgs e) {
             DropDownList ddl = (DropDownList)sender;
 
-            if (ddl == defenderddls[0]) {
-                UpdateActiveAndBench(0, SessionHandler.BenchDefenders, SessionHandler.ActiveDefenders, defenderddls);
-            } if (ddl == defenderddls[1]) {
-                UpdateActiveAndBench(1, SessionHandler.BenchDefenders, SessionHandler.ActiveDefenders, defenderddls);
-            } if (ddl == defenderddls[2]) {
-                UpdateActiveAndBench(2, SessionHandler.BenchDefenders, SessionHandler.ActiveDefenders, defenderddls);
-            } if (ddl == defenderddls[3]) {
-                UpdateActiveAndBench(3, SessionHandler.BenchDefenders, SessionHandler.ActiveDefenders, defenderddls);
+            for (int i = 0; i < NUM_ACTIVE_DEFENDERS; i++) {
+                if (ddl == defenderddls[i])
+                    UpdateActiveAndBench(i, SessionHandler.BenchDefenders, SessionHandler.ActiveDefenders, defenderddls);
             }
 
-            if (ddl == midfielderddls[0]) {
-                UpdateActiveAndBench(0, SessionHandler.BenchMidfielders, SessionHandler.ActiveMidfielders, midfielderddls);
-            } if (ddl == midfielderddls[1]) {
-                UpdateActiveAndBench(1, SessionHandler.BenchMidfielders, SessionHandler.ActiveMidfielders, midfielderddls);
-            } if (ddl == midfielderddls[2]) {
-                UpdateActiveAndBench(2, SessionHandler.BenchMidfielders, SessionHandler.ActiveMidfielders, midfielderddls);
-            } if (ddl == midfielderddls[3]) {
-                UpdateActiveAndBench(3, SessionHandler.BenchMidfielders, SessionHandler.ActiveMidfielders, midfielderddls);
+            for (int i = 0; i < NUM_ACTIVE_MIDFIELDERS; i++) {
+                if (ddl == midfielderddls[i])
+                    UpdateActiveAndBench(i, SessionHandler.BenchMidfielders, SessionHandler.ActiveMidfielders, midfielderddls);
             }
 
-            if (ddl == strikerddls[0]) {
-                UpdateActiveAndBench(0, SessionHandler.BenchStrikers, SessionHandler.ActiveStrikers, strikerddls);
-            } if (ddl == strikerddls[1]) {
-                UpdateActiveAndBench(1, SessionHandler.BenchStrikers, SessionHandler.ActiveStrikers, strikerddls);
+            for (int i = 0; i < NUM_ACTIVE_STRIKERS; i++) {
+                if (ddl == strikerddls[i])
+                    UpdateActiveAndBench(i, SessionHandler.BenchStrikers, SessionHandler.ActiveStrikers, strikerddls);
             }
 
-            if (ddl == goalieddls[0]) {
-                UpdateActiveAndBench(0, SessionHandler.BenchGoalies, SessionHandler.ActiveGoalies, goalieddls);
+            for (int i = 0; i < NUM_ACTIVE_GOALIES; i++) {
+                if (ddl == goalieddls[i])
+                    UpdateActiveAndBench(i, SessionHandler.BenchGoalies, SessionHandler.ActiveGoalies, goalieddls);
             }
+
+                //    if (ddl == defenderddls[0]) {
+                //        UpdateActiveAndBench(0, SessionHandler.BenchDefenders, SessionHandler.ActiveDefenders, defenderddls);
+                //    } if (ddl == defenderddls[1]) {
+                //    UpdateActiveAndBench(1, SessionHandler.BenchDefenders, SessionHandler.ActiveDefenders, defenderddls);
+                //} if (ddl == defenderddls[2]) {
+                //    UpdateActiveAndBench(2, SessionHandler.BenchDefenders, SessionHandler.ActiveDefenders, defenderddls);
+                //} if (ddl == defenderddls[3]) {
+                //    UpdateActiveAndBench(3, SessionHandler.BenchDefenders, SessionHandler.ActiveDefenders, defenderddls);
+                //}
+
+                //if (ddl == midfielderddls[0]) {
+                //    UpdateActiveAndBench(0, SessionHandler.BenchMidfielders, SessionHandler.ActiveMidfielders, midfielderddls);
+                //} if (ddl == midfielderddls[1]) {
+                //    UpdateActiveAndBench(1, SessionHandler.BenchMidfielders, SessionHandler.ActiveMidfielders, midfielderddls);
+                //} if (ddl == midfielderddls[2]) {
+                //    UpdateActiveAndBench(2, SessionHandler.BenchMidfielders, SessionHandler.ActiveMidfielders, midfielderddls);
+                //} if (ddl == midfielderddls[3]) {
+                //    UpdateActiveAndBench(3, SessionHandler.BenchMidfielders, SessionHandler.ActiveMidfielders, midfielderddls);
+                //}
+
+            //    if (ddl == strikerddls[0]) {
+            //        UpdateActiveAndBench(0, SessionHandler.BenchStrikers, SessionHandler.ActiveStrikers, strikerddls);
+            //    } if (ddl == strikerddls[1]) {
+            //    UpdateActiveAndBench(1, SessionHandler.BenchStrikers, SessionHandler.ActiveStrikers, strikerddls);
+            //}
+
+            //if (ddl == goalieddls[0]) {
+            //    UpdateActiveAndBench(0, SessionHandler.BenchGoalies, SessionHandler.ActiveGoalies, goalieddls);
+            //}
 
 
             UpdateDropDownLists();
@@ -394,18 +418,6 @@ namespace TechProFantasySoccer {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void CancelButton_Click(object sender, EventArgs e) {
-            //SetSessionData(activeDefenders, SessionHandler.ActiveDefenders);
-            //SetSessionData(inActiveDefenders, SessionHandler.BenchDefenders);
-
-            //SetSessionData(activeMidfielders, SessionHandler.ActiveMidfielders);
-            //SetSessionData(inActiveMidfielders, SessionHandler.BenchMidfielders);
-
-            //SetSessionData(activeStrikers, SessionHandler.ActiveStrikers);
-            //SetSessionData(inActiveStrikers, SessionHandler.BenchStrikers);
-
-            //SetSessionData(activeGoalies, SessionHandler.ActiveGoalies);
-            //SetSessionData(inActiveGoalies, SessionHandler.BenchGoalies);
-            
             Response.Redirect(Request.RawUrl);
         }
     }
