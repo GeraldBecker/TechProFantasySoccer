@@ -27,7 +27,16 @@ namespace TechProFantasySoccer {
         DataRow[] activeGoalies;
         DataRow[] inActiveGoalies;
 
-        protected void Page_Load(object sender, EventArgs e) {        
+        protected void Page_Load(object sender, EventArgs e) {
+            if(!HttpContext.Current.User.Identity.IsAuthenticated) {
+                Response.Redirect("/Account/Login");
+            }
+
+            //Check if the user is a member of the fantasy pool
+            string user = User.Identity.GetUserId();
+            if(!AuthLevelCheck.isUser(user))
+                Response.Redirect("~/AccessDenied");
+
             SqlCommand getPlayersCommand = new SqlCommand();
 
             if (!Page.IsPostBack) {
