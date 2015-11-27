@@ -17,12 +17,12 @@
     </script>
 
     
-
-
-    <h2><%: Title %></h2>
+    <div class="banner_reg">
+            <h1 class="title_reg">PLAYER SEARCH</h1>
+    </div>
 
     <div id="SearchBar">
-        <asp:Table ID="Table1" runat="server">
+        <asp:Table ID="Table1" runat="server" HorizontalAlign="Center">
             <asp:TableHeaderRow>
                 <asp:TableHeaderCell>
                     First Name
@@ -42,19 +42,19 @@
             </asp:TableHeaderRow>
             <asp:TableRow>
                 <asp:TableCell>
-                    <asp:TextBox ID="FirstNameTextBox" runat="server" Width="100px"></asp:TextBox>
+                    <asp:TextBox ID="FirstNameTextBox" runat="server" Width="120px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell>
-                    <asp:TextBox ID="LastNameTextBox" runat="server" Width="100px"></asp:TextBox>
+                    <asp:TextBox ID="LastNameTextBox" runat="server" Width="120px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell>
-                    <asp:TextBox ID="LeagueTextBox" runat="server" Width="100px"></asp:TextBox>
+                    <asp:TextBox ID="LeagueTextBox" runat="server" Width="120px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell>
-                    <asp:TextBox ID="ClubTextBox" runat="server" Width="100px"></asp:TextBox>
+                    <asp:TextBox ID="ClubTextBox" runat="server" Width="120px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell>
-                    <asp:DropDownList ID="PositionDropDown" runat="server">
+                    <asp:DropDownList ID="PositionDropDown" runat="server" Height="27px" Width="120px">
                         <asp:ListItem></asp:ListItem>
                         <asp:ListItem Value="1" Text="Striker"></asp:ListItem>
                         <asp:ListItem Value="2" Text="Midfielder"></asp:ListItem>
@@ -63,18 +63,19 @@
                     </asp:DropDownList>
                 </asp:TableCell>
             </asp:TableRow>
-            <asp:TableFooterRow>
+            <asp:TableFooterRow HorizontalAlign="Center">
                 <asp:TableCell ColumnSpan="5">
-                    <asp:Button ID="SubmitButton" CommandName="SubmitButton" runat="server" Text="Search" class="btn btn-info"/>
-                    <asp:Button runat="server" Text="Clear" OnClick="ClearEntries" class="btn btn-default"/>
+                    <br />
+                    <asp:Button ID="SubmitButton" CommandName="SubmitButton" runat="server" Text="Search" CssClass="btn btn-success"/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Button runat="server" Text="Clear" OnClick="ClearEntries" CssClass="btn btn-default"/>
                 </asp:TableCell>
             </asp:TableFooterRow>
         </asp:Table>
 
     </div>
     <br />
-    <asp:GridView ID="PlayerSearchGridView" runat="server" AllowSorting="True" OnSorting="PlayerSearchGridView_Sorting" 
-        AllowPaging="true" PageSize="40" OnPageIndexChanging="PlayerSearchGridView_PageIndexChanging">
+    <asp:GridView ID="PlayerSearchGridView" runat="server" AllowSorting="True" OnSorting="PlayerSearchGridView_Sorting" AllowPaging="true" PageSize="40" OnPageIndexChanging="PlayerSearchGridView_PageIndexChanging">
     </asp:GridView>
 
 </asp:Content>

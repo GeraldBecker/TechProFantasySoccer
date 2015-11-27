@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Edit Player Stats" Language="C#" MasterPageFile="~/Site.Master"   AutoEventWireup="true" CodeBehind="Settings.aspx.cs" 
+﻿<%@ Page Title="Settings" Language="C#" MasterPageFile="~/Site.Master"   AutoEventWireup="true" CodeBehind="Settings.aspx.cs" 
     Inherits="TechProFantasySoccer.Admin.ToggleTransactions" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -23,12 +23,16 @@
         }
         
     </script>
-    <h2>Fantasy Settings</h2>
-    <br />
-    
+
+    <div class="banner_cheer">
+        <h1 class="title_cheer">SETTINGS</h1>
+    </div>
+
     <asp:DataList runat="server" 
         DataKeyField="KeyId" 
-        DataSourceID="SqlDataSource1" ID="DataList1">
+        DataSourceID="SqlDataSource1"
+        ID="DataList1"
+        HorizontalAlign="Center">
         <HeaderTemplate>
             <table style="border-collapse: collapse; max-width:99%;">
                 <tr>
@@ -61,8 +65,7 @@
             <tr>
                 <td class="outstanding" colspan="3" style="text-align:center;">
                     <br />
-                    <asp:Button id="UpdateButton" Text="Update All Fields" OnClick="UpdateButton_Click" runat="server"
-                        CssClass="btn btn-success btn-block"/>
+                    <asp:Button id="UpdateButton" Text="UPDATE" OnClick="UpdateButton_Click" runat="server" CssClass="btn btn-success"/>
                     
                 </td>
             </tr>

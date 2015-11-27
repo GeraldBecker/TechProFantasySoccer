@@ -4,7 +4,8 @@
 <script>
  
 </script>
-    <h2><%: Title %></h2>
+
+        <h2><%: Title %></h2>
     <asp:Label ID="NotifyLabel" runat="server"></asp:Label>
     <table class="nav-justified">
         <tr>
