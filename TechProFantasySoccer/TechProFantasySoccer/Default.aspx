@@ -14,18 +14,18 @@
                     <asp:Label runat="server" ID="TeamName" Text=""></asp:Label>
 
                     <br />
-                    
+
+                    <asp:Button id="SetLineupBtn" runat="server" CssClass="btn btn-primary" Width="40%" text="Set Team Lineup" OnClick="MainPageBtn_Click"/>  
+
+                    <br />
+                    <br />
+
+                    <asp:Button id="TeamOverviewBtn" runat="server" CssClass="btn btn-primary" Width="40%" text="My Team" OnClick="MainPageBtn_Click"/>
+
+                    <br />
+                    <br />
+
                     <asp:Button id="PlayerSearchBtn" runat="server" CssClass="btn btn-primary" Width="40%" text="Player Search" OnClick="MainPageBtn_Click"/>
-
-                    <br />
-                    <br />
-
-                    <asp:Button id="TeamOverviewBtn" runat="server" CssClass="btn btn-primary" Width="40%" text="Team Overview" OnClick="MainPageBtn_Click"/>
-
-                    <br />
-                    <br />
-
-                    <asp:Button id="SetLineupBtn" runat="server" CssClass="btn btn-primary" Width="40%" text="Set Team Lineup" OnClick="MainPageBtn_Click"/>
 
                     <br />
                     <br />

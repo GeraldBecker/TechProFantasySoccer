@@ -22,13 +22,13 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.Label TeamName;
         
         /// <summary>
-        /// PlayerSearchBtn control.
+        /// SetLineupBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button PlayerSearchBtn;
+        protected global::System.Web.UI.WebControls.Button SetLineupBtn;
         
         /// <summary>
         /// TeamOverviewBtn control.
@@ -40,13 +40,13 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.Button TeamOverviewBtn;
         
         /// <summary>
-        /// SetLineupBtn control.
+        /// PlayerSearchBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SetLineupBtn;
+        protected global::System.Web.UI.WebControls.Button PlayerSearchBtn;
         
         /// <summary>
         /// StandingsBtn control.

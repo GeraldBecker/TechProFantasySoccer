@@ -32,7 +32,7 @@ input[type="email"] {
     width: 100%;
     height: 100%;
     padding: 100px 0px 130px 0px;
-    margin: 0;
+    margin: 0px 0px 40px 0px;
     background: url(../Images/fantasybanner.png);
     background-size: cover;
     box-shadow: 0px 45px 70px -40px #000000;
@@ -42,16 +42,53 @@ input[type="email"] {
     box-shadow: 0px 50px 49px -44px #000000;
 }
 
-.valign {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+.banner_reg {
+    width: 100%;
+    height: 100%;
+    padding: 45px 0px 45px 0px;
+    margin: 0px 0px 40px 0px;
+    background: url(../Images/banner.png);
+    background-size: cover;
+    box-shadow: 0px 45px 70px -40px #000000;
+    text-align: center;
+    -webkit-box-shadow: 0px 50px 49px -44px #000000;
+    -moz-box-shadow: 0px 50px 49px -44px #000000;
+    box-shadow: 0px 50px 49px -44px #000000;
 }
+
+.banner_cheer {
+    width: 100%;
+    height: 100%;
+    padding: 45px 0px 45px 0px;
+    margin: 0px 0px 40px 0px;
+    background: url(../Images/page_banner_small.png);
+    background-size: cover;
+    box-shadow: 0px 45px 70px -40px #44708d;
+    text-align: center;
+    -webkit-box-shadow: 0px 50px 49px -44px #44708d;
+    -moz-box-shadow: 0px 50px 49px -44px #44708d;
+    box-shadow: 0px 50px 49px -44px #44708d;
+}
+
 
 .center_content {
     width: 100%;
-    margin: 35px 0px 0px 0px;
-    text-align: center
+    display: inline-block;
+    margin: 0px 0px 0px 0px;
+    text-align: center;
+}
+
+.center_content_top {
+    width: 100%;
+    display: inline-block;
+    margin: 25px 0px 0px 0px;
+    text-align: center;
+}
+
+.line_center {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
 }
 
 #teamLabel
@@ -64,4 +101,40 @@ input[type="email"] {
 #nav_logo {
     padding: 10px 0px 0px 0px !important;
     margin: 0px 0px 0px 0px !important;
+}
+
+#login_image {
+    float: right;
+    width: 400px;
+    height: 400px;
+}
+
+.form_panel {
+    width: 40%;
+    background-color: #000000;
+    padding: 15px 0px 19px 0px;
+}
+
+.title_reg {
+    text-shadow: 0 0 10px #FFFFFF, 0 0 20px #F4F4CD;
+    color: #FFFFFF;
+}
+
+.title_cheer {
+    text-shadow: 0 0 10px #FFFFFF, 0 0 20px #F4F4CD;
+}
+
+div.centered 
+{
+    text-align: center;
+}
+
+div.centered table 
+{
+    margin: 0 auto; 
+    text-align: left;
+}
+
+.about_title {
+    text-shadow: 0 0 10px #FFFFFF, 0 0 9px #000000;
 }

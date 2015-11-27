@@ -2,10 +2,18 @@
     CodeBehind="ViewPlayer.aspx.cs" Inherits="TechProFantasySoccer.Players.ViewPlayer" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%= PlayerName %></h2>
     
-    <div class="player_info">
-        <asp:Table ID="MainInfoTable" runat="server">
+    <br />
+
+    <div class="center_content">
+        <h2><%= PlayerName %></h2>
+    </div>
+
+    <br />
+    <br />
+    
+    <div class="player_info center_content">
+        <asp:Table ID="MainInfoTable" runat="server" HorizontalAlign="Center">
             <asp:TableRow>
                 <asp:TableHeaderCell CssClass="playerdesc">
                     <asp:Label ID="Label3" runat="server" Text="League:"></asp:Label>
@@ -56,19 +64,29 @@
             </asp:TableRow>
         </asp:Table>
     </div>
-    <div class="player_functions">
+
+    <div class="clear"></div>
+    <br />
+
+    <div class="player_function center_content">
         <asp:Button id="AddPlayerBtn" runat="server" class="btn btn-success" Text="Add Player" OnClick="PlayerFunctionBtn_Click"/>
         <asp:Button id="TradePlayerBtn" runat="server" class="btn btn-info" Text="Trade Player" OnClick="PlayerFunctionBtn_Click"
             disabled="disabled"/>
         <asp:Button id="DropPlayerBtn" runat="server" class="btn btn-danger" Text="Drop Player" OnClick="PlayerFunctionBtn_Click"/>
     </div>
-    <div class="clear"></div>
-    <br />
-    <asp:Label ID="Label2" runat="server" Text="Total Fantasy Points:" Font-Bold="true" CssClass="fantasy_points_label"></asp:Label>
-    &nbsp;&nbsp;<asp:Label ID="FantasyPointsLabel" runat="server" Text="" CssClass="fantasy_points"></asp:Label>
+
     <br />
     <br />
-    <asp:GridView ID="FantasyDetailsGridView" runat="server" AlternatingRowStyle-BackColor="#18bc9c"></asp:GridView>
+
+    <div class="center_content">
+        <asp:Label ID="Label2" runat="server" Text="Total Fantasy Points:" Font-Bold="true" CssClass="fantasy_points_label"></asp:Label>
+        &nbsp;&nbsp;<asp:Label ID="FantasyPointsLabel" runat="server" Text="" CssClass="fantasy_points"></asp:Label>
+    </div>
+
+    <br />
+    <br />
+
+    <asp:GridView ID="FantasyDetailsGridView" runat="server" AlternatingRowStyle-BackColor="#18bc9c" HorizontalAlign="Center"></asp:GridView>
 
     
 
