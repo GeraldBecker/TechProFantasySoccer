@@ -171,6 +171,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Admin\EditPlayerInfo.aspx" />
+    <Content Include="Images\background.png" />
+    <Content Include="Images\banner.png" />
+    <Content Include="Images\fantasybanner.png" />
+    <Content Include="Images\smalllogo.png" />
     <Content Include="Team\FantasyPointsDetails.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="JoinLeague.aspx" />
