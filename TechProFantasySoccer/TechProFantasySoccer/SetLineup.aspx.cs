@@ -12,10 +12,11 @@ using System.Collections;
 
 namespace TechProFantasySoccer {
     public partial class SetLineup : System.Web.UI.Page {
-        private const int NUM_ACTIVE_STRIKERS = 2;
-        private const int NUM_ACTIVE_MIDFIELDERS = 4;
-        private const int NUM_ACTIVE_DEFENDERS = 4;
-        private const int NUM_ACTIVE_GOALIES = 1;
+        private const int STRIKER_SLOTS = 2;
+        private const int MIDFIELDER_SLOTS = 4;
+        private const int DEFENDER_SLOTS = 4;
+        private const int GOALIE_SLOTS = 1;
+
         DropDownList[] defenderddls;
         DropDownList[] midfielderddls;
         DropDownList[] strikerddls;
@@ -25,22 +26,13 @@ namespace TechProFantasySoccer {
         DataRow[] activeDefenders;
         DataRow[] inActiveDefenders;
         DataRow[] activeMidfielders;
-        DataRow[] inActiveMidfielders;
+        DataRow[] inActiveMidfielders;      
         DataRow[] activeStrikers;
         DataRow[] inActiveStrikers;
         DataRow[] activeGoalies;
         DataRow[] inActiveGoalies;
 
-        protected void Page_Load(object sender, EventArgs e) {
-            if(!HttpContext.Current.User.Identity.IsAuthenticated) {
-                Response.Redirect("/Account/Login");
-            }
-
-            //Check if the user is a member of the fantasy pool
-            string user = User.Identity.GetUserId();
-            if(!AuthLevelCheck.isUser(user))
-                Response.Redirect("~/AccessDenied");
-
+        protected void Page_Load(object sender, EventArgs e) {        
             SqlCommand getPlayersCommand = new SqlCommand();
 
             if (!Page.IsPostBack) {
@@ -53,13 +45,18 @@ namespace TechProFantasySoccer {
                     "WHERE LineupHistory.Month = DATEPART(MONTH, GETDATE()) " +
                     "AND LineupHistory.UserId = '" + User.Identity.GetUserId() + "' " +
                     "ORDER BY Name";
-
-                getPlayersCommand.Connection = con1;
-
                 DataTable playersTable = new DataTable();
-                con1.Open();
+                try {
+                    getPlayersCommand.Connection = con1;
+                    con1.Open();
+                    playersTable.Load(getPlayersCommand.ExecuteReader());
+                } catch (SqlException ex) {
+                    NotifyLabel.Text = "There was an issue connecting to the database. Please try again later";
+                    System.Diagnostics.Debug.WriteLine(ex.ToString());
+                } finally {
+                    con1.Close();
+                }
 
-                playersTable.Load(getPlayersCommand.ExecuteReader());
 
                 //------------------------------------------------------------------------
                 //DEFENDERS
@@ -148,8 +145,8 @@ namespace TechProFantasySoccer {
             tbBench.DataBind();
 
             //Add the dropdown lists for defenders and populate them
-            defenderddls = new DropDownList[NUM_ACTIVE_DEFENDERS];
-            for (int i = 0; i < NUM_ACTIVE_DEFENDERS; i++) {
+            defenderddls = new DropDownList[DEFENDER_SLOTS];
+            for (int i = 0; i < DEFENDER_SLOTS; i++) {
                 DropDownList ddl = new DropDownList();
                 SetDropDownList(benchDefenderList, i, ddl, SessionHandler.ActiveDefenders, defenderddls);
 
@@ -157,8 +154,8 @@ namespace TechProFantasySoccer {
             }
 
             //Add the dropdown lists for midfielders and populate them
-            midfielderddls = new DropDownList[NUM_ACTIVE_MIDFIELDERS];
-            for (int i = 0; i < NUM_ACTIVE_MIDFIELDERS; i++) {
+            midfielderddls = new DropDownList[MIDFIELDER_SLOTS];
+            for (int i = 0; i < MIDFIELDER_SLOTS; i++) {
                 DropDownList ddlMidfielder = new DropDownList();
                 SetDropDownList(benchMidfielderList, i, ddlMidfielder, SessionHandler.ActiveMidfielders, midfielderddls);
 
@@ -166,8 +163,8 @@ namespace TechProFantasySoccer {
             }
 
             //Add the dropdown lists for strikers and populate them
-            strikerddls = new DropDownList[NUM_ACTIVE_STRIKERS];
-            for (int i = 0; i < NUM_ACTIVE_STRIKERS; i++) {
+            strikerddls = new DropDownList[STRIKER_SLOTS];
+            for (int i = 0; i < STRIKER_SLOTS; i++) {
                 DropDownList ddlStriker = new DropDownList();
                 SetDropDownList(benchStrikersList, i, ddlStriker, SessionHandler.ActiveStrikers, strikerddls);
 
@@ -175,8 +172,8 @@ namespace TechProFantasySoccer {
 
             }
 
-            goalieddls = new DropDownList[NUM_ACTIVE_GOALIES];
-            for (int i = 0; i < NUM_ACTIVE_GOALIES; i++) {
+            goalieddls = new DropDownList[GOALIE_SLOTS];
+            for (int i = 0; i < GOALIE_SLOTS; i++) {
                 DropDownList ddlGoalie = new DropDownList();
                 SetDropDownList(benchGoaliesList, i, ddlGoalie, SessionHandler.ActiveGoalies, goalieddls);
 
@@ -204,57 +201,25 @@ namespace TechProFantasySoccer {
         private void playerddls_SelectedIndexChanged(Object sender, EventArgs e) {
             DropDownList ddl = (DropDownList)sender;
 
-            for (int i = 0; i < NUM_ACTIVE_DEFENDERS; i++) {
+            for (int i = 0; i < DEFENDER_SLOTS; i++) {
                 if (ddl == defenderddls[i])
                     UpdateActiveAndBench(i, SessionHandler.BenchDefenders, SessionHandler.ActiveDefenders, defenderddls);
             }
 
-            for (int i = 0; i < NUM_ACTIVE_MIDFIELDERS; i++) {
+            for (int i = 0; i < MIDFIELDER_SLOTS; i++) {
                 if (ddl == midfielderddls[i])
                     UpdateActiveAndBench(i, SessionHandler.BenchMidfielders, SessionHandler.ActiveMidfielders, midfielderddls);
             }
 
-            for (int i = 0; i < NUM_ACTIVE_STRIKERS; i++) {
+            for (int i = 0; i < STRIKER_SLOTS; i++) {
                 if (ddl == strikerddls[i])
                     UpdateActiveAndBench(i, SessionHandler.BenchStrikers, SessionHandler.ActiveStrikers, strikerddls);
             }
 
-            for (int i = 0; i < NUM_ACTIVE_GOALIES; i++) {
+            for (int i = 0; i < GOALIE_SLOTS; i++) {
                 if (ddl == goalieddls[i])
                     UpdateActiveAndBench(i, SessionHandler.BenchGoalies, SessionHandler.ActiveGoalies, goalieddls);
             }
-
-                //    if (ddl == defenderddls[0]) {
-                //        UpdateActiveAndBench(0, SessionHandler.BenchDefenders, SessionHandler.ActiveDefenders, defenderddls);
-                //    } if (ddl == defenderddls[1]) {
-                //    UpdateActiveAndBench(1, SessionHandler.BenchDefenders, SessionHandler.ActiveDefenders, defenderddls);
-                //} if (ddl == defenderddls[2]) {
-                //    UpdateActiveAndBench(2, SessionHandler.BenchDefenders, SessionHandler.ActiveDefenders, defenderddls);
-                //} if (ddl == defenderddls[3]) {
-                //    UpdateActiveAndBench(3, SessionHandler.BenchDefenders, SessionHandler.ActiveDefenders, defenderddls);
-                //}
-
-                //if (ddl == midfielderddls[0]) {
-                //    UpdateActiveAndBench(0, SessionHandler.BenchMidfielders, SessionHandler.ActiveMidfielders, midfielderddls);
-                //} if (ddl == midfielderddls[1]) {
-                //    UpdateActiveAndBench(1, SessionHandler.BenchMidfielders, SessionHandler.ActiveMidfielders, midfielderddls);
-                //} if (ddl == midfielderddls[2]) {
-                //    UpdateActiveAndBench(2, SessionHandler.BenchMidfielders, SessionHandler.ActiveMidfielders, midfielderddls);
-                //} if (ddl == midfielderddls[3]) {
-                //    UpdateActiveAndBench(3, SessionHandler.BenchMidfielders, SessionHandler.ActiveMidfielders, midfielderddls);
-                //}
-
-            //    if (ddl == strikerddls[0]) {
-            //        UpdateActiveAndBench(0, SessionHandler.BenchStrikers, SessionHandler.ActiveStrikers, strikerddls);
-            //    } if (ddl == strikerddls[1]) {
-            //    UpdateActiveAndBench(1, SessionHandler.BenchStrikers, SessionHandler.ActiveStrikers, strikerddls);
-            //}
-
-            //if (ddl == goalieddls[0]) {
-            //    UpdateActiveAndBench(0, SessionHandler.BenchGoalies, SessionHandler.ActiveGoalies, goalieddls);
-            //}
-
-
             UpdateDropDownLists();
         }
 
@@ -344,46 +309,48 @@ namespace TechProFantasySoccer {
 
         protected void SubmitButton_Click(object sender, EventArgs e) {
             SqlConnection con = new SqlConnection(strConnString1);
-            con.Open();
-            SqlCommand updateCommand = new SqlCommand();
-            updateCommand.Connection = con;
+            try {
+                con.Open();
+                SqlCommand updateCommand = new SqlCommand();
+                updateCommand.Connection = con;
 
-            if (!CheckSelections(defenderddls) || !CheckSelections(midfielderddls) || 
-                        !CheckSelections(strikerddls)  || !CheckSelections(goalieddls)) {
-                NotifyLabel.Text = "Please select a player for all active slots";
+                //Update Defenders
+                foreach (Object player in SessionHandler.ActiveDefenders) {
+                    UpdatePlayers(updateCommand, player, true);
+                }
+                foreach (Object player in SessionHandler.BenchDefenders) {
+                    UpdatePlayers(updateCommand, player, false);
+                }
+
+                //Update Midfielders
+                foreach (Object player in SessionHandler.ActiveMidfielders) {
+                    UpdatePlayers(updateCommand, player, true);
+                }
+                foreach (Object player in SessionHandler.BenchMidfielders) {
+                    UpdatePlayers(updateCommand, player, false);
+                }
+
+                //Update Strikers
+                foreach (Object player in SessionHandler.ActiveStrikers) {
+                    UpdatePlayers(updateCommand, player, true);
+                }
+                foreach (Object player in SessionHandler.BenchStrikers) {
+                    UpdatePlayers(updateCommand, player, false);
+                }
+
+                //Update Goalies
+                foreach (Object player in SessionHandler.ActiveGoalies) {
+                    UpdatePlayers(updateCommand, player, true);
+                }
+                foreach (Object player in SessionHandler.BenchGoalies) {
+                    UpdatePlayers(updateCommand, player, false);
+                }
+            } catch (SqlException ex) {
+                NotifyLabel.Text = "There was an issue updating your lineup. Your lineup has not been set. Please try again later.";
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
                 return;
-            }
-
-            //Update Defenders
-            foreach (Object player in SessionHandler.ActiveDefenders) {
-                UpdateActive(updateCommand, player);
-            }
-            foreach (Object player in SessionHandler.BenchDefenders) {
-                UpdateInactive(updateCommand, player);
-            }
-
-            //Update Midfielders
-            foreach (Object player in SessionHandler.ActiveMidfielders) {
-                UpdateActive(updateCommand, player);
-            }
-            foreach (Object player in SessionHandler.BenchMidfielders) {
-                UpdateInactive(updateCommand, player);
-            }
-
-            //Update Strikers
-            foreach (Object player in SessionHandler.ActiveStrikers) {
-                UpdateActive(updateCommand, player);
-            }
-            foreach (Object player in SessionHandler.BenchStrikers) {
-                UpdateInactive(updateCommand, player);
-            }
-
-            //Update Goalies
-            foreach (Object player in SessionHandler.ActiveGoalies) {
-                UpdateActive(updateCommand, player);
-            }
-            foreach (Object player in SessionHandler.BenchGoalies) {
-                UpdateInactive(updateCommand, player);
+            } finally {
+                con.Close();
             }
             NotifyLabel.Text = "Your lineup has been set!";
         }
@@ -397,28 +364,26 @@ namespace TechProFantasySoccer {
             return true;
         }
 
-        private static void UpdateInactive(SqlCommand updateCommand, Object player) {
+        /// <summary>
+        /// Update a player's status to either active or inactive.
+        /// </summary>
+        /// <param name="updateCommand">The command used to update the database.</param>
+        /// <param name="player">The player whose status is to be updated.</param>
+        /// <param name="active">True to set the player to active, false for inactive.</param>
+        private static void UpdatePlayers(SqlCommand updateCommand, Object player, bool active) {
+            int i = (active) ? 1 : 0;
             updateCommand.CommandText =
                  "UPDATE LineupHistory " +
-                 "SET LineupHistory.Active = 0 " +
+                 "SET LineupHistory.Active = " + i + " " +
                  "FROM LineupHistory " +
                  "JOIN Players ON LineupHistory.PlayerId = Players.PlayerId " +
                  "WHERE concat(Players.FirstName, ' ', Players.LastName) " +
                      " = '" + player.ToString() + "'";
-
-            updateCommand.ExecuteNonQuery();
-        }
-
-        private static void UpdateActive(SqlCommand updateCommand, Object player) {
-            updateCommand.CommandText =
-                "UPDATE LineupHistory " +
-                "SET LineupHistory.Active = 1 " +
-                "FROM LineupHistory " +
-                "JOIN Players ON LineupHistory.PlayerId = Players.PlayerId " +
-                "WHERE concat(Players.FirstName, ' ', Players.LastName) " +
-                    " = '" + player.ToString() + "'";
-
-            updateCommand.ExecuteNonQuery();
+            try { 
+                updateCommand.ExecuteNonQuery();
+            } catch (SqlException ex) {
+                throw (ex);
+            } 
         }
 
         /// <summary>
