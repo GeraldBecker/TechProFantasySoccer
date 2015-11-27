@@ -57,10 +57,6 @@ namespace TechProFantasySoccer {
                 SessionHandler.ActiveDefenders = new ArrayList();
                 SetSessionData(activeDefenders, SessionHandler.ActiveDefenders);
 
-                //////////////////////////////////////////////////////////////////////////////
-                
-                /////////////////////////////////////////////////////////////////////////////////
-
                 //Get the bench defenders and add them into a string array session variable
                 inActiveDefenders = playersTable.Select("Active = 0 AND Position = 3");
                 SessionHandler.BenchDefenders = new ArrayList();
@@ -142,19 +138,7 @@ namespace TechProFantasySoccer {
             defenderddls = new DropDownList[4];
             for (int i = 0; i < 4; i++) {
                 DropDownList ddl = new DropDownList();
-                ddl.Width = 300;
-                ddl.Height = 30;
-                ddl.Items.AddRange(benchDefenderList);
-                ddl.SelectedIndexChanged += playerddls_SelectedIndexChanged;
-                ddl.AutoPostBack = true;
-                defenderddls[i] = ddl;
-
-                //If there are active players, set the initial value of the dropdown to those players
-                if (SessionHandler.ActiveDefenders.Count > i) {
-                    ddl.Items.Insert(0, SessionHandler.ActiveDefenders[i].ToString());
-                } else {
-                    ddl.Items.Insert(0, "Select a player");
-                }
+                SetDropDownList(benchDefenderList, i, ddl, SessionHandler.ActiveDefenders, defenderddls);
 
                 DefenderPanel.Controls.Add(ddl);
             }
@@ -163,19 +147,7 @@ namespace TechProFantasySoccer {
             midfielderddls = new DropDownList[4];
             for (int i = 0; i < 4; i++) {
                 DropDownList ddlMidfielder = new DropDownList();
-                ddlMidfielder.Width = 300;
-                ddlMidfielder.Height = 30;
-                ddlMidfielder.Items.AddRange(benchMidfielderList);
-                ddlMidfielder.SelectedIndexChanged += playerddls_SelectedIndexChanged;
-                ddlMidfielder.AutoPostBack = true;
-                midfielderddls[i] = ddlMidfielder;
-
-                //If there are active players, set the initial value to those players
-                if (SessionHandler.ActiveMidfielders.Count > i) {
-                    ddlMidfielder.Items.Insert(0, SessionHandler.ActiveMidfielders[i].ToString());
-                } else {
-                    ddlMidfielder.Items.Insert(0, "Select a player");
-                }
+                SetDropDownList(benchMidfielderList, i, ddlMidfielder, SessionHandler.ActiveMidfielders, midfielderddls);
 
                 MidfielderPanel.Controls.Add(ddlMidfielder);
             }
@@ -184,19 +156,7 @@ namespace TechProFantasySoccer {
             strikerddls = new DropDownList[2];
             for (int i = 0; i < 2; i++) {
                 DropDownList ddlStriker = new DropDownList();
-                ddlStriker.Width = 300;
-                ddlStriker.Height = 30;
-                ddlStriker.Items.AddRange(benchStrikersList);
-                ddlStriker.SelectedIndexChanged += playerddls_SelectedIndexChanged;
-                ddlStriker.AutoPostBack = true;
-                strikerddls[i] = ddlStriker;
-
-                //If there are active players, set the initial value to those players
-                if (SessionHandler.ActiveStrikers.Count > i) {
-                    ddlStriker.Items.Insert(0, SessionHandler.ActiveStrikers[i].ToString());
-                } else {
-                    ddlStriker.Items.Insert(0, "Select a player");
-                }
+                SetDropDownList(benchStrikersList, i, ddlStriker, SessionHandler.ActiveStrikers, strikerddls);
 
                 StrikerPanel.Controls.Add(ddlStriker);
 
@@ -205,22 +165,26 @@ namespace TechProFantasySoccer {
             goalieddls = new DropDownList[1];
             for (int i = 0; i < 1; i++) {
                 DropDownList ddlGoalie = new DropDownList();
-                ddlGoalie.Width = 300;
-                ddlGoalie.Height = 30;
-                ddlGoalie.Items.AddRange(benchGoaliesList);
-                ddlGoalie.SelectedIndexChanged += playerddls_SelectedIndexChanged;
-                ddlGoalie.AutoPostBack = true;
-                goalieddls[i] = ddlGoalie;
-
-                //If there are active players, set the initial value to those players
-                if (SessionHandler.ActiveGoalies.Count > i) {
-                    ddlGoalie.Items.Insert(0, SessionHandler.ActiveGoalies[i].ToString());
-                } else {
-                    ddlGoalie.Items.Insert(0, "Select a player");
-                }
+                SetDropDownList(benchGoaliesList, i, ddlGoalie, SessionHandler.ActiveGoalies, goalieddls);
 
                 GoaliePanel.Controls.Add(ddlGoalie);
 
+            }
+        }
+
+        private void SetDropDownList(ListItem[] benchStrikersList, int index, DropDownList ddlStriker, ArrayList playerList, DropDownList[] ddlArray) {
+            ddlStriker.Width = 300;
+            ddlStriker.Height = 30;
+            ddlStriker.Items.AddRange(benchStrikersList);
+            ddlStriker.SelectedIndexChanged += playerddls_SelectedIndexChanged;
+            ddlStriker.AutoPostBack = true;
+            ddlArray[index] = ddlStriker;
+
+            //If there are active players, set the initial value to those players
+            if (playerList.Count > index) {
+                ddlStriker.Items.Insert(0, playerList[index].ToString());
+            } else {
+                ddlStriker.Items.Insert(0, "Select a player");
             }
         }
 
@@ -271,10 +235,13 @@ namespace TechProFantasySoccer {
         private void UpdateActiveAndBench(int index, ArrayList benchList, ArrayList activeList, DropDownList[] ddlArray) {
             if (ddlArray[index].Items[0].ToString() != "Select a player") {
                 benchList.Add(ddlArray[index].Items[0].ToString());
+                activeList.Insert(activeList.IndexOf(ddlArray[index].Items[0].ToString()), ddlArray[index].SelectedValue);
                 activeList.Remove(ddlArray[index].Items[0].ToString());
+            } else {
+                activeList.Add(ddlArray[index].SelectedValue);
             }
             benchList.Remove(ddlArray[index].SelectedValue);
-            activeList.Add(ddlArray[index].SelectedValue);
+            
         }
 
         /// <summary>
@@ -311,57 +278,34 @@ namespace TechProFantasySoccer {
 
 
             for (int i = 0; i < 4; i++) {
-                defenderddls[i].ClearSelection();
-                defenderddls[i].Items.Clear();
-                defenderddls[i].Items.AddRange(benchDefenderList);
-
-                //If there are active players, set the initial value of the dropdown to those players
-                if (SessionHandler.ActiveDefenders.Count > i) {
-                    defenderddls[i].Items.Insert(0, SessionHandler.ActiveDefenders[i].ToString());
-                } else {
-                    defenderddls[i].Items.Insert(0, "Select a player");
-                }
+                ResetDropDownList(benchDefenderList, i, SessionHandler.ActiveDefenders, defenderddls);
             }
             
             for (int i = 0; i < 4; i++) {
-                midfielderddls[i].ClearSelection();
-                midfielderddls[i].Items.Clear();
-                midfielderddls[i].Items.AddRange(benchMidfielderList);
-
-                //If there are active players, set the initial value to those players
-                if (SessionHandler.ActiveMidfielders.Count > i) {
-                    midfielderddls[i].Items.Insert(0, SessionHandler.ActiveMidfielders[i].ToString());
-                } else {
-                    midfielderddls[i].Items.Insert(0, "Select a player");
-                }
+                ResetDropDownList(benchMidfielderList, i, SessionHandler.ActiveMidfielders, midfielderddls);
             }
 
             //Add the dropdown lists for strikers and populate them
             for (int i = 0; i < 2; i++) {
-                strikerddls[i].ClearSelection();
-                strikerddls[i].Items.Clear();
-                strikerddls[i].Items.AddRange(benchStrikersList);
-
-                //If there are active players, set the initial value to those players
-                if (SessionHandler.ActiveStrikers.Count > i) {
-                    strikerddls[i].Items.Insert(0, SessionHandler.ActiveStrikers[i].ToString());
-                } else {
-                    strikerddls[i].Items.Insert(0, "Select a player");
-                }
+                ResetDropDownList(benchStrikersList, i, SessionHandler.ActiveStrikers, strikerddls);
             }
 
             //Add the dropdown lists for goalies and populate them
             for (int i = 0; i < 1; i++) {
-                goalieddls[i].ClearSelection();
-                goalieddls[i].Items.Clear();
-                goalieddls[i].Items.AddRange(benchGoaliesList);
+                ResetDropDownList(benchGoaliesList, i, SessionHandler.ActiveGoalies, goalieddls);
+            }
+        }
 
-                //If there are active players, set the initial value to those players
-                if (SessionHandler.ActiveGoalies.Count > i) {
-                    goalieddls[i].Items.Insert(0, SessionHandler.ActiveGoalies[i].ToString());
-                } else {
-                    goalieddls[i].Items.Insert(0, "Select a player");
-                }
+        private void ResetDropDownList(ListItem[] benchDefenderList, int index, ArrayList playerList, DropDownList[] ddlArray) {
+            ddlArray[index].ClearSelection();
+            ddlArray[index].Items.Clear();
+            ddlArray[index].Items.AddRange(benchDefenderList);
+
+            //If there are active players, set the initial value of the dropdown to those players
+            if (playerList.Count > index) {
+                ddlArray[index].Items.Insert(0, playerList[index].ToString());
+            } else {
+                ddlArray[index].Items.Insert(0, "Select a player");
             }
         }
 
