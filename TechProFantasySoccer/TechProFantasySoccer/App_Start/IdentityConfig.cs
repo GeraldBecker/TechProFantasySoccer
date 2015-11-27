@@ -28,10 +28,10 @@ namespace TechProFantasySoccer
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
-                RequireDigit = true,
+                RequireNonLetterOrDigit = false,
+                RequireDigit = false,
                 RequireLowercase = true,
-                RequireUppercase = true,
+                RequireUppercase = false,
             };
             // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user. 
             // For more information on using two-factor authentication please see http://go.microsoft.com/fwlink/?LinkID=391935
