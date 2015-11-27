@@ -8,7 +8,7 @@
         <h2 class="about_title">All about the Fantasy Soccer App.</h2>
         <p>________________________________________________________________________________________________________________________</p>
         <p> <br>
-            This site is a custom built fasntasy soccer league that allows users to complete any league transactions. <br>
+            This site is a custom built fantasy soccer league that allows users to complete any league transactions. <br>
         </p>
 
         <div style="float: left; width: 50%; text-align: left; padding: 0px 0px 0px 100px">
@@ -31,8 +31,8 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add special clubs<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add leagues<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set the amount of fantasy points that a player will earn<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add other admins buy giving different users different access levels<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;4)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set when player trades can or cannot happen
+                &nbsp;&nbsp;&nbsp;&nbsp;6)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add other admins by giving different users different access levels<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;7)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set when player trades can or cannot happen
             </p>
         </div>
 
