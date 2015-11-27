@@ -22,7 +22,7 @@
         </div>-->
 
         <asp:Button id="addPlayerBtn" runat="server" CssClass="btn btn-default" Width="50%" 
-            text="Add/Edit Players" OnClick="ManagerButton_Click"/>
+            text="Add or Edit Players" OnClick="ManagerButton_Click"/>
 
         <br />
         <br />
@@ -39,7 +39,7 @@
         <br />
         <br />
 
-        <asp:Button id="createTeamBtn" runat="server" CssClass="btn btn-info" Width="50%" 
+        <!--<asp:Button id="createTeamBtn" runat="server" CssClass="btn btn-info" Width="50%" 
             text="Create Teams" OnClick="ManagerButton_Click"/>
 
         <br />
@@ -49,16 +49,16 @@
             text="Edit Team Lineups" OnClick="ManagerButton_Click"/>
 
         <br />
-        <br />
+        <br /> -->
 
-        <asp:Button id="setScoringBtn" runat="server" CssClass="btn btn-primary" Width="50%" 
+        <asp:Button id="setScoringBtn" runat="server" CssClass="btn btn-default" Width="50%" 
             text="Set Scoring Values" OnClick="ManagerButton_Click"/>
 
         <br />
         <br />
 
-        <asp:Button id="selectUsersBtn" runat="server" CssClass="btn btn-primary" Width="50%" 
-            text="Select Users" OnClick="ManagerButton_Click"/>
+        <asp:Button id="selectUsersBtn" runat="server" CssClass="btn btn-default" Width="50%" 
+            text="Set User Access Levels" OnClick="ManagerButton_Click"/>
 
         <br />
         <br />

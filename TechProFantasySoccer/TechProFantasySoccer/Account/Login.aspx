@@ -4,6 +4,8 @@
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
 
+    <div class="banner"></div>
+
     <div class="container">
         <div class="row">
 
@@ -46,12 +48,8 @@
                         </div>
                     </div>
 
-
-                <br/>
-                <br/>
-
                 <p>
-                    <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled" CssClass="center_content">Register as a New User</asp:HyperLink>
+                    <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled" CssClass="center_content_top">Register as a New User</asp:HyperLink>
                 </p>
 
                 <p>

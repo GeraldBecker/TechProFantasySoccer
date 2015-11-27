@@ -9,11 +9,16 @@
             document.getElementById(id).style.backgroundColor = '#83F52C';
         } 
     </script>
-    <br />
+    
+    <div class="banner_cheer">
+        <h1 class="title_cheer">EDIT SCORING VALUES</h1>
+    </div>
+
     <asp:DataList runat="server" 
         DataKeyField="ScoringId" 
         DataSourceID="ScoringValuesDataSource" ID="DataList1"
-        OnUpdateCommand="DataList1_UpdateCommand">
+        OnUpdateCommand="DataList1_UpdateCommand"
+        HorizontalAlign="Center">
         <HeaderTemplate>
             <table style="border-collapse: collapse; max-width:99%;">
                 <tr>
@@ -45,8 +50,7 @@
             <tr>
                 <td class="outstanding" colspan="16" style="text-align:center;">
                     <br />
-                    <asp:Button id="UpdateButton" Text="Update All Fields" OnClick="UpdateButton_Click" runat="server"
-                        style="background-color:#99ffa9; height:50px; width:200px; margin-right:20px;"/>
+                    <asp:Button id="UpdateButton" Text="Update All Fields" OnClick="UpdateButton_Click" runat="server" CssClass="btn btn-default"/>
                 </td>
             </tr>
             </table>

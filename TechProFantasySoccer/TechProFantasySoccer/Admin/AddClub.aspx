@@ -2,9 +2,14 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     
-    <br />
-    <div id="SearchBar">
-        <asp:Table ID="Table1" runat="server">
+    <div class="banner_cheer">
+            <h1 class="title_cheer">ADD A CLUB</h1>
+    </div>
+
+    <div id="SearchBar center_content">
+
+        <asp:Table ID="Table1" runat="server" HorizontalAlign="Center">
+
             <asp:TableHeaderRow>
                 <asp:TableHeaderCell>
                     Team Name
@@ -18,22 +23,30 @@
                     <asp:TextBox ID="TeamNameTextBox" runat="server" Width="150px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell>
-                    <asp:DropDownList ID="LeagueDropDown" runat="server" DataSourceID="FantasyDataSource" 
-                        DataTextField="LeagueName" DataValueField="LeagueId"></asp:DropDownList>
+
+                    <asp:DropDownList ID="LeagueDropDown" runat="server" DataSourceID="FantasyDataSource"
+                      DataTextField="LeagueName"
+                      DataValueField="LeagueId"
+                      Height="27px">
+                    </asp:DropDownList>
+
                 </asp:TableCell>
             </asp:TableRow>
-            <asp:TableFooterRow>
+            <asp:TableFooterRow HorizontalAlign="Center">
                 <asp:TableCell ColumnSpan="2">
-                    <asp:Button ID="SubmitButton" OnClick="SubmitButton_Click" runat="server" Text="Add Club" 
-                        style="background-color:#99ffa9; height:50px; width:200px; margin-right:20px;"/>
+
+                    <br />
+                    <asp:Button ID="SubmitButton" OnClick="SubmitButton_Click" runat="server" Text="Add Club" CssClass="btn btn-default"/>
+
                 </asp:TableCell>
             </asp:TableFooterRow>
         </asp:Table>
 
     </div>
+
     <br />
-    <asp:GridView ID="ClubGridView" runat="server" AllowSorting="False"  
-        AllowPaging="true" PageSize="40">
+
+    <asp:GridView ID="ClubGridView" runat="server" AllowSorting="False" AllowPaging="true" PageSize="40" HorizontalAlign="Center">
     </asp:GridView>
 
     <asp:SqlDataSource ID="FantasyDataSource" runat="server" 
