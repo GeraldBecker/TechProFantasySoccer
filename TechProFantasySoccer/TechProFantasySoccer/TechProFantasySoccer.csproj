@@ -174,7 +174,9 @@
     <Content Include="Images\background.png" />
     <Content Include="Images\banner.png" />
     <Content Include="Images\fantasybanner.png" />
+    <Content Include="Images\page_banner_small.png" />
     <Content Include="Images\smalllogo.png" />
+    <Content Include="Images\stadium.jpg" />
     <Content Include="Team\FantasyPointsDetails.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="JoinLeague.aspx" />
