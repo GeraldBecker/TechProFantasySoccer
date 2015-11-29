@@ -73,7 +73,7 @@
 
         <br />
 
-        <asp:GridView ID="PlayerGridView" runat="server" AllowSorting="False" AllowPaging="true" PageSize="40" OnPageIndexChanging="PlayerGridView_PageIndexChanging" HorizontalAlign="Center">
+        <asp:GridView ID="PlayerGridView" runat="server" AllowSorting="False" AllowPaging="true" PageSize="40" OnPageIndexChanging="PlayerGridView_PageIndexChanging" HorizontalAlign="Center" PagerStyle-HorizontalAlign="Center" PagerStyle-Font-Bold="true">
         </asp:GridView>
 
         <asp:SqlDataSource ID="ClubsDataSource" runat="server" 

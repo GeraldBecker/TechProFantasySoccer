@@ -142,3 +142,7 @@ div.centered table
 .text_left {
     text-align: left !important;
 }
+
+.text_center {
+    text-align: center !important;
+}

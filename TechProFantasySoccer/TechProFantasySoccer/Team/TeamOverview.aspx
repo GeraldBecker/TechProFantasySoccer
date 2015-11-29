@@ -22,7 +22,7 @@
         <h4>Players:  (YTD Stats)</h4>
         <br />
 
-        <asp:GridView ID="TeamGridView" runat="server" AllowSorting="True" OnSorting="TeamGridView_Sorting" AutoGenerateColumns="false" HorizontalAlign="Center">
+        <asp:GridView ID="TeamGridView" runat="server" AllowSorting="True" OnSorting="TeamGridView_Sorting" AutoGenerateColumns="false" HorizontalAlign="Center"  PagerStyle-HorizontalAlign="Center" PagerStyle-Font-Bold="true">
             <Columns>
                 <asp:BoundField HeaderText="PlayerId" DataField="PlayerId" SortExpression="PlayerId"/>
                 <asp:BoundField HeaderText="First" DataField="First" SortExpression="First" ItemStyle-HorizontalAlign="Left"/>

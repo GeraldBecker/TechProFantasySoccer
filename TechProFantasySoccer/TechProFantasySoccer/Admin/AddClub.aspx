@@ -46,7 +46,7 @@
 
     <br />
 
-    <asp:GridView ID="ClubGridView" runat="server" AllowSorting="False" AllowPaging="true" PageSize="40" HorizontalAlign="Center">
+    <asp:GridView ID="ClubGridView" runat="server" AllowSorting="False" AllowPaging="true" PageSize="40" HorizontalAlign="Center" PagerStyle-HorizontalAlign="Center" PagerStyle-Font-Bold="true">
     </asp:GridView>
 
     <asp:SqlDataSource ID="FantasyDataSource" runat="server" 
