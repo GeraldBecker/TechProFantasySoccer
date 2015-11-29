@@ -11,49 +11,64 @@
         <table id="table1" align="center">
             <tr>
                 <td>
-                    <asp:TextBox id="playerImg" runat="server" Height="200px" Width="200px">PLACE HOLDER FOR IMAGE</asp:TextBox>
+                    <%--<asp:FileUpload id="fileupload" runat="server" />
+                    <asp:Button ID="imageUpBtn" runat="server" Text="Upload" OnClick="ImageUpload_Click" />
+                    <br />
+                    <asp:Image id="image" runat="server" />--%>
+                    <strong>Name:</strong>
                 </td>
                 <td>
-                    <asp:TextBox id="PlayerFNameTextBox" runat="server"></asp:TextBox>
-                    <asp:TextBox id="PlayerLNameTextBox" runat="server"></asp:TextBox>
+                    <asp:TextBox id="PlayerFNameTextBox" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:TextBox id="PlayerLNameTextBox" runat="server" CssClass="form-control"></asp:TextBox>
+                    <br />
                 </td>
             </tr>
-        
+     <!----------------------------------------------------------------------------------------------->   
             <tr>
                 <td>
                     <strong>Club:</strong>
                 </td>
                 <td>
                     <asp:DropDownList ID="ClubDropDown" runat="server" DataSourceID="ClubsDataSource" 
-                            DataTextField="ClubName" DataValueField="ClubId"></asp:DropDownList>
+                            DataTextField="ClubName" DataValueField="ClubId" CssClass="form-control">
+                    </asp:DropDownList>
+                    <br />
                 </td>
             </tr>
+     <!----------------------------------------------------------------------------------------------->
             <tr>
                 <td>
                     <strong>League:</strong>
                 </td>
                 <td>
-                    <asp:Label ID="LeagueLabel" runat="server"></asp:Label>
+                    <asp:Label ID="LeagueLabel" runat="server" CssClass="form-control" disabled=""></asp:Label>
+                    <br />
                 </td>
             </tr>
+    <!----------------------------------------------------------------------------------------------->
             <tr>
                 <td>
                     <strong>Position:</strong>
                 </td>
                 <td>
-                    <asp:DropDownList ID="PositionDropDown" runat="server" >
+                    <asp:DropDownList ID="PositionDropDown" runat="server" CssClass="form-control">
                         <asp:ListItem></asp:ListItem>
                         <asp:ListItem Value="1" Text="Striker"></asp:ListItem>
                         <asp:ListItem Value="2" Text="Midfielder"></asp:ListItem>
                         <asp:ListItem Value="3" Text="Defender"></asp:ListItem>
                         <asp:ListItem Value="4" Text="Goalie"></asp:ListItem>
                     </asp:DropDownList>
+                    <br />
                 </td>
             </tr>
+    <!----------------------------------------------------------------------------------------------->
             <tr>
                 <td><strong>Cost:</strong></td>
                 <td>
-                    $<asp:TextBox id="costTextBox" runat="server"></asp:TextBox>
+                    <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        <asp:TextBox id="costTextBox" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
                 </td>
             </tr>
         </table>
