@@ -10,10 +10,11 @@
         });
     </script>
 
+    <div class="banner_reg">
+        <h1 class="title_reg">MY TEAM</h1>
+    </div>
+
     <div class="center_content">
-        <div class="banner_reg">
-            <h1 class="title_reg">MY TEAM</h1>
-        </div>
 
         <asp:Label ID="Label22" runat="server" Text="Available Cap Space:" CssClass="fantasy_points_label"></asp:Label>
         &nbsp;&nbsp;<asp:Label ID="availCapLabel" runat="server" Text="" CssClass="fantasy_points"></asp:Label>

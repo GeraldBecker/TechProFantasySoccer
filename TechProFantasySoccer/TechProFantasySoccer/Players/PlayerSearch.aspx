@@ -18,7 +18,7 @@
 
     
     <div class="banner_reg">
-            <h1 class="title_reg">PLAYER SEARCH</h1>
+       <h1 class="title_reg">PLAYER SEARCH</h1>
     </div>
 
     <div id="SearchBar">

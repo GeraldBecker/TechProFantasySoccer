@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     
     <div class="banner_cheer">
-            <h1 class="title_cheer">ADD A CLUB</h1>
+       <h1 class="title_cheer">ADD A CLUB</h1>
     </div>
 
     <div id="SearchBar center_content">
