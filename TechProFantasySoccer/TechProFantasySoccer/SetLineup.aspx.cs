@@ -281,21 +281,23 @@ namespace TechProFantasySoccer {
         /// <param name="activeList">The list of active players to be updated.</param>
         /// <param name="ddlArray">The array of dropdownlists.</param>
         private void UpdateActiveAndBench(int index, List<string> benchList, List<string> activeList, DropDownList[] ddlArray) {
+            // Get the currently active player and the selected player
+            string oldActive = ddlArray[index].Items[0].ToString();
+            string newActive = ddlArray[index].SelectedValue;
 
             // If there is a currently active player in this spot, we need to add that player to the bench, and activate 
             // the selected player
-            if (ddlArray[index].Items[0].ToString() != "Select a player") {
-                benchList.Add(ddlArray[index].Items[0].ToString());
+            if (oldActive != "Select a player") {
+                benchList.Add(oldActive);
                 // we want to make sure we add the new player to the same index as the one we remove
-                activeList.Insert(activeList.IndexOf(ddlArray[index].Items[0].ToString()), ddlArray[index].SelectedValue);
-                activeList.Remove(ddlArray[index].Items[0].ToString());
+                activeList.Insert(activeList.IndexOf(oldActive), newActive);
+                activeList.Remove(oldActive);
             } else {
                 // Otherwise, we just need to add the selected player to the end of the list
-                activeList.Add(ddlArray[index].SelectedValue);
+                activeList.Add(newActive);
             }
             // Either way, the activated player needs to be removed from the bench
-            benchList.Remove(ddlArray[index].SelectedValue);
-
+            benchList.Remove(newActive);
         }
 
         /// <summary>
