@@ -12,8 +12,6 @@ using Microsoft.AspNet.Identity;
 
 namespace TechProFantasySoccer {
     public partial class TeamOverview : System.Web.UI.Page {
-        private int TOTALCAP = 1000;
-        public string AvailCap = "1000";
         protected void Page_Load(object sender, EventArgs e) {
             if(!HttpContext.Current.User.Identity.IsAuthenticated) {
                 Response.Redirect("/Account/Login");
@@ -27,6 +25,25 @@ namespace TechProFantasySoccer {
             String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(strConnString);
             SqlCommand cmd = new SqlCommand();
+
+            //Display avail cap remaining
+            cmd.CommandText =
+                "SELECT " +
+                "dbo.GetSalaryCap(AspNetUsers.Id) AS 'Salary Cap Remaining' " +
+                "FROM AspNetUsers " +
+                "WHERE Id = '" + User.Identity.GetUserId() + "'";
+
+            cmd.Connection = con;
+            try {
+                con.Open();
+                string cap = cmd.ExecuteScalar().ToString();
+                availCapLabel.Text = cap;
+
+            } catch(System.Data.SqlClient.SqlException ex) {
+                System.Diagnostics.Debug.WriteLine(ex);
+            } finally {
+                con.Close();
+            }
 
             //Populate the grid of players with fantasy points
             cmd.CommandText =
@@ -64,10 +81,10 @@ namespace TechProFantasySoccer {
                 TeamGridView.EmptyDataText = "No Records Found";
                 temp.Load(cmd.ExecuteReader());
 
-                for(int i = 0; i < temp.Rows.Count; i++) {
+                /*for(int i = 0; i < temp.Rows.Count; i++) {
                     TOTALCAP -= (int)temp.Rows[i]["Cost"];
                 }
-                AvailCap = TOTALCAP.ToString("C");
+                AvailCap = TOTALCAP.ToString("C");*/
 
                 TeamGridView.DataSource = temp;
                 TeamGridView.DataBind();

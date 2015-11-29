@@ -15,7 +15,8 @@
     </div>
 
     <div class="center_content">
-        <h3>Available Cap Space: <span style="font-size:16px;"><%=AvailCap%></span></h3>
+        <asp:Label ID="Label22" runat="server" Text="Available Cap Space:" CssClass="fantasy_points_label"></asp:Label>
+        &nbsp;&nbsp;<asp:Label ID="availCapLabel" runat="server" Text="" CssClass="fantasy_points"></asp:Label>
 
         <h4>Players:  (YTD Stats)</h4>
 
