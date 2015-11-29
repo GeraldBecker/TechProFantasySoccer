@@ -138,3 +138,11 @@ div.centered table
 .about_title {
     text-shadow: 0 0 10px #FFFFFF, 0 0 9px #000000;
 }
+
+.text_left {
+    text-align: left !important;
+}
+
+.text_center {
+    text-align: center !important;
+}

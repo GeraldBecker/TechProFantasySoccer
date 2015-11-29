@@ -18,7 +18,7 @@
 
     
     <div class="banner_reg">
-            <h1 class="title_reg">PLAYER SEARCH</h1>
+       <h1 class="title_reg">PLAYER SEARCH</h1>
     </div>
 
     <div id="SearchBar">
@@ -75,7 +75,7 @@
 
     </div>
     <br />
-    <asp:GridView ID="PlayerSearchGridView" runat="server" AllowSorting="True" OnSorting="PlayerSearchGridView_Sorting" AllowPaging="true" PageSize="40" OnPageIndexChanging="PlayerSearchGridView_PageIndexChanging">
+    <asp:GridView ID="PlayerSearchGridView" runat="server" AllowSorting="True" OnSorting="PlayerSearchGridView_Sorting" AllowPaging="true" PageSize="40" OnPageIndexChanging="PlayerSearchGridView_PageIndexChanging" PagerStyle-HorizontalAlign="Center" PagerStyle-Font-Bold="true">
     </asp:GridView>
 
 </asp:Content>

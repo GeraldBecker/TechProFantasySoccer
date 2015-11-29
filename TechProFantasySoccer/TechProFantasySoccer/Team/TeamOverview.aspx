@@ -10,10 +10,11 @@
         });
     </script>
 
+    <div class="banner_reg">
+        <h1 class="title_reg">MY TEAM</h1>
+    </div>
+
     <div class="center_content">
-        <div class="banner_reg">
-            <h1 class="title_reg">MY TEAM</h1>
-        </div>
 
         <asp:Label ID="Label22" runat="server" Text="Available Cap Space:" CssClass="fantasy_points_label"></asp:Label>
         &nbsp;&nbsp;<asp:Label ID="availCapLabel" runat="server" Text="" CssClass="fantasy_points"></asp:Label>
@@ -21,14 +22,14 @@
         <h4>Players:  (YTD Stats)</h4>
         <br />
 
-        <asp:GridView ID="TeamGridView" runat="server" AllowSorting="True" OnSorting="TeamGridView_Sorting" AutoGenerateColumns="false" HorizontalAlign="Center">
+        <asp:GridView ID="TeamGridView" runat="server" AllowSorting="True" OnSorting="TeamGridView_Sorting" AutoGenerateColumns="false" HorizontalAlign="Center"  PagerStyle-HorizontalAlign="Center" PagerStyle-Font-Bold="true">
             <Columns>
                 <asp:BoundField HeaderText="PlayerId" DataField="PlayerId" SortExpression="PlayerId"/>
-                <asp:BoundField HeaderText="First" DataField="First" SortExpression="First"/>
-                <asp:BoundField HeaderText="Last" DataField="Last" SortExpression="Last"/>
+                <asp:BoundField HeaderText="First" DataField="First" SortExpression="First" ItemStyle-HorizontalAlign="Left"/>
+                <asp:BoundField HeaderText="Last" DataField="Last" SortExpression="Last" ItemStyle-HorizontalAlign="Left"/>
                 <asp:BoundField HeaderText="Cost" DataField="Cost" SortExpression="Cost"/>
-                <asp:BoundField HeaderText="Club" DataField="Club" SortExpression="Club"/>
-                <asp:BoundField HeaderText="Position" DataField="Position" SortExpression="Position"/>
+                <asp:BoundField HeaderText="Club" DataField="Club" SortExpression="Club" ItemStyle-HorizontalAlign="Left"/>
+                <asp:BoundField HeaderText="Position" DataField="Position" SortExpression="Position" ItemStyle-HorizontalAlign="Left"/>
                 <asp:BoundField HeaderText="Goals" DataField="Goals" SortExpression="Goals"/>
                 <asp:BoundField HeaderText="Shots" DataField="Shots" SortExpression="Shots"/>
                 <asp:BoundField HeaderText="Assists" DataField="Assists" SortExpression="Assists"/>

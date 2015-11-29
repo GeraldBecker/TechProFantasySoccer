@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     
     <div class="banner_cheer">
-            <h1 class="title_cheer">ADD A CLUB</h1>
+       <h1 class="title_cheer">ADD A CLUB</h1>
     </div>
 
     <div id="SearchBar center_content">
@@ -46,7 +46,9 @@
 
     <br />
 
-    <asp:GridView ID="ClubGridView" runat="server" AllowSorting="False" AllowPaging="true" PageSize="40" OnPageIndexChanging="ClubGridView_PageIndexChanging" HorizontalAlign="Center">
+
+    <asp:GridView ID="ClubGridView" runat="server" AllowSorting="False" AllowPaging="true" PageSize="40" OnPageIndexChanging="ClubGridView_PageIndexChanging" 
+        HorizontalAlign="Center" PagerStyle-HorizontalAlign="Center" PagerStyle-Font-Bold="true">
     </asp:GridView>
 
     <asp:SqlDataSource ID="FantasyDataSource" runat="server" 

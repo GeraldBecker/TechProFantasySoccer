@@ -25,12 +25,12 @@
         <asp:GridView ID="TeamGridView" runat="server" AllowSorting="True" OnSorting="TeamGridView_Sorting" AutoGenerateColumns="false" HorizontalAlign="Center">
             <Columns>
                 <asp:BoundField HeaderText="PlayerId" DataField="PlayerId" SortExpression="PlayerId"/>
-                <asp:BoundField HeaderText="First" DataField="First" SortExpression="First"/>
-                <asp:BoundField HeaderText="Last" DataField="Last" SortExpression="Last"/>
+                <asp:BoundField HeaderText="First" DataField="First" SortExpression="First" ItemStyle-HorizontalAlign="Left"/>
+                <asp:BoundField HeaderText="Last" DataField="Last" SortExpression="Last" ItemStyle-HorizontalAlign="Left"/>
                 <asp:BoundField HeaderText="Cost" DataField="Cost" SortExpression="Cost"/>
-                <asp:BoundField HeaderText="Club" DataField="Club" SortExpression="Club"/>
-                <asp:BoundField HeaderText="Position" DataField="Position" SortExpression="Position"/>
-                <asp:BoundField HeaderText="Active" DataField="Active" SortExpression="Active"/>
+                <asp:BoundField HeaderText="Club" DataField="Club" SortExpression="Club" ItemStyle-HorizontalAlign="Left"/>
+                <asp:BoundField HeaderText="Position" DataField="Position" SortExpression="Position" ItemStyle-HorizontalAlign="Left"/>
+                <asp:BoundField HeaderText="Active" DataField="Active" SortExpression="Active" ItemStyle-HorizontalAlign="Left"/>
                 <asp:BoundField HeaderText="Goals" DataField="Goals" SortExpression="Goals"/>
                 <asp:BoundField HeaderText="Shots" DataField="Shots" SortExpression="Shots"/>
                 <asp:BoundField HeaderText="Assists" DataField="Assists" SortExpression="Assists"/>

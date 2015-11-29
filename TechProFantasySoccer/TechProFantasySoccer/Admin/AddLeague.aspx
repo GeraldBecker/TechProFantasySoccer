@@ -34,8 +34,8 @@
 
     </div> 
     <br />
-    <asp:GridView ID="LeagueGridView" runat="server" AllowSorting="False"  
-        AllowPaging="true" PageSize="40" OnPageIndexChanging="LeagueGridView_PageIndexChanging" HorizontalAlign="Center">
+    <asp:GridView ID="LeagueGridView" runat="server" AllowSorting="False" AllowPaging="true" PageSize="40" OnPageIndexChanging="LeagueGridView_PageIndexChanging" 
+        HorizontalAlign="Center" PagerStyle-HorizontalAlign="Center" PagerStyle-Font-Bold="true">
     </asp:GridView>
 
     <asp:SqlDataSource ID="FantasyDataSource" runat="server" 

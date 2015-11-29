@@ -5,11 +5,11 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     
-    <div class="center_content">
+    <div class="banner_cheer">
+        <h1 class="title_cheer">EDIT PLAYER STATS</h1>
+    </div>
 
-        <div class="banner_cheer">
-            <h1 class="title_cheer">EDIT PLAYER STATS</h1>
-        </div>
+    <div class="center_content">
 
         <script type="text/javascript">
             function fieldEdited(id) {
