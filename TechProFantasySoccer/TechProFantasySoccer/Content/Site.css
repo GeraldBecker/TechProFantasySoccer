@@ -61,7 +61,7 @@ input[type="email"] {
     height: 100%;
     padding: 45px 0px 45px 0px;
     margin: 0px 0px 40px 0px;
-    background: url(../Images/page_banner_small.png);
+    background: url(../Images/banner_soccer.png);
     background-size: cover;
     box-shadow: 0px 45px 70px -40px #44708d;
     text-align: center;
@@ -122,6 +122,7 @@ input[type="email"] {
 
 .title_cheer {
     text-shadow: 0 0 10px #FFFFFF, 0 0 20px #F4F4CD;
+    color: #292929;
 }
 
 div.centered 

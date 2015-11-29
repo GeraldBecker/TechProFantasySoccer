@@ -3,8 +3,8 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     
-    <div class="banner_cheer">
-        <h1 class="title_cheer">FANTASY DETAILS</h1>
+    <div class="banner_reg">
+        <h1 class="title_reg">FANTASY DETAILS</h1>
     </div>
 
     <div class="center_content">
