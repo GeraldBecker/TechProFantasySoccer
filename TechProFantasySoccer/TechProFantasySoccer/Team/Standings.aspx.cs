@@ -32,8 +32,8 @@ namespace TechProFantasySoccer
             cmd.CommandText =
                 "SELECT " +
                 "UserName AS 'Team Name', " +
-                "dbo.GetSalaryCap(AspNetUsers.Id) AS 'Salary Cap', " +
-                "dbo.GetTotalFantasyPointsByUser(AspNetUsers.Id) AS 'Points Earned', " +
+                "dbo.GetSalaryCap(AspNetUsers.Id) AS 'Salary Cap Remaining', " +
+                "dbo.GetTotalFantasyPointsByUser(AspNetUsers.Id) AS 'Total Points', " +
                 "dbo.GetTotalFantasyPointsByUserPosition(AspNetUsers.Id, 1) AS 'Striker Pts', " +
                 "dbo.GetTotalFantasyPointsByUserPosition(AspNetUsers.Id, 2) AS 'Midfielder Pts', " +
                 "dbo.GetTotalFantasyPointsByUserPosition(AspNetUsers.Id, 3) AS 'Defensive Pts', " +
