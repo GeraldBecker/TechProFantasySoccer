@@ -17,7 +17,7 @@
             <h1 class="title_reg">TEAM STANDINGS</h1>
         </div>
 
-        <asp:GridView ID="StandingsGridView" runat="server" AllowSorting="True" AllowPaging="true" PageSize="40" HorizontalAlign="Center">
+        <asp:GridView ID="StandingsGridView" runat="server" AllowSorting="True" AllowPaging="true" PageSize="40" HorizontalAlign="Center" OnSorting="StandingsGridView_Sorting">
         </asp:GridView>
 
         </div>

@@ -9,6 +9,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 
+/// <summary>
+/// Authors: Becky and Gerald
+/// </summary>
 namespace TechProFantasySoccer
 {
     public partial class LeagueStandings : System.Web.UI.Page
@@ -60,6 +63,10 @@ namespace TechProFantasySoccer
             }
         }
 
+        /// <summary>
+        /// Sets the alternating colour schemes using css. It also adds a clickable link for the table row to 
+        /// view the players team.
+        /// </summary>
         private void ModifyRows() {
             for(int i = 0; i < StandingsGridView.Rows.Count; i++) {
                 string classList = "selectedblackout";
@@ -74,6 +81,40 @@ namespace TechProFantasySoccer
 
             }
         }
+
+        protected void StandingsGridView_Sorting(object sender, GridViewSortEventArgs e) {
+            DataTable temp = (DataTable)StandingsGridView.DataSource;
+            temp.DefaultView.Sort = e.SortExpression + " " + GetSortDirection(e.SortExpression);
+            StandingsGridView.DataSource = temp;
+            StandingsGridView.DataBind();
+
+            ModifyRows();
+        }
         
+
+        private string GetSortDirection(string column) {
+
+            // By default, set the sort direction to ascending.
+            string sortDirection = "ASC";
+
+            // Retrieve the last column that was sorted.
+            string sortExpression = ViewState["SortExpression"] as string;
+
+            if(sortExpression != null) {
+                // Check if the same column is being sorted.
+                // Otherwise, the default value can be returned.
+                if(sortExpression == column) {
+                    string lastDirection = ViewState["SortDirection"] as string;
+                    if((lastDirection != null) && (lastDirection == "ASC")) {
+                        sortDirection = "DESC";
+                    }
+                }
+            }
+            // Save new values in ViewState.
+            ViewState["SortDirection"] = sortDirection;
+            ViewState["SortExpression"] = column;
+
+            return sortDirection;
+        }
     }
 }

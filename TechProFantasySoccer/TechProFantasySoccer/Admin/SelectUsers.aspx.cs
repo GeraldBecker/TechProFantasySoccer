@@ -8,8 +8,20 @@ using Microsoft.AspNet.Identity;
 using System.Configuration;
 using System.Data.SqlClient;
 
+/// <summary>
+/// Author: Gerald
+/// </summary>
 namespace TechProFantasySoccer.Admin {
+    /// <summary>
+    /// Allows the admin to select the users that can use the app and also give
+    /// admin rights to other users.
+    /// </summary>
     public partial class SelectUsers : System.Web.UI.Page {
+        /// <summary>
+        /// Loads all the users.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e) {
             if(!HttpContext.Current.User.Identity.IsAuthenticated) {
                 Response.Redirect("/Account/Login");
@@ -21,6 +33,11 @@ namespace TechProFantasySoccer.Admin {
                 Response.Redirect("~/AccessDenied");
         }
 
+        /// <summary>
+        /// Updates any changes made.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void UpdateButton_Click(object sender, EventArgs e) {
             try {
 
@@ -60,28 +77,7 @@ namespace TechProFantasySoccer.Admin {
 
             }
         }
-
-        protected void DataList1_UpdateCommand(object source, DataListCommandEventArgs e) {
-            /*try {
-                String RecordId = DataList1.DataKeys[e.Item.ItemIndex].ToString();
-                String Goals = ((TextBox)e.Item.FindControl("GoalsTextBox")).Text;
-                String Shots = ((TextBox)e.Item.FindControl("ShotsTextBox")).Text;
-
-                System.Diagnostics.Debug.WriteLine("you got: " + RecordId + " " + Goals + " " + Shots);
-
-                SqlDataSource1.UpdateParameters["PlayerId"].DefaultValue = RecordId;
-                SqlDataSource1.UpdateParameters["GoalsParam"].DefaultValue = Goals;
-                SqlDataSource1.UpdateParameters["ShotsParam"].DefaultValue = Shots;
-                SqlDataSource1.Update();
-
-                DataList1.EditItemIndex = -1;
-                DataList1.DataBind();
-
-
-            } catch(FormatException) {
-                Response.Write("Invalid Field Entry!");
-            }*/
-        }
+        
 
 
     }

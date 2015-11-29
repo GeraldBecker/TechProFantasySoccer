@@ -9,11 +9,21 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 
+/// <summary>
+/// Author: Gerald 
+/// </summary>
 namespace TechProFantasySoccer {
+    /// <summary>
+    /// Allows users to search through the list of all players in the fantasy league. They can select a player by clicking on the row.
+    /// </summary>
     public partial class PlayerSearch : System.Web.UI.Page {
         bool clearButtonPress = false;
 
-
+        /// <summary>
+        /// Loads all the players based on the search parameters. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e) {
             if(!HttpContext.Current.User.Identity.IsAuthenticated) {
                 Response.Redirect("/Account/Login");
@@ -65,17 +75,12 @@ namespace TechProFantasySoccer {
                 "LEFT OUTER JOIN [Positions] ON [Positions].[PositionRef] = Players.PositionRef " +
                 "LEFT OUTER JOIN Clubs ON Players.ClubId = Clubs.ClubId " +
                 "LEFT OUTER JOIN Leagues ON Clubs.LeagueId = Leagues.LeagueId ";
-            //System.Diagnostics.Debug.WriteLine("Inside the page load and clear variable is:" + clearButtonPress);
+            
             if(IsPostBack && !clearButtonPress) {
-                //System.Diagnostics.Debug.WriteLine("Inside the WHERE CLAUSE. ");
-                
-
-
                 bool anotherQuery = false;
 
                 if(FirstNameTextBox.Text != "" || LastNameTextBox.Text != "" || ClubTextBox.Text != "" ||
                     LeagueTextBox.Text != "" || PositionDropDown.SelectedIndex != 0) {
-                    //System.Diagnostics.Debug.WriteLine("Apparently they are not empty. ");
                     cmd.CommandText += "WHERE ";
                     if(FirstNameTextBox.Text != "") {
                         cmd.CommandText += "FirstName LIKE '%" + FirstNameTextBox.Text + "%' ";
@@ -123,34 +128,11 @@ namespace TechProFantasySoccer {
             cmd.Connection = con;
             try {
                 DataTable temp = new DataTable();
-
                 
-
                 con.Open();
                 PlayerSearchGridView.EmptyDataText = "No Records Found";
                 temp.Load(cmd.ExecuteReader());
-
-
-                /*HyperLinkColumn hplink = new HyperLinkColumn();
-                hplink.Text = "Link";
-                temp.Columns.Add(hplink.Text);
-
-                for(int i = 0; i < temp.Rows.Count; i++) {
-                    int playerId = (int)temp.Rows[i]["PlayerId"];
-                    //temp.Rows[i]["Link"] = "<a href=\"./Players/ViewPlayer.aspx?player=" + playerId + "\">Click Here</a>";
-                    //HyperLink tempo = new HyperLink();
-
-
-
-                    temp.Rows[i][hplink.Text] = String.Format("<a href='./Players/ViewPlayer.aspx?player=" 
-                        + playerId +"'>HAHA</a>");
-                    //tempo.NavigateUrl = "./Players/ViewPlayer.aspx?player=" + playerId;
-                    //tempo.Text = "Click Here";
-                    //temp.Rows[i]["Link"] = tempo;
-
-                }*/
-                //temp.Columns.Remove("PlayerId");
-
+                
                 PlayerSearchGridView.DataSource = temp;
                 PlayerSearchGridView.DataBind();
             } catch(System.Data.SqlClient.SqlException ex) {
@@ -162,7 +144,10 @@ namespace TechProFantasySoccer {
             ModifyRows();
         }
 
-
+        /// <summary>
+        /// Sets the alternating colour schemes using css. It also adds a clickable link for the table row to 
+        /// view the player.
+        /// </summary>
         private void ModifyRows() {
             for(int i = 0; i < PlayerSearchGridView.Rows.Count; i++) {
                 string classList = "selectedblackout";
@@ -181,6 +166,11 @@ namespace TechProFantasySoccer {
             }
         }
 
+        /// <summary>
+        /// Sorts the table content.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void PlayerSearchGridView_Sorting(object sender, GridViewSortEventArgs e) {
             DataTable temp = (DataTable)PlayerSearchGridView.DataSource;
             temp.DefaultView.Sort = e.SortExpression + " " + GetSortDirection(e.SortExpression);
@@ -190,6 +180,11 @@ namespace TechProFantasySoccer {
             ModifyRows();
         }
 
+        /// <summary>
+        /// Helper class to figure out the sort direction.
+        /// </summary>
+        /// <param name="column"></param>
+        /// <returns></returns>
         private string GetSortDirection(string column) {
 
             // By default, set the sort direction to ascending.
@@ -215,12 +210,22 @@ namespace TechProFantasySoccer {
             return sortDirection;
         }
 
+        /// <summary>
+        /// Selects the index page to display those players.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void PlayerSearchGridView_PageIndexChanging(object sender, GridViewPageEventArgs e) {
             PlayerSearchGridView.PageIndex = e.NewPageIndex;
             PlayerSearchGridView.DataBind();
             ModifyRows();
         }
 
+        /// <summary>
+        /// Clears the search entry boxes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void ClearEntries(object sender, EventArgs e) {
             FirstNameTextBox.Text = "";
             LastNameTextBox.Text = "";
@@ -229,17 +234,6 @@ namespace TechProFantasySoccer {
             PositionDropDown.SelectedIndex = 0;
             clearButtonPress = true;
         }
-
-        /*protected void PlayerSearchGridView_SelectedIndexChanged(Object sender, EventArgs e) {
-            // Get the currently selected row using the SelectedRow property.
-            GridViewRow row = PlayerSearchGridView.SelectedRow;
-
-            // Display the first name from the selected row.
-            // In this example, the third column (index 2) contains
-            // the first name.
-            //FirstNameTextBox.Text = "PICK:" + row.Cells[1].Text + ".";
-            Response.Redirect("./Players/ViewPlayer?player=" + row.Cells[1].Text);
-        }*/
 
 
     }

@@ -9,9 +9,19 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity; 
 
-
+/// <summary>
+/// Author: Wilson 
+/// </summary>
 namespace TechProFantasySoccer.Admin {
+    /// <summary>
+    /// Adds a league to the fantasy website. 
+    /// </summary>
     public partial class AddLeague : System.Web.UI.Page {
+        /// <summary>
+        /// Displays all the current leagues and provides text boxes for adding a new one.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e) {
             if(!HttpContext.Current.User.Identity.IsAuthenticated) {
                 Response.Redirect("/Account/Login");
@@ -51,7 +61,9 @@ namespace TechProFantasySoccer.Admin {
         }
 
         
-
+        /// <summary>
+        /// Alternates the row colours. 
+        /// </summary>
         private void ModifyRows() {
             for (int i = 0; i < LeagueGridView.Rows.Count; i++) {
                 string classList = "selectedblackout";
@@ -67,6 +79,11 @@ namespace TechProFantasySoccer.Admin {
             }
         }
 
+        /// <summary>
+        /// Inserts the new league.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void SubmitButton_Click(object sender, EventArgs e) {
             string leagueName = LeagueNameTextBox.Text;
             LeagueNameTextBox.Text = "";
@@ -76,6 +93,17 @@ namespace TechProFantasySoccer.Admin {
             FantasyDataSource.Insert();
 
             Response.Redirect("./AddLeague");
+        }
+
+        /// <summary>
+        /// Controls the paging of the leagues.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void LeagueGridView_PageIndexChanging(object sender, GridViewPageEventArgs e) {
+            LeagueGridView.PageIndex = e.NewPageIndex;
+            LeagueGridView.DataBind();
+            ModifyRows();
         }
     }
 }
