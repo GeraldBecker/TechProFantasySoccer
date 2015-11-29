@@ -75,7 +75,7 @@
 
     </div>
     <br />
-    <asp:GridView ID="PlayerSearchGridView" runat="server" AllowSorting="True" OnSorting="PlayerSearchGridView_Sorting" AllowPaging="true" PageSize="40" OnPageIndexChanging="PlayerSearchGridView_PageIndexChanging" PagerStyle-HorizontalAlign="Center" PagerStyle-Font-Bold="true">
+    <asp:GridView ID="PlayerSearchGridView" runat="server" AllowSorting="True" OnSorting="PlayerSearchGridView_Sorting" AllowPaging="true" PageSize="40" OnPageIndexChanging="PlayerSearchGridView_PageIndexChanging" HorizontalAlign="Center" PagerStyle-HorizontalAlign="Center" PagerStyle-Font-Bold="true">
     </asp:GridView>
 
 </asp:Content>
