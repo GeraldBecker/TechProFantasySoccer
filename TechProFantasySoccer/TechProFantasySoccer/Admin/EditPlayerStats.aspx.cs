@@ -8,9 +8,21 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 
+/// <summary>
+/// Author: Gerald
+/// </summary>
 namespace TechProFantasySoccer.Admin {
+    /// <summary>
+    /// Allows the editing of player stats based on the month. All stats can be edited.
+    /// </summary>
     public partial class EditPlayerStats : System.Web.UI.Page {
         int month;
+
+        /// <summary>
+        /// Loads all of the stats currently in the system and puts them in textboxes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e) {
             if(!HttpContext.Current.User.Identity.IsAuthenticated) {
                 Response.Redirect("/Account/Login");
@@ -40,6 +52,11 @@ namespace TechProFantasySoccer.Admin {
             SqlDataSource1.UpdateParameters["Month"].DefaultValue = month.ToString();
         }
 
+        /// <summary>
+        /// Updates the values that have been changed only. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void UpdateButton_Click(object sender, EventArgs e) {
             try {
 
@@ -101,6 +118,11 @@ namespace TechProFantasySoccer.Admin {
             }
         }
 
+        /// <summary>
+        /// Deletes entries that the user didn't want to have.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void DeleteButton_Click(object sender, EventArgs e) {
             try {
                 foreach(DataListItem item in DataList1.Items) {
@@ -124,6 +146,11 @@ namespace TechProFantasySoccer.Admin {
             }
         }
 
+        /// <summary>
+        /// Processes the button click to get more players if they are not yet on the list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void GetPlayersButton_Click(object sender, EventArgs e) {
 
             String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
@@ -161,6 +188,11 @@ namespace TechProFantasySoccer.Admin {
 
         }
 
+        /// <summary>
+        /// Updates a players stats.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
         protected void DataList1_UpdateCommand(object source, DataListCommandEventArgs e) {
             try {
                 String RecordId = DataList1.DataKeys[e.Item.ItemIndex].ToString();
@@ -183,6 +215,11 @@ namespace TechProFantasySoccer.Admin {
             }
         }
 
+        /// <summary>
+        /// Deletes a player stat.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
         protected void DataList1_DeleteCommand(object source, DataListCommandEventArgs e) {
             String StatId = DataList1.DataKeys[e.Item.ItemIndex].ToString();
             SqlDataSource1.DeleteParameters["StatIdParam"].DefaultValue = StatId;

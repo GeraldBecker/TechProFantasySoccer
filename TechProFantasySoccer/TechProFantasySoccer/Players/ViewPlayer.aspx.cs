@@ -9,9 +9,21 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 
+/// <summary>
+/// Author: Gerald
+/// </summary>
 namespace TechProFantasySoccer.Players {
+    /// <summary>
+    /// Displays a player and all their stats, team and cost. Players can be added or dropped from this screen. 
+    /// </summary>
     public partial class ViewPlayer : System.Web.UI.Page {
         public string PlayerName = "View Player";
+
+        /// <summary>
+        /// Loads all the player's details and enables or disables the buttons depending if trades are allowed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e) {
             if(!HttpContext.Current.User.Identity.IsAuthenticated) {
                 Response.Redirect("/Account/Login");
@@ -198,6 +210,12 @@ namespace TechProFantasySoccer.Players {
 
         }
 
+        /// <summary>
+        /// Adds or drops a player. This will add or remove the player from the users team. It will also mark the 
+        /// player as available or taken. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void PlayerFunctionBtn_Click(object sender, EventArgs e) {
             String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(strConnString);
@@ -263,9 +281,7 @@ namespace TechProFantasySoccer.Players {
                     }
                 }
 
-
-
-
+                
             } else if(sender == DropPlayerBtn) {
                 try {
                     cmd.CommandText =

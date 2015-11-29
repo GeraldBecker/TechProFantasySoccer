@@ -94,6 +94,40 @@ namespace TechProFantasySoccer
 
         }
 
+        //protected void ImageUpload_Click(object sender, EventArgs e)
+        //{
+        //    StartUpload();
+        //}
+
+        //private void StartUpload()
+        //{
+        //    // get the files name of image
+        //    string imgName = fileupload.FileName;
+
+        //    // sets image path
+        //    string imgPath = "Images/" + imgName;
+
+        //    // get the size in bytes 
+        //    int imgSize = fileupload.PostedFile.ContentLength;
+
+        //    // validates the posted file before saving
+        //    if (fileupload.PostedFile != null && fileupload.PostedFile.FileName != "")
+        //    {
+        //        // 10240 kb mean 10mb
+        //        if (fileupload.PostedFile.ContentLength > 1000000000)
+        //        {
+        //            Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "Alert", "alert('File is too big.')", true);
+        //        }
+        //        else
+        //        {
+        //            // save to folder
+        //            fileupload.SaveAs(Server.MapPath(imgPath));
+        //            image.ImageUrl = "~/" + imgPath;
+        //            Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "Alert", "alert('Image saved!')", true);
+        //        }
+        //    }
+        //}
+
         protected void editBtn_Click(object sender, EventArgs e) {
             if(sender == saveBtn) {
                 ClubsDataSource.UpdateParameters["FirstName"].DefaultValue = PlayerFNameTextBox.Text;

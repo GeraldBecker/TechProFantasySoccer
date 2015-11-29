@@ -39,7 +39,6 @@
         <asp:DataList runat="server" 
             DataKeyField="AccessId" 
             DataSourceID="SqlDataSource1" ID="DataList1"
-            OnUpdateCommand="DataList1_UpdateCommand"
             HorizontalAlign="Center">
             <HeaderTemplate>
                 <table style="border-collapse: collapse; max-width:99%;">

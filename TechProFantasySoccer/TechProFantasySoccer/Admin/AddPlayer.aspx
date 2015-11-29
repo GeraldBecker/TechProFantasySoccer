@@ -10,12 +10,11 @@
         });
     </script>
 
+    <div class="banner_cheer">
+        <h1 class="title_cheer">ADD / EDIT PLAYERS</h1>
+    </div>
+
     <div class="center_content">
-
-        <div class="banner_cheer">
-            <h1 class="title_cheer">ADD / EDIT PLAYERS</h1>
-        </div>
-
         <br />
 
         <div id="SearchBar">
@@ -74,7 +73,7 @@
 
         <br />
 
-        <asp:GridView ID="PlayerGridView" runat="server" AllowSorting="False" AllowPaging="true" PageSize="40" OnPageIndexChanging="PlayerGridView_PageIndexChanging" HorizontalAlign="Center">
+        <asp:GridView ID="PlayerGridView" runat="server" AllowSorting="False" AllowPaging="true" PageSize="40" OnPageIndexChanging="PlayerGridView_PageIndexChanging" HorizontalAlign="Center" PagerStyle-HorizontalAlign="Center" PagerStyle-Font-Bold="true">
         </asp:GridView>
 
         <asp:SqlDataSource ID="ClubsDataSource" runat="server" 

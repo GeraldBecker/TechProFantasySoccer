@@ -11,16 +11,17 @@
         });
     </script>
 
+    <div class="banner_reg">
+        <h1 class="title_reg">TEAM STANDINGS</h1>
+    </div>
+
     <div class="center_content">
 
-        <div class="banner_reg">
-            <h1 class="title_reg">TEAM STANDINGS</h1>
-        </div>
-
-        <asp:GridView ID="StandingsGridView" runat="server" AllowSorting="True" AllowPaging="true" PageSize="40" HorizontalAlign="Center">
+        <asp:GridView ID="StandingsGridView" runat="server" AllowSorting="True" AllowPaging="false" HorizontalAlign="Center" OnSorting="StandingsGridView_Sorting"
+            PagerStyle-HorizontalAlign="Center" PagerStyle-Font-Bold="true">
         </asp:GridView>
 
-        </div>
+    </div>
     
 
 </asp:Content>
