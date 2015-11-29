@@ -16,6 +16,10 @@ td.lineupColumn1 {
 
     margin: 5px 15px;
 }
+.NotifyLabel {
+    color: red;
+    font-size: large;
+}
 .player
 {
     height: 30px;

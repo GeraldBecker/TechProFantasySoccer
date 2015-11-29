@@ -9,59 +9,59 @@ using System.Web.Providers.Entities;
 
 namespace TechProFantasySoccer {
     public class SessionHandler {
-        private static string _ActiveDefendersKey = "ActiveDefenders";
-        private static string _BenchDefendersKey = "BenchDefenders";
+        public static string _ActiveDefendersKey = "ActiveDefenders";
+        public static string _BenchDefendersKey = "BenchDefenders";
 
-        private static string _ActiveMidfieldersKey = "ActiveMidfielders";
-        private static string _BenchMidfieldersKey = "BenchMidfielders";
+        public static string _ActiveMidfieldersKey = "ActiveMidfielders";
+        public static string _BenchMidfieldersKey = "BenchMidfielders";
 
-        private static string _ActiveStrikersKey = "ActiveStrikers";
-        private static string _BenchStrikersKey = "BenchStrikers";
+        public static string _ActiveStrikersKey = "ActiveStrikers";
+        public static string _BenchStrikersKey = "BenchStrikers";
 
-        private static string _ActiveGoaliesKey = "ActiveGoalies";
-        private static string _BenchGoaliesKey = "BenchGoalies";
+        public static string _ActiveGoaliesKey = "ActiveGoalies";
+        public static string _BenchGoaliesKey = "BenchGoalies";
 
         //Goalies
-        public static ArrayList ActiveGoalies {
-            get { return (ArrayList)HttpContext.Current.Session[SessionHandler._ActiveGoaliesKey]; }
-            set { HttpContext.Current.Session[SessionHandler._ActiveGoaliesKey] = (ArrayList)value; }
+        public static List<string> ActiveGoalies {
+            get { return (List<string>)HttpContext.Current.Session[_ActiveGoaliesKey]; }
+            set { HttpContext.Current.Session[_ActiveGoaliesKey] = (List<string>)value; }
         }
-        public static ArrayList BenchGoalies {
-            get { return (ArrayList)HttpContext.Current.Session[SessionHandler._BenchGoaliesKey]; }
-            set { HttpContext.Current.Session[SessionHandler._BenchGoaliesKey] = (ArrayList)value; }
+        public static List<string> BenchGoalies {
+            get { return (List<string>)HttpContext.Current.Session[_BenchGoaliesKey]; }
+            set { HttpContext.Current.Session[_BenchGoaliesKey] = (List<string>)value; }
         }
 
         //Defenders
-        public static ArrayList ActiveDefenders {
-            get { return (ArrayList)HttpContext.Current.Session[SessionHandler._ActiveDefendersKey]; }
-            set { HttpContext.Current.Session[SessionHandler._ActiveDefendersKey] = (ArrayList)value; }
+        public static List<string> ActiveDefenders {
+            get { return (List<string>)HttpContext.Current.Session[_ActiveDefendersKey]; }
+            set { HttpContext.Current.Session[_ActiveDefendersKey] = (List<string>)value; }
         }
-        public static ArrayList BenchDefenders {
-            get { return (ArrayList)HttpContext.Current.Session[SessionHandler._BenchDefendersKey]; }
-            set { HttpContext.Current.Session[SessionHandler._BenchDefendersKey] = (ArrayList)value; }
+        public static List<string> BenchDefenders {
+            get { return (List<string>)HttpContext.Current.Session[_BenchDefendersKey]; }
+            set { HttpContext.Current.Session[_BenchDefendersKey] = (List<string>)value; }
         }
 
 
 
         //Midfielders
-        public static ArrayList ActiveMidfielders {
-            get { return (ArrayList)HttpContext.Current.Session[SessionHandler._ActiveMidfieldersKey]; }
-            set { HttpContext.Current.Session[SessionHandler._ActiveMidfieldersKey] = (ArrayList)value; }
+        public static List<string> ActiveMidfielders {
+            get { return (List<string>)HttpContext.Current.Session[_ActiveMidfieldersKey]; }
+            set { HttpContext.Current.Session[_ActiveMidfieldersKey] = (List<string>)value; }
         }
-        public static ArrayList BenchMidfielders {
-            get { return (ArrayList)HttpContext.Current.Session[SessionHandler._BenchMidfieldersKey]; }
-            set { HttpContext.Current.Session[SessionHandler._BenchMidfieldersKey] = (ArrayList)value; }
+        public static List<string> BenchMidfielders {
+            get { return (List<string>)HttpContext.Current.Session[_BenchMidfieldersKey]; }
+            set { HttpContext.Current.Session[_BenchMidfieldersKey] = (List<string>)value; }
         }
 
        
         //Strikers
-        public static ArrayList ActiveStrikers {
-            get { return (ArrayList)HttpContext.Current.Session[SessionHandler._ActiveStrikersKey]; }
-            set { HttpContext.Current.Session[SessionHandler._ActiveStrikersKey] = (ArrayList)value; }
+        public static List<string> ActiveStrikers {
+            get { return (List<string>)HttpContext.Current.Session[_ActiveStrikersKey]; }
+            set { HttpContext.Current.Session[_ActiveStrikersKey] = (List<string>)value; }
         }
-        public static ArrayList BenchStrikers {
-            get { return (ArrayList)HttpContext.Current.Session[SessionHandler._BenchStrikersKey]; }
-            set { HttpContext.Current.Session[SessionHandler._BenchStrikersKey] = (ArrayList)value; }
+        public static List<string> BenchStrikers {
+            get { return (List<string>)HttpContext.Current.Session[_BenchStrikersKey]; }
+            set { HttpContext.Current.Session[_BenchStrikersKey] = (List<string>)value; }
         }
     }
 }

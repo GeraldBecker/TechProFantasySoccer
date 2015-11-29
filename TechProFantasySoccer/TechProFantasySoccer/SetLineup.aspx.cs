@@ -11,16 +11,31 @@ using System.Data;
 using System.Collections; 
 
 namespace TechProFantasySoccer {
+    /// <summary>
+    /// The page used to update a user's lineup
+    /// 
+    /// Author: Wilson Carpenter
+    /// </summary>
     public partial class SetLineup : System.Web.UI.Page {
+        /// <summary>
+        /// Number of slots for active players by position
+        /// </summary>
         private const int STRIKER_SLOTS = 2;
         private const int MIDFIELDER_SLOTS = 4;
         private const int DEFENDER_SLOTS = 4;
         private const int GOALIE_SLOTS = 1;
-
+        
+        /// <summary>
+        /// Dropdown list arrays for each position
+        /// </summary>
         DropDownList[] defenderddls;
         DropDownList[] midfielderddls;
         DropDownList[] strikerddls;
         DropDownList[] goalieddls;
+
+        /// <summary>
+        /// 
+        /// </summary>
         static String strConnString1 = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
         SqlConnection con1 = new SqlConnection(strConnString1);
         DataRow[] activeDefenders;
@@ -33,20 +48,20 @@ namespace TechProFantasySoccer {
         DataRow[] inActiveGoalies;
 
         protected void Page_Load(object sender, EventArgs e) {
-            if(!HttpContext.Current.User.Identity.IsAuthenticated) {
+            if (!HttpContext.Current.User.Identity.IsAuthenticated) {
                 Response.Redirect("/Account/Login");
             }
 
             //Check if the user is a member of the fantasy pool
             string user = User.Identity.GetUserId();
-            if(!AuthLevelCheck.isUser(user))
+            if (!AuthLevelCheck.isUser(user))
                 Response.Redirect("~/AccessDenied");
 
             SqlCommand getPlayersCommand = new SqlCommand();
 
             if (!Page.IsPostBack) {
                 getPlayersCommand.CommandText =
-                    "SELECT concat(Players.FirstName, ' ', Players.LastName) AS Name, Players.PositionRef AS Position, " + 
+                    "SELECT concat(Players.FirstName, ' ', Players.LastName) AS Name, Players.PositionRef AS Position, " +
                     "LineupHistory.Active AS Active, " + "Players.FirstName, Players.LastName " +
                     "FROM Players " +
                     "JOIN LineupHistory ON LineupHistory.PlayerId = Players.PlayerId " +
@@ -67,18 +82,19 @@ namespace TechProFantasySoccer {
                 }
 
 
+
                 //------------------------------------------------------------------------
                 //DEFENDERS
                 //------------------------------------------------------------------------
 
                 //Get the defenders that are currently active
                 activeDefenders = playersTable.Select("Active = 1 AND Position = 3");
-                SessionHandler.ActiveDefenders = new ArrayList();
+                SessionHandler.ActiveDefenders = new List<string>();
                 SetSessionData(activeDefenders, SessionHandler.ActiveDefenders);
 
                 //Get the bench defenders and add them into a string array session variable
                 inActiveDefenders = playersTable.Select("Active = 0 AND Position = 3");
-                SessionHandler.BenchDefenders = new ArrayList();
+                SessionHandler.BenchDefenders = new List<string>();
                 SetSessionData(inActiveDefenders, SessionHandler.BenchDefenders);
 
                 //------------------------------------------------------------------------
@@ -87,12 +103,12 @@ namespace TechProFantasySoccer {
 
                 //get the active midfielders and add them into a string array session variable
                 activeMidfielders = playersTable.Select("Active = 1 AND Position = 2");
-                SessionHandler.ActiveMidfielders = new ArrayList();
+                SessionHandler.ActiveMidfielders = new List<string>();
                 SetSessionData(activeMidfielders, SessionHandler.ActiveMidfielders);
 
                 //Get the bench midfielders and add them into a string array session variable
                 inActiveMidfielders = playersTable.Select("Active = 0 AND Position = 2");
-                SessionHandler.BenchMidfielders = new ArrayList();
+                SessionHandler.BenchMidfielders = new List<string>();
                 SetSessionData(inActiveMidfielders, SessionHandler.BenchMidfielders);
 
                 //---------------------------------------------------------------------------
@@ -101,12 +117,12 @@ namespace TechProFantasySoccer {
 
                 //get the active strikers and add them into a string array session variable
                 activeStrikers = playersTable.Select("Active = 1 AND Position = 1");
-                SessionHandler.ActiveStrikers = new ArrayList();
+                SessionHandler.ActiveStrikers = new List<string>();
                 SetSessionData(activeStrikers, SessionHandler.ActiveStrikers);
-                
+
                 //Get the bench strikers
                 inActiveStrikers = playersTable.Select("Active = 0 AND Position = 1");
-                SessionHandler.BenchStrikers = new ArrayList();
+                SessionHandler.BenchStrikers = new List<string>();
                 SetSessionData(inActiveStrikers, SessionHandler.BenchStrikers);
 
                 //-----------------------------------------------------------------------------
@@ -114,24 +130,33 @@ namespace TechProFantasySoccer {
                 //-----------------------------------------------------------------------------
 
                 activeGoalies = playersTable.Select("Active = 1 AND Position = 4");
-                SessionHandler.ActiveGoalies = new ArrayList();
+                SessionHandler.ActiveGoalies = new List<string>();
                 SetSessionData(activeGoalies, SessionHandler.ActiveGoalies);
 
                 inActiveGoalies = playersTable.Select("Active = 0 AND Position = 4");
-                SessionHandler.BenchGoalies = new ArrayList();
+                SessionHandler.BenchGoalies = new List<string>();
                 SetSessionData(inActiveGoalies, SessionHandler.BenchGoalies);
-            } 
+            }
+
 
             InitDropDownLists();
         }
 
-        private void SetSessionData(DataRow[] data, ArrayList sessionList) {
+        /// <summary>
+        /// Populate a session list from a datarow array
+        /// </summary>
+        /// <param name="data">Data from the database</param>
+        /// <param name="sessionList">The session list to be populated</param>
+        private void SetSessionData(DataRow[] data, List<string> sessionList) {
             sessionList.Clear();
             for (int i = 0; i < data.Length; i++) {
                 sessionList.Add(data[i]["Name"].ToString());
             }
         }
 
+        /// <summary>
+        /// Initialize all the dropdown lists and populate them.
+        /// </summary>
         private void InitDropDownLists() {
             //Create arrays of ListItems to be added to the dropdown lists
             ListItem[] benchDefenderList = new ListItem[SessionHandler.BenchDefenders.Count];
@@ -146,7 +171,8 @@ namespace TechProFantasySoccer {
             ListItem[] benchGoaliesList = new ListItem[SessionHandler.BenchGoalies.Count];
             PopulateListItemArray(benchGoaliesList, SessionHandler.BenchGoalies);
 
-            ArrayList bench = new ArrayList(SessionHandler.BenchDefenders);
+            // Set the bench
+            List<string> bench = new List<string>(SessionHandler.BenchDefenders);
             bench.AddRange(SessionHandler.BenchMidfielders);
             bench.AddRange(SessionHandler.BenchStrikers);
             bench.AddRange(SessionHandler.BenchGoalies);
@@ -191,22 +217,35 @@ namespace TechProFantasySoccer {
             }
         }
 
-        private void SetDropDownList(ListItem[] benchStrikersList, int index, DropDownList ddlStriker, ArrayList playerList, DropDownList[] ddlArray) {
-            ddlStriker.Width = 300;
-            ddlStriker.Height = 30;
-            ddlStriker.Items.AddRange(benchStrikersList);
-            ddlStriker.SelectedIndexChanged += playerddls_SelectedIndexChanged;
-            ddlStriker.AutoPostBack = true;
-            ddlArray[index] = ddlStriker;
+        /// <summary>
+        /// Configure and populate a dropdown list.
+        /// </summary>
+        /// <param name="benchStrikersList">The array used to populate the dropdown list</param>
+        /// <param name="index">The current index</param>
+        /// <param name="ddl">The dropdown list to configure</param>
+        /// <param name="playerList">Active players list</param>
+        /// <param name="ddlArray">The array of dropdown lists to add to</param>
+        private void SetDropDownList(ListItem[] benchStrikersList, int index, DropDownList ddl, List<string> playerList, DropDownList[] ddlArray) {
+            ddl.Width = 300;
+            ddl.Height = 30;
+            ddl.Items.AddRange(benchStrikersList);
+            ddl.SelectedIndexChanged += playerddls_SelectedIndexChanged;
+            ddl.AutoPostBack = true;
+            ddlArray[index] = ddl;
 
             //If there are active players, set the initial value to those players
             if (playerList.Count > index) {
-                ddlStriker.Items.Insert(0, playerList[index].ToString());
+                ddl.Items.Insert(0, playerList[index].ToString());
             } else {
-                ddlStriker.Items.Insert(0, "Select a player");
+                ddl.Items.Insert(0, "Select a player");
             }
         }
 
+        /// <summary>
+        /// Update the bench list and active list when the user selects a new player.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void playerddls_SelectedIndexChanged(Object sender, EventArgs e) {
             DropDownList ddl = (DropDownList)sender;
 
@@ -229,6 +268,8 @@ namespace TechProFantasySoccer {
                 if (ddl == goalieddls[i])
                     UpdateActiveAndBench(i, SessionHandler.BenchGoalies, SessionHandler.ActiveGoalies, goalieddls);
             }
+
+            // After the lists are updated, repopulate the dropdown lists
             UpdateDropDownLists();
         }
 
@@ -239,29 +280,38 @@ namespace TechProFantasySoccer {
         /// <param name="benchList">The list of bench players to be updated.</param>
         /// <param name="activeList">The list of active players to be updated.</param>
         /// <param name="ddlArray">The array of dropdownlists.</param>
-        private void UpdateActiveAndBench(int index, ArrayList benchList, ArrayList activeList, DropDownList[] ddlArray) {
+        private void UpdateActiveAndBench(int index, List<string> benchList, List<string> activeList, DropDownList[] ddlArray) {
+
+            // If there is a currently active player in this spot, we need to add that player to the bench, and activate 
+            // the selected player
             if (ddlArray[index].Items[0].ToString() != "Select a player") {
                 benchList.Add(ddlArray[index].Items[0].ToString());
+                // we want to make sure we add the new player to the same index as the one we remove
                 activeList.Insert(activeList.IndexOf(ddlArray[index].Items[0].ToString()), ddlArray[index].SelectedValue);
                 activeList.Remove(ddlArray[index].Items[0].ToString());
             } else {
+                // Otherwise, we just need to add the selected player to the end of the list
                 activeList.Add(ddlArray[index].SelectedValue);
             }
+            // Either way, the activated player needs to be removed from the bench
             benchList.Remove(ddlArray[index].SelectedValue);
-            
+
         }
 
         /// <summary>
-        /// Populate an array of ListItems based on an ArrayList.
+        /// Populate an array of ListItems based on a List.
         /// </summary>
         /// <param name="benchList">The array to be populated</param>
         /// <param name="Bench">The list to base the array on</param>
-        private static void PopulateListItemArray(ListItem[] benchList, ArrayList Bench) {
+        private static void PopulateListItemArray(ListItem[] benchList, List<string> Bench) {
             for (int i = 0; i < benchList.Length; i++) {
                 benchList[i] = new ListItem(Bench[i].ToString());
             }
         }
 
+        /// <summary>
+        /// Repopulate the dropdownlists based on the new bench lists and active lists, and display the new bench
+        /// </summary>
         private void UpdateDropDownLists() {
             //Create arrays of ListItems to be added to the dropdown lists
             ListItem[] benchDefenderList = new ListItem[SessionHandler.BenchDefenders.Count];
@@ -276,37 +326,45 @@ namespace TechProFantasySoccer {
             ListItem[] benchGoaliesList = new ListItem[SessionHandler.BenchGoalies.Count];
             PopulateListItemArray(benchGoaliesList, SessionHandler.BenchGoalies);
 
-            ArrayList bench = new ArrayList(SessionHandler.BenchDefenders);
+            // Update the bench
+            List<string> bench = new List<string>(SessionHandler.BenchDefenders);
             bench.AddRange(SessionHandler.BenchMidfielders);
             bench.AddRange(SessionHandler.BenchStrikers);
             bench.AddRange(SessionHandler.BenchGoalies);
             tbBench.DataSource = bench;
             tbBench.DataBind();
 
-
+            
+            // Repopulate all the dropdown lists
             for (int i = 0; i < 4; i++) {
                 ResetDropDownList(benchDefenderList, i, SessionHandler.ActiveDefenders, defenderddls);
             }
-            
+
             for (int i = 0; i < 4; i++) {
                 ResetDropDownList(benchMidfielderList, i, SessionHandler.ActiveMidfielders, midfielderddls);
             }
 
-            //Add the dropdown lists for strikers and populate them
             for (int i = 0; i < 2; i++) {
                 ResetDropDownList(benchStrikersList, i, SessionHandler.ActiveStrikers, strikerddls);
             }
 
-            //Add the dropdown lists for goalies and populate them
             for (int i = 0; i < 1; i++) {
                 ResetDropDownList(benchGoaliesList, i, SessionHandler.ActiveGoalies, goalieddls);
             }
         }
 
-        private void ResetDropDownList(ListItem[] benchDefenderList, int index, ArrayList playerList, DropDownList[] ddlArray) {
+        /// <summary>
+        /// Repopulate a dropdown list.
+        /// </summary>
+        /// <param name="benchList">The list of bench players to add.</param>
+        /// <param name="index"></param>
+        /// <param name="playerList"></param>
+        /// <param name="ddlArray"></param>
+        private void ResetDropDownList(ListItem[] benchList, int index, List<string> playerList, DropDownList[] ddlArray) {
+            // Clear everything from the dropdown lists and add the bench defenders
             ddlArray[index].ClearSelection();
             ddlArray[index].Items.Clear();
-            ddlArray[index].Items.AddRange(benchDefenderList);
+            ddlArray[index].Items.AddRange(benchList);
 
             //If there are active players, set the initial value of the dropdown to those players
             if (playerList.Count > index) {
@@ -316,6 +374,56 @@ namespace TechProFantasySoccer {
             }
         }
 
+        /// <summary>
+        /// Checks if there are any unselected players
+        /// </summary>
+        /// <param name="ddls"></param>
+        /// <returns></returns>
+        private bool CheckSelections(DropDownList[] ddls) {
+            foreach (DropDownList name in ddls) {
+                if (name.SelectedValue == "Select a player") {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Update a player's status to either active or inactive.
+        /// </summary>
+        /// <param name="updateCommand">The command used to update the database.</param>
+        /// <param name="player">The player whose status is to be updated.</param>
+        /// <param name="isActive">True to set the player to active, false for inactive.</param>
+        private static void UpdatePlayers(SqlCommand updateCommand, Object player, bool isActive) {
+            int active = (isActive) ? 1 : 0;
+            updateCommand.CommandText =
+                 "UPDATE LineupHistory " +
+                 "SET LineupHistory.Active = " + active + " " +
+                 "FROM LineupHistory " +
+                 "JOIN Players ON LineupHistory.PlayerId = Players.PlayerId " +
+                 "WHERE concat(Players.FirstName, ' ', Players.LastName) " +
+                     " = '" + player.ToString() + "'";
+            try {
+                updateCommand.ExecuteNonQuery();
+            } catch (SqlException ex) {
+                throw (ex);
+            }
+        }
+
+        /// <summary>
+        /// RESET ALL SESSION DATA TO ORIGINAL
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void CancelButton_Click(object sender, EventArgs e) {
+            Response.Redirect(Request.RawUrl);
+        }
+
+        /// <summary>
+        /// Submit the lineup selction.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void SubmitButton_Click(object sender, EventArgs e) {
             SqlConnection con = new SqlConnection(strConnString1);
             try {
@@ -357,51 +465,10 @@ namespace TechProFantasySoccer {
             } catch (SqlException ex) {
                 NotifyLabel.Text = "There was an issue updating your lineup. Your lineup has not been set. Please try again later.";
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
-                return;
             } finally {
                 con.Close();
             }
             NotifyLabel.Text = "Your lineup has been set!";
-        }
-
-        private bool CheckSelections(DropDownList[] ddls) {
-            foreach (DropDownList name in ddls) {
-                if (name.SelectedValue == "Select a player") {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// Update a player's status to either active or inactive.
-        /// </summary>
-        /// <param name="updateCommand">The command used to update the database.</param>
-        /// <param name="player">The player whose status is to be updated.</param>
-        /// <param name="active">True to set the player to active, false for inactive.</param>
-        private static void UpdatePlayers(SqlCommand updateCommand, Object player, bool active) {
-            int i = (active) ? 1 : 0;
-            updateCommand.CommandText =
-                 "UPDATE LineupHistory " +
-                 "SET LineupHistory.Active = " + i + " " +
-                 "FROM LineupHistory " +
-                 "JOIN Players ON LineupHistory.PlayerId = Players.PlayerId " +
-                 "WHERE concat(Players.FirstName, ' ', Players.LastName) " +
-                     " = '" + player.ToString() + "'";
-            try { 
-                updateCommand.ExecuteNonQuery();
-            } catch (SqlException ex) {
-                throw (ex);
-            } 
-        }
-
-        /// <summary>
-        /// RESET ALL SESSION DATA TO ORIGINAL
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void CancelButton_Click(object sender, EventArgs e) {
-            Response.Redirect(Request.RawUrl);
         }
     }
 }

@@ -1,12 +1,11 @@
-﻿<%@ Page Title="Set Lineup" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SetLineup.aspx.cs" Inherits="TechProFantasySoccer.SetLineup" EnableViewState="true"%>
+﻿<%@ Page Title="Set Lineup" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SetLineup.aspx.cs" Inherits="TechProFantasySoccer.SetLineup"%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 <script>
  
 </script>
-
-        <h2><%: Title %></h2>
-    <asp:Label ID="NotifyLabel" runat="server"></asp:Label>
+    <h2><%: Title %></h2>
+    <asp:Label ID="NotifyLabel" runat="server" CssClass="NotifyLabel"></asp:Label>
     <table class="nav-justified">
         <tr>
             <td rowspan="5" class="lineupColumn1">
