@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddLeague.aspx.cs" Inherits="TechProFantasySoccer.Admin.AddLeague" %>
+﻿<%@ Page Title="Add League" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddLeague.aspx.cs" Inherits="TechProFantasySoccer.Admin.AddLeague" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     
@@ -34,8 +34,8 @@
 
     </div> 
     <br />
-    <asp:GridView ID="LeagueGridView" runat="server" AllowSorting="False"  
-        AllowPaging="true" PageSize="40" HorizontalAlign="Center" PagerStyle-HorizontalAlign="Center" PagerStyle-Font-Bold="true">
+    <asp:GridView ID="LeagueGridView" runat="server" AllowSorting="False" AllowPaging="true" PageSize="40" OnPageIndexChanging="LeagueGridView_PageIndexChanging" 
+        HorizontalAlign="Center" PagerStyle-HorizontalAlign="Center" PagerStyle-Font-Bold="true">
     </asp:GridView>
 
     <asp:SqlDataSource ID="FantasyDataSource" runat="server" 

@@ -9,8 +9,19 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity; 
 
+/// <summary>
+/// Author: Gerald
+/// </summary>
 namespace TechProFantasySoccer.Admin {
+    /// <summary>
+    /// Adds a club to the fantasy app.
+    /// </summary>
     public partial class AddTeam : System.Web.UI.Page {
+        /// <summary>
+        /// Populates the dropdown list of leagues and adds textboxes for club entry.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e) {
             if(!HttpContext.Current.User.Identity.IsAuthenticated) {
                 Response.Redirect("/Account/Login");
@@ -24,6 +35,9 @@ namespace TechProFantasySoccer.Admin {
             DisplayClubs();
         }
 
+        /// <summary>
+        /// Displays all the clubs currently in the system.
+        /// </summary>
         private void DisplayClubs() {
             String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(strConnString);
@@ -58,6 +72,11 @@ namespace TechProFantasySoccer.Admin {
             ModifyRows();
         }
 
+        /// <summary>
+        /// Processes the adding of a club.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void SubmitButton_Click(object sender, EventArgs e) {
             string teamName = TeamNameTextBox.Text;
             TeamNameTextBox.Text = "";
@@ -72,12 +91,15 @@ namespace TechProFantasySoccer.Admin {
             DisplayClubs();
         }
 
+        /// <summary>
+        /// Alternates the colours of the grid table. 
+        /// </summary>
         private void ModifyRows() {
             for(int i = 0; i < ClubGridView.Rows.Count; i++) {
                 string classList = "selectedblackout";
 
-                ClubGridView.Rows[i].Attributes.Add("data-href", "../Players/ViewPlayer.aspx?player=" +
-                    ClubGridView.Rows[i].Cells[0].Text);
+                //ClubGridView.Rows[i].Attributes.Add("data-href", "../Players/ViewPlayer.aspx?player=" +
+                //    ClubGridView.Rows[i].Cells[0].Text);
 
                 if((i % 2) == 1)
                     classList += " alternaterow";
@@ -85,6 +107,12 @@ namespace TechProFantasySoccer.Admin {
                 ClubGridView.Rows[i].Attributes.Add("class", classList);
 
             }
+        }
+
+        protected void ClubGridView_PageIndexChanging(object sender, GridViewPageEventArgs e) {
+            ClubGridView.PageIndex = e.NewPageIndex;
+            ClubGridView.DataBind();
+            ModifyRows();
         }
     }
 }

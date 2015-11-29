@@ -17,7 +17,8 @@
 
     <div class="center_content">
 
-        <asp:GridView ID="StandingsGridView" runat="server" AllowSorting="True" AllowPaging="true" PageSize="40" HorizontalAlign="Center" PagerStyle-HorizontalAlign="Center" PagerStyle-Font-Bold="true">
+        <asp:GridView ID="StandingsGridView" runat="server" AllowSorting="True" AllowPaging="false" HorizontalAlign="Center" OnSorting="StandingsGridView_Sorting"
+            PagerStyle-HorizontalAlign="Center" PagerStyle-Font-Bold="true">
         </asp:GridView>
 
     </div>

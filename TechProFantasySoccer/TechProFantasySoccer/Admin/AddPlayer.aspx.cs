@@ -9,8 +9,20 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity; 
 
+/// <summary>
+/// Author: Gerald
+/// </summary>
 namespace TechProFantasySoccer.Admin {
+    /// <summary>
+    /// Adds a player to the fantasy app. Player cost, club and names are added. 
+    /// </summary>
     public partial class CreatePlayer : System.Web.UI.Page {
+        /// <summary>
+        /// Loads the drop downs with clubs so that they can be chosen. Provides text box entries for the player
+        /// name and cost.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e) {
             if(!HttpContext.Current.User.Identity.IsAuthenticated) {
                 Response.Redirect("/Account/Login");
@@ -24,6 +36,9 @@ namespace TechProFantasySoccer.Admin {
             DisplayPlayers();
         }
 
+        /// <summary>
+        /// Displays the table of players already added. Clicking a player will allow them to be edited.
+        /// </summary>
         private void DisplayPlayers() {
             String strConnString = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(strConnString);
@@ -67,6 +82,9 @@ namespace TechProFantasySoccer.Admin {
             ModifyRows();
         }
 
+        /// <summary>
+        /// Adds alternating colours for each row and provides a link to edit the player as an admin.
+        /// </summary>
         private void ModifyRows() {
             for(int i = 0; i < PlayerGridView.Rows.Count; i++) {
                 string classList = "selectedblackout";
@@ -82,6 +100,11 @@ namespace TechProFantasySoccer.Admin {
             }
         }
 
+        /// <summary>
+        /// Inserts the player to the database and to the fantasy website.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void SubmitButton_Click(object sender, EventArgs e) {
             string firstName = FirstNameTextBox.Text;
             FirstNameTextBox.Text = "";
@@ -102,6 +125,11 @@ namespace TechProFantasySoccer.Admin {
             DisplayPlayers();
         }
 
+        /// <summary>
+        /// Controls the indexing of players.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void PlayerGridView_PageIndexChanging(object sender, GridViewPageEventArgs e) {
             PlayerGridView.PageIndex = e.NewPageIndex;
             PlayerGridView.DataBind();

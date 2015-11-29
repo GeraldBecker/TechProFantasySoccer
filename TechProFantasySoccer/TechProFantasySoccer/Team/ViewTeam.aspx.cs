@@ -9,9 +9,22 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 
+/// <summary>
+/// Author: Gerald
+/// Style Author: Becky
+/// </summary>
 namespace TechProFantasySoccer.Team {
+    /// <summary>
+    /// Views another teams players and stats. 
+    /// </summary>
     public partial class ViewTeam : System.Web.UI.Page {
         public string UserName = "";
+
+        /// <summary>
+        /// Loads the teams stats and players.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e) {
             if(!HttpContext.Current.User.Identity.IsAuthenticated) {
                 Response.Redirect("/Account/Login");
@@ -230,7 +243,11 @@ namespace TechProFantasySoccer.Team {
             }
         }
 
-
+        /// <summary>
+        /// Sorts the grid data.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void TeamGridView_Sorting(object sender, GridViewSortEventArgs e) {
             DataTable temp = (DataTable)TeamGridView.DataSource;
             temp.DefaultView.Sort = e.SortExpression + " " + GetSortDirection(e.SortExpression);
@@ -239,6 +256,11 @@ namespace TechProFantasySoccer.Team {
             ModifyRows();
         }
 
+        /// <summary>
+        /// Determines the sort direction of the data.
+        /// </summary>
+        /// <param name="column"></param>
+        /// <returns></returns>
         private string GetSortDirection(string column) {
 
             // By default, set the sort direction to ascending.
@@ -264,6 +286,10 @@ namespace TechProFantasySoccer.Team {
             return sortDirection;
         }
 
+        /// <summary>
+        /// Sets the alternating colour schemes using css. It also adds a clickable link for the table row to 
+        /// view the player.
+        /// </summary>
         private void ModifyRows() {
             try {
                 if (TeamGridView.Rows.Count > 0)
