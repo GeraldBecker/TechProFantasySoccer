@@ -143,8 +143,13 @@ namespace TechProFantasySoccer {
                 SessionHandler.BenchGoalies = new List<string>();
                 SetSessionData(inActiveGoalies, SessionHandler.BenchGoalies);
             }
+            int i = 0;
             foreach (ListItem item in lbActivePlayers.Items) {
-                item.Attributes["class"] = "player";
+                if (i % 2 == 0)
+                    item.Attributes["class"] = "player";
+                else
+                    item.Attributes["class"] = "player2";
+                i++;
             }
 
             InitDropDownLists();
@@ -186,8 +191,13 @@ namespace TechProFantasySoccer {
             bench.AddRange(SessionHandler.BenchGoalies);
             tbBench.DataSource = bench;
             tbBench.DataBind();
+            int j = 0;
             foreach (ListItem item in tbBench.Items) {
-                item.Attributes["class"] = "player";
+                if (j % 2 == 0)
+                    item.Attributes["class"] = "player";
+                else
+                    item.Attributes["class"] = "player2";
+                j++;
             }
 
             //Add the dropdown lists for defenders and populate them
@@ -346,8 +356,13 @@ namespace TechProFantasySoccer {
             bench.AddRange(SessionHandler.BenchGoalies);
             tbBench.DataSource = bench;
             tbBench.DataBind();
+            int j = 0;
             foreach (ListItem item in tbBench.Items) {
-                item.Attributes["class"] = "player";
+                if (j % 2 == 0)
+                    item.Attributes["class"] = "player";
+                else
+                    item.Attributes["class"] = "player2";
+                j++;
             }
 
 
@@ -518,7 +533,7 @@ namespace TechProFantasySoccer {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             } finally {
             }
-            NotifyLabel.Text = "Your lineup has been set!";
+            NotifyLabel.Text = "Your lineup for next month has been set. Changes will not take effect until the next month has begun.";
         }
     }
 }

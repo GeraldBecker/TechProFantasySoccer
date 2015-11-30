@@ -26,11 +26,19 @@ td.lineupColumn1 {
     height: 30px;
     width: 300px;
     color: black;
-    border: 1px solid #666666;
-    background-color: whitesmoke;
+    background-color: #18bc9c;
     padding:3px;
     margin: 0px 2px;
+
     /*text-align: center;*/
+}
+.player2 {
+    height: 30px;
+    width: 300px;
+    color: black;
+    background-color: #daede2;
+    padding:3px;
+    margin: 0px 2px;
 }
 
 .teamSpots {
