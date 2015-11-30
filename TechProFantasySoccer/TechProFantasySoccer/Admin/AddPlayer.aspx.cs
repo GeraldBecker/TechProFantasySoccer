@@ -124,7 +124,7 @@ namespace TechProFantasySoccer.Admin {
             try {
                 ClubsDataSource.Insert();
             } catch(System.Data.SqlClient.SqlException) {
-                Response.Write("<script>alert('Please enter a valid player name.');</script>");
+                //Response.Write("<script>alert('Please enter a valid player name.');</script>");
             }
             
             DisplayPlayers();
