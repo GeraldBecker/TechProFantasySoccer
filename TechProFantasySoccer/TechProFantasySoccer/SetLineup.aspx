@@ -15,7 +15,7 @@
             <tr>
                 <td valign="top" rowspan="5" class="lineupColumn1" style="padding: 15px !important; text-align:center;">
                     <h4>This month's lineup</h4>
-                    <asp:ListBox ID="lbActivePlayers" CssClass="lbActivePlayers" runat="server" Height="400px" Width="300px"></asp:ListBox>
+                    <asp:ListBox ID="lbActivePlayers" CssClass="lbActivePlayers" runat="server" Height="330px" Width="300px"></asp:ListBox>
                 </td>
                 <td valign="top" class="lineupColumn1" height="120px" style="padding: 15px !important; text-align:center;">
                     <h4>Defenders</h4>

@@ -463,7 +463,9 @@ namespace TechProFantasySoccer {
                      "FROM LineupHistory " +
                      "JOIN Players ON LineupHistory.PlayerId = Players.PlayerId " +
                      "WHERE concat(Players.FirstName, ' ', Players.LastName) " +
-                         " = '" + player.ToString() + "'";
+                         " = '" + player.ToString() + "'" +
+                         "AND Month = DATEPART(MONTH, GETDATE()) + 1";
+
 
                 resultTable.Load(selectCommand.ExecuteReader());
                 // If the row exists, update, otherwise insert

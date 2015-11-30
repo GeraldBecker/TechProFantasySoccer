@@ -20,6 +20,7 @@ td.lineupColumn1 {
 .NotifyLabel {
     color: red;
     font-size: large;
+    margin: auto;
 }
 .player
 {
