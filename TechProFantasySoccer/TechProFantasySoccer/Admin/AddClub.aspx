@@ -12,7 +12,7 @@
 
             <asp:TableHeaderRow>
                 <asp:TableHeaderCell>
-                    Team Name
+                    Club Name
                 </asp:TableHeaderCell>
                 <asp:TableHeaderCell>
                     League
