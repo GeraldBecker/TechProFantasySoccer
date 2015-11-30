@@ -25,15 +25,13 @@
                 <td  valign="top" class="lineupColumn1" rowspan="3" style="padding: 15px !important; text-align: center;">
                     <h4>Bench</h4>
                     <div class="teamSpots" id="benchDiv">
-                        <asp:DataList ID="tbBench" runat="server" Width="300px" Height="150px">
-                            <ItemTemplate>
+                        <asp:ListBox ID="tbBench" runat="server" Width="300px" Height="400px">
+<%--                            <ItemTemplate>
                                 <div class="player">
-                                    <%--<div class="playerName"><%# Eval("First") %> <%# Eval("Last") %></div>
-                                    <div class="playerPosition"><%# Eval("Position") %></div>--%>
                                     <%# Container.DataItem %>
                                 </div>
-                            </ItemTemplate>
-                        </asp:DataList>
+                            </ItemTemplate>--%>
+                        </asp:ListBox>
                     </div>
                 </td>
             </tr>

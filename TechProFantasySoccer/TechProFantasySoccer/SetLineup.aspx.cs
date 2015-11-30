@@ -186,6 +186,9 @@ namespace TechProFantasySoccer {
             bench.AddRange(SessionHandler.BenchGoalies);
             tbBench.DataSource = bench;
             tbBench.DataBind();
+            foreach (ListItem item in tbBench.Items) {
+                item.Attributes["class"] = "player";
+            }
 
             //Add the dropdown lists for defenders and populate them
             defenderddls = new DropDownList[DEFENDER_SLOTS];
@@ -343,6 +346,10 @@ namespace TechProFantasySoccer {
             bench.AddRange(SessionHandler.BenchGoalies);
             tbBench.DataSource = bench;
             tbBench.DataBind();
+            foreach (ListItem item in tbBench.Items) {
+                item.Attributes["class"] = "player";
+            }
+
 
             
             // Repopulate all the dropdown lists
