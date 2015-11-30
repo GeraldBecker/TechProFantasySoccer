@@ -166,6 +166,13 @@
     <Content Include="Admin\EditScoringValues.aspx" />
     <Content Include="Admin\SelectUsers.aspx" />
     <Content Include="Admin\Settings.aspx" />
+    <Content Include="App_Data\CalculateFantasyPointsByPosition.sql" />
+    <Content Include="App_Data\CalculateTotalFantasyPoints.sql" />
+    <Content Include="App_Data\GetSalaryCap.sql" />
+    <Content Include="App_Data\GetTotalFantasyPointsByUser.sql" />
+    <Content Include="App_Data\GetTotalFantasyPointsByUserAndMonth.sql" />
+    <Content Include="App_Data\GetTotalFantasyPointsByUserPosition.sql" />
+    <Content Include="App_Data\TotalFantasyPoints.sql" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -504,9 +511,7 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
