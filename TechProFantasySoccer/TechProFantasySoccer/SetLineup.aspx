@@ -8,21 +8,21 @@
     <asp:Label ID="NotifyLabel" runat="server" CssClass="NotifyLabel"></asp:Label>
     <table class="nav-justified">
         <tr>
-            <td rowspan="5" class="lineupColumn1">
-                <h4>Stats</h4>
-                <asp:ListBox ID="ListBox1" runat="server" Height="547px" Width="300px"></asp:ListBox>
+            <td valign="top" rowspan="5" class="lineupColumn1">
+                <h4>This month's lineup</h4>
+                <asp:ListBox ID="lbActivePlayers" runat="server" Height="400px" Width="300px"></asp:ListBox>
             </td>
-            <td class="lineupColumn1">
+            <td valign="top" class="lineupColumn1">
                 <h4>Defenders</h4>
                 <asp:Panel ID="DefenderPanel" runat="server" Height="120px">
                 </asp:Panel>
             </td>
-            <td class="lineupColumn1" rowspan="3">
+            <td  valign="top" class="lineupColumn1" rowspan="3">
                 <h4>Bench</h4>
                 <div class="teamSpots" id="benchDiv">
                 <asp:DataList ID="tbBench" runat="server" Width="300px" Height="150px">
                     <ItemTemplate>
-                        <div class="player draggable="true">
+                        <div class="player">
                             <%--<div class="playerName"><%# Eval("First") %> <%# Eval("Last") %></div>
                             <div class="playerPosition"><%# Eval("Position") %></div>--%>
                             <%# Container.DataItem %>
@@ -33,7 +33,7 @@
             </td>
         </tr>
         <tr>
-            <td class="lineupColumn1">
+            <td valign="top" class="lineupColumn1">
                 <h4>Midfielders</h4>
                 <asp:Panel ID="MidfielderPanel" runat="server"></asp:Panel>
             </td>
@@ -41,7 +41,7 @@
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td class="lineupColumn1">
+            <td valign="top" class="lineupColumn1">
             <h4>Strikers</h4>
             <asp:Panel ID="StrikerPanel" runat="server"></asp:Panel>
             </td>

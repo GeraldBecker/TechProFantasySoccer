@@ -68,7 +68,7 @@ namespace TechProFantasySoccer {
                     "JOIN Positions ON Positions.PositionRef = Players.PositionRef " +
                     "WHERE LineupHistory.Month = DATEPART(MONTH, GETDATE()) " +
                     "AND LineupHistory.UserId = '" + User.Identity.GetUserId() + "' " +
-                    "ORDER BY Name";
+                    "ORDER BY Position DESC";
                 DataTable playersTable = new DataTable();
                 try {
                     getPlayersCommand.Connection = con1;
@@ -81,6 +81,12 @@ namespace TechProFantasySoccer {
                     con1.Close();
                 }
 
+                DataRow[] allActive = playersTable.Select("Active = 1");
+                foreach (DataRow row in allActive) {
+                    ListItem listItem = new ListItem(row["Name"].ToString());
+                    listItem.Attributes["class"] = "player";
+                    lbActivePlayers.Items.Add(listItem);
+                }
 
 
                 //------------------------------------------------------------------------
@@ -396,19 +402,57 @@ namespace TechProFantasySoccer {
         /// <param name="updateCommand">The command used to update the database.</param>
         /// <param name="player">The player whose status is to be updated.</param>
         /// <param name="isActive">True to set the player to active, false for inactive.</param>
-        private static void UpdatePlayers(SqlCommand updateCommand, Object player, bool isActive) {
+        private  void UpdatePlayers(Object player, bool isActive) {
             int active = (isActive) ? 1 : 0;
-            updateCommand.CommandText =
-                 "UPDATE LineupHistory " +
-                 "SET LineupHistory.Active = " + active + " " +
-                 "FROM LineupHistory " +
-                 "JOIN Players ON LineupHistory.PlayerId = Players.PlayerId " +
-                 "WHERE concat(Players.FirstName, ' ', Players.LastName) " +
-                     " = '" + player.ToString() + "'";
+            SqlConnection con = new SqlConnection(strConnString1);
+            SqlCommand selectCommand = new SqlCommand();
+            SqlCommand insertCommand = new SqlCommand();
+            SqlCommand updateCommand = new SqlCommand();
             try {
-                updateCommand.ExecuteNonQuery();
+                con.Open();
+                selectCommand.Connection = con;
+                insertCommand.Connection = con;
+                updateCommand.Connection = con;
+
+                DataTable resultTable = new DataTable();
+                // Check if the row already exists in the database.
+                selectCommand.CommandText =
+                    "SELECT * FROM LineupHistory " +
+                    "WHERE userId = '" + User.Identity.GetUserId() + "' AND " +
+                          "PlayerId = (SELECT PlayerId FROM Players " +
+                                      "WHERE concat(FirstName, ' ', LastName) = '" + player.ToString() + "' AND " +
+                                      "Month = DATEPART(MONTH, GETDATE()) + 1)";
+                resultTable.Load(selectCommand.ExecuteReader());
+
+
+                // The insert command, to be executed if the row does not exist in the database.
+                insertCommand.CommandText =
+                     "INSERT INTO LineupHistory (UserId, PlayerId, Month, Active) " +
+                     "VALUES ('" + User.Identity.GetUserId() + "', " +
+                         "(SELECT PlayerId FROM Players " +
+                         "WHERE concat(FirstName, ' ', LastName) = '" + player.ToString() + "'), " +
+                     "DATEPART(MONTH, GETDATE()) + 1, " +
+                     active + ")";
+                // the execute command, to be executed if the row already exists
+                updateCommand.CommandText =
+                     "UPDATE LineupHistory " +
+                     "SET LineupHistory.Active = " + active + " " +
+                     "FROM LineupHistory " +
+                     "JOIN Players ON LineupHistory.PlayerId = Players.PlayerId " +
+                     "WHERE concat(Players.FirstName, ' ', Players.LastName) " +
+                         " = '" + player.ToString() + "'";
+
+                // If the row exists, update, otherwise insert
+                if (resultTable.Rows.Count != 0) {
+                    updateCommand.ExecuteNonQuery();
+                } else {
+                    insertCommand.ExecuteNonQuery();
+                }
             } catch (SqlException ex) {
-                throw (ex);
+                NotifyLabel.Text = "There was an error updating the database. Please try again later";
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            } finally {
+                con1.Close();
             }
         }
 
@@ -427,48 +471,43 @@ namespace TechProFantasySoccer {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void SubmitButton_Click(object sender, EventArgs e) {
-            SqlConnection con = new SqlConnection(strConnString1);
             try {
-                con.Open();
-                SqlCommand updateCommand = new SqlCommand();
-                updateCommand.Connection = con;
 
                 //Update Defenders
                 foreach (Object player in SessionHandler.ActiveDefenders) {
-                    UpdatePlayers(updateCommand, player, true);
+                    UpdatePlayers(player, true);
                 }
                 foreach (Object player in SessionHandler.BenchDefenders) {
-                    UpdatePlayers(updateCommand, player, false);
+                    UpdatePlayers(player, false);
                 }
 
                 //Update Midfielders
                 foreach (Object player in SessionHandler.ActiveMidfielders) {
-                    UpdatePlayers(updateCommand, player, true);
+                    UpdatePlayers(player, true);
                 }
                 foreach (Object player in SessionHandler.BenchMidfielders) {
-                    UpdatePlayers(updateCommand, player, false);
+                    UpdatePlayers(player, false);
                 }
 
                 //Update Strikers
                 foreach (Object player in SessionHandler.ActiveStrikers) {
-                    UpdatePlayers(updateCommand, player, true);
+                    UpdatePlayers(player, true);
                 }
                 foreach (Object player in SessionHandler.BenchStrikers) {
-                    UpdatePlayers(updateCommand, player, false);
+                    UpdatePlayers(player, false);
                 }
 
                 //Update Goalies
                 foreach (Object player in SessionHandler.ActiveGoalies) {
-                    UpdatePlayers(updateCommand, player, true);
+                    UpdatePlayers(player, true);
                 }
                 foreach (Object player in SessionHandler.BenchGoalies) {
-                    UpdatePlayers(updateCommand, player, false);
+                    UpdatePlayers(player, false);
                 }
             } catch (SqlException ex) {
                 NotifyLabel.Text = "There was an issue updating your lineup. Your lineup has not been set. Please try again later.";
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             } finally {
-                con.Close();
             }
             NotifyLabel.Text = "Your lineup has been set!";
         }
