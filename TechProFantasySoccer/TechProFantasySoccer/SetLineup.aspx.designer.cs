@@ -76,21 +76,21 @@ namespace TechProFantasySoccer {
         protected global::System.Web.UI.WebControls.Panel GoaliePanel;
         
         /// <summary>
-        /// CancelButton control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CancelButton;
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// SubmitButton control.
+        /// Button2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SubmitButton;
+        protected global::System.Web.UI.WebControls.Button Button2;
     }
 }

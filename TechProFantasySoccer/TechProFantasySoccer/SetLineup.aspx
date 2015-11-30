@@ -4,9 +4,14 @@
 <script>
  
 </script>
-    <h2><%: Title %></h2>
+    <div class="banner_reg">
+        <h1 class="title_reg">SET LINEUP</h1>
+    </div>
+
     <asp:Label ID="NotifyLabel" runat="server" CssClass="NotifyLabel"></asp:Label>
-    <table class="nav-justified">
+
+    <div class="center_content">
+    <table class="nav-justified center_content">
         <tr>
             <td valign="top" rowspan="5" class="lineupColumn1">
                 <h4>This month's lineup</h4>
@@ -61,8 +66,12 @@
             <td>&nbsp;</td>
         </tr>
     </table>
-    <div id="buttonDiv">
-        <asp:Button ID="CancelButton" runat="server" Text="Cancel" BackColor="#CC0000" BorderColor="White" ForeColor="White" Height="50px" Width="300px" OnClick="CancelButton_Click" />
-        <asp:Button ID="SubmitButton" runat="server" Text="Submit" BackColor="#269926" BorderColor="White" ForeColor="White" Height="50px" Width="300px" OnClick="SubmitButton_Click" />
     </div>
+
+    <div id="buttonDiv">
+        <asp:Button ID="Button1" runat="server" Text="Cancel" CssClass="btn btn-danger" Width="20%" OnClick="CancelButton_Click" />
+        &nbsp;&nbsp;&nbsp;
+        <asp:Button ID="Button2" runat="server" Text="Submit" CssClass="btn btn-success" Width="20%" OnClick="SubmitButton_Click" />
+    </div>
+
     </asp:Content>

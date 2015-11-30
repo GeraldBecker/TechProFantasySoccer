@@ -125,17 +125,6 @@ input[type="email"] {
     color: #292929;
 }
 
-div.centered 
-{
-    text-align: center;
-}
-
-div.centered table 
-{
-    margin: 0 auto; 
-    text-align: left;
-}
-
 .about_title {
     text-shadow: 0 0 10px #FFFFFF, 0 0 9px #000000;
 }
@@ -147,3 +136,8 @@ div.centered table
 .text_center {
     text-align: center !important;
 }
+
+.center-table {
+    margin: 0px auto; 
+}
+
