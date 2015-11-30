@@ -11,18 +11,18 @@
     <asp:Label ID="NotifyLabel" runat="server" CssClass="NotifyLabel"></asp:Label>
 
     <div class="center_content">
-    <table class="nav-justified center_content">
+    <table class="nav-justified center_content table-padding">
         <tr>
-            <td valign="top" rowspan="5" class="lineupColumn1">
+            <td valign="top" rowspan="5" class="lineupColumn1" style="padding: 15px !important;">
                 <h4>This month's lineup</h4>
                 <asp:ListBox ID="lbActivePlayers" CssClass="lbActivePlayers" runat="server" Height="400px" Width="300px"></asp:ListBox>
             </td>
-            <td valign="top" class="lineupColumn1"height="120px">
+            <td valign="top" class="lineupColumn1"height="120px" style="padding: 15px !important;">
                 <h4>Defenders</h4>
                 <asp:Panel ID="DefenderPanel" runat="server" Height="120px">
                 </asp:Panel>
             </td>
-            <td  valign="top" class="lineupColumn1" rowspan="3">
+            <td  valign="top" class="lineupColumn1" rowspan="3" style="padding: 15px !important;">
                 <h4>Bench</h4>
                 <div class="teamSpots" id="benchDiv">
                 <asp:DataList ID="tbBench" runat="server" Width="300px" Height="150px">
@@ -38,32 +38,32 @@
             </td>
         </tr>
         <tr>
-            <td valign="top" class="lineupColumn1" height="120px">
+            <td valign="top" class="lineupColumn1" height="120px" style="padding: 15px !important;">
                 <h4>Midfielders</h4>
                 <asp:Panel ID="MidfielderPanel" runat="server"></asp:Panel>
             </td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td style="padding: 15px !important;">&nbsp;</td>
+            <td style="padding: 15px !important;">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="top" class="lineupColumn1">
+            <td valign="top" class="lineupColumn1" style="padding: 15px !important;">
             <h4>Strikers</h4>
             <asp:Panel ID="StrikerPanel" runat="server" ></asp:Panel>
             </td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td style="padding: 15px !important;">&nbsp;</td>
+            <td style="padding: 15px !important;">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="top">
+            <td valign="top" style="padding: 15px !important;">
             <h4>Goalie</h4>
                 <asp:Panel ID="GoaliePanel" runat="server"></asp:Panel>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td style="padding: 15px !important;">&nbsp;</td>
+            <td style="padding: 15px !important;">&nbsp;</td>
         </tr>
         <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td style="padding: 15px !important;">&nbsp;</td>
+            <td style="padding: 15px !important;">&nbsp;</td>
+            <td style="padding: 15px !important;">&nbsp;</td>
         </tr>
     </table>
     </div>
