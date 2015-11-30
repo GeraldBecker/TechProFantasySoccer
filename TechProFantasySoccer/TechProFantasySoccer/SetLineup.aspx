@@ -24,9 +24,9 @@
                 </td>
                 <td  valign="top" class="lineupColumn1" rowspan="3" style="padding: 15px !important; text-align: center;">
                     <h4>Bench</h4>
-                    <div class="teamSpots" id="benchDiv">
-                        <asp:ListBox ID="tbBench" runat="server" Width="300px" Height="400px">
-<%--                            <ItemTemplate>
+                    <div class="teamSpots" id="benchDiv" style="width:100%; height:100%;">
+                        <asp:ListBox ID="tbBench" runat="server" Width="300px" Height="400px" CssClass="center-table">
+                            <%--<ItemTemplate>
                                 <div class="player">
                                     <%# Container.DataItem %>
                                 </div>
