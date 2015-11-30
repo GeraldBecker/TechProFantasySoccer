@@ -121,7 +121,12 @@ namespace TechProFantasySoccer.Admin {
             ClubsDataSource.InsertParameters["Position"].DefaultValue = position;
             ClubsDataSource.InsertParameters["Club"].DefaultValue = club;
 
-            ClubsDataSource.Insert();
+            try {
+                ClubsDataSource.Insert();
+            } catch(System.Data.SqlClient.SqlException) {
+                //Response.Write("<script>alert('Please enter a valid player name.');</script>");
+            }
+            
             DisplayPlayers();
         }
 

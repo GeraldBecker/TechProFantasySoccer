@@ -86,7 +86,11 @@ namespace TechProFantasySoccer.Admin {
             FantasyDataSource.InsertParameters["ClubName"].DefaultValue = teamName;
             FantasyDataSource.InsertParameters["League"].DefaultValue = league;
 
-            FantasyDataSource.Insert();
+            try {
+                FantasyDataSource.Insert();
+            } catch(System.Data.SqlClient.SqlException) {
+
+            }
 
             DisplayClubs();
         }
