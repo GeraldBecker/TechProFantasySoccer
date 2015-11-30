@@ -28,24 +28,24 @@ namespace TechProFantasySoccer {
         /// <summary>
         /// Dropdown list arrays for each position
         /// </summary>
-        DropDownList[] defenderddls;
-        DropDownList[] midfielderddls;
-        DropDownList[] strikerddls;
-        DropDownList[] goalieddls;
+        private DropDownList[] defenderddls;
+        private DropDownList[] midfielderddls;
+        private DropDownList[] strikerddls;
+        private DropDownList[] goalieddls;
 
         /// <summary>
         /// 
         /// </summary>
         static String strConnString1 = ConfigurationManager.ConnectionStrings["FantasySoccerConnectionString"].ConnectionString;
         SqlConnection con1 = new SqlConnection(strConnString1);
-        DataRow[] activeDefenders;
-        DataRow[] inActiveDefenders;
-        DataRow[] activeMidfielders;
-        DataRow[] inActiveMidfielders;      
-        DataRow[] activeStrikers;
-        DataRow[] inActiveStrikers;
-        DataRow[] activeGoalies;
-        DataRow[] inActiveGoalies;
+        private DataRow[] activeDefenders;
+        private DataRow[] inActiveDefenders;
+        private DataRow[] activeMidfielders;
+        private DataRow[] inActiveMidfielders;      
+        private DataRow[] activeStrikers;
+        private DataRow[] inActiveStrikers;
+        private DataRow[] activeGoalies;
+        private DataRow[] inActiveGoalies;
 
         protected void Page_Load(object sender, EventArgs e) {
             if (!HttpContext.Current.User.Identity.IsAuthenticated) {
@@ -58,7 +58,8 @@ namespace TechProFantasySoccer {
                 Response.Redirect("~/AccessDenied");
 
             SqlCommand getPlayersCommand = new SqlCommand();
-
+            DataTable playersTable = new DataTable();
+            DataRow[] allActive;
             if (!Page.IsPostBack) {
                 getPlayersCommand.CommandText =
                     "SELECT concat(Players.FirstName, ' ', Players.LastName) AS Name, Players.PositionRef AS Position, " +
@@ -69,7 +70,7 @@ namespace TechProFantasySoccer {
                     "WHERE LineupHistory.Month = DATEPART(MONTH, GETDATE()) " +
                     "AND LineupHistory.UserId = '" + User.Identity.GetUserId() + "' " +
                     "ORDER BY Position DESC";
-                DataTable playersTable = new DataTable();
+                
                 try {
                     getPlayersCommand.Connection = con1;
                     con1.Open();
@@ -81,13 +82,12 @@ namespace TechProFantasySoccer {
                     con1.Close();
                 }
 
-                DataRow[] allActive = playersTable.Select("Active = 1");
+                // Add the active players for the current month to the listbox
+                allActive = playersTable.Select("Active = 1");
                 foreach (DataRow row in allActive) {
                     ListItem listItem = new ListItem(row["Name"].ToString());
-                    listItem.Attributes["class"] = "player";
                     lbActivePlayers.Items.Add(listItem);
                 }
-
 
                 //------------------------------------------------------------------------
                 //DEFENDERS
@@ -143,7 +143,9 @@ namespace TechProFantasySoccer {
                 SessionHandler.BenchGoalies = new List<string>();
                 SetSessionData(inActiveGoalies, SessionHandler.BenchGoalies);
             }
-
+            foreach (ListItem item in lbActivePlayers.Items) {
+                item.Attributes["class"] = "player";
+            }
 
             InitDropDownLists();
         }
@@ -404,17 +406,19 @@ namespace TechProFantasySoccer {
         /// <param name="isActive">True to set the player to active, false for inactive.</param>
         private  void UpdatePlayers(Object player, bool isActive) {
             int active = (isActive) ? 1 : 0;
+
             SqlConnection con = new SqlConnection(strConnString1);
             SqlCommand selectCommand = new SqlCommand();
             SqlCommand insertCommand = new SqlCommand();
             SqlCommand updateCommand = new SqlCommand();
+            DataTable resultTable = new DataTable();
+
             try {
                 con.Open();
                 selectCommand.Connection = con;
                 insertCommand.Connection = con;
                 updateCommand.Connection = con;
 
-                DataTable resultTable = new DataTable();
                 // Check if the row already exists in the database.
                 selectCommand.CommandText =
                     "SELECT * FROM LineupHistory " +
@@ -422,9 +426,6 @@ namespace TechProFantasySoccer {
                           "PlayerId = (SELECT PlayerId FROM Players " +
                                       "WHERE concat(FirstName, ' ', LastName) = '" + player.ToString() + "' AND " +
                                       "Month = DATEPART(MONTH, GETDATE()) + 1)";
-                resultTable.Load(selectCommand.ExecuteReader());
-
-
                 // The insert command, to be executed if the row does not exist in the database.
                 insertCommand.CommandText =
                      "INSERT INTO LineupHistory (UserId, PlayerId, Month, Active) " +
@@ -433,7 +434,7 @@ namespace TechProFantasySoccer {
                          "WHERE concat(FirstName, ' ', LastName) = '" + player.ToString() + "'), " +
                      "DATEPART(MONTH, GETDATE()) + 1, " +
                      active + ")";
-                // the execute command, to be executed if the row already exists
+                // the update command, to be executed if the row already exists
                 updateCommand.CommandText =
                      "UPDATE LineupHistory " +
                      "SET LineupHistory.Active = " + active + " " +
@@ -442,6 +443,7 @@ namespace TechProFantasySoccer {
                      "WHERE concat(Players.FirstName, ' ', Players.LastName) " +
                          " = '" + player.ToString() + "'";
 
+                resultTable.Load(selectCommand.ExecuteReader());
                 // If the row exists, update, otherwise insert
                 if (resultTable.Rows.Count != 0) {
                     updateCommand.ExecuteNonQuery();
@@ -452,7 +454,7 @@ namespace TechProFantasySoccer {
                 NotifyLabel.Text = "There was an error updating the database. Please try again later";
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             } finally {
-                con1.Close();
+                con.Close();
             }
         }
 

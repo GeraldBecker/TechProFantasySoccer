@@ -10,9 +10,9 @@
         <tr>
             <td valign="top" rowspan="5" class="lineupColumn1">
                 <h4>This month's lineup</h4>
-                <asp:ListBox ID="lbActivePlayers" runat="server" Height="400px" Width="300px"></asp:ListBox>
+                <asp:ListBox ID="lbActivePlayers" CssClass="lbActivePlayers" runat="server" Height="400px" Width="300px"></asp:ListBox>
             </td>
-            <td valign="top" class="lineupColumn1">
+            <td valign="top" class="lineupColumn1"height="120px">
                 <h4>Defenders</h4>
                 <asp:Panel ID="DefenderPanel" runat="server" Height="120px">
                 </asp:Panel>
@@ -33,7 +33,7 @@
             </td>
         </tr>
         <tr>
-            <td valign="top" class="lineupColumn1">
+            <td valign="top" class="lineupColumn1" height="120px">
                 <h4>Midfielders</h4>
                 <asp:Panel ID="MidfielderPanel" runat="server"></asp:Panel>
             </td>
@@ -43,13 +43,13 @@
         <tr>
             <td valign="top" class="lineupColumn1">
             <h4>Strikers</h4>
-            <asp:Panel ID="StrikerPanel" runat="server"></asp:Panel>
+            <asp:Panel ID="StrikerPanel" runat="server" ></asp:Panel>
             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td>
+            <td valign="top">
             <h4>Goalie</h4>
                 <asp:Panel ID="GoaliePanel" runat="server"></asp:Panel>
             <td>&nbsp;</td>
