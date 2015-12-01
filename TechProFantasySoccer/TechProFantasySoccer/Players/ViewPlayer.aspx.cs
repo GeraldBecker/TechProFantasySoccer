@@ -287,7 +287,8 @@ namespace TechProFantasySoccer.Players {
                     cmd.CommandText =
                         "DELETE FROM LineupHistory " +
                         "WHERE UserId = '" + User.Identity.GetUserId() + "' AND PlayerId = " + playerId +
-                        " AND Month = " + DateTime.Now.Month;
+                        " AND (Month = " + DateTime.Now.Month + " OR Month = " + 
+                        (DateTime.Now.Month == 12 ? 1 : DateTime.Now.Month + 1) + ")";
 
                     con.Open();
                     cmd.ExecuteScalar();
