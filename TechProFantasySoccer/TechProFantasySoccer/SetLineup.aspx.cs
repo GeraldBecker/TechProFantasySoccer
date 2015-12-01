@@ -473,14 +473,14 @@ namespace TechProFantasySoccer {
                     "WHERE userId = '" + User.Identity.GetUserId() + "' AND " +
                           "PlayerId = (SELECT PlayerId FROM Players " +
                                       "WHERE concat(FirstName, ' ', LastName) = '" + player.ToString() + "' AND " +
-                                      "Month = DATEPART(MONTH, GETDATE()) + " + nextMonth + ")";
+                                      "Month = " + nextMonth + ")";
                 // The insert command, to be executed if the row does not exist in the database.
                 insertCommand.CommandText =
                      "INSERT INTO LineupHistory (UserId, PlayerId, Month, Active) " +
                      "VALUES ('" + User.Identity.GetUserId() + "', " +
                             "(SELECT PlayerId FROM Players " +
                              "WHERE concat(FirstName, ' ', LastName) = '" + player.ToString() + "'), " +
-                             "DATEPART(MONTH, GETDATE()) + " + nextMonth + ", " +
+                             nextMonth + ", " +
                      active + ")";
                 // the update command, to be executed if the row already exists
                 updateCommand.CommandText =
@@ -489,7 +489,7 @@ namespace TechProFantasySoccer {
                      "FROM  LineupHistory " +
                      "JOIN  Players ON LineupHistory.PlayerId = Players.PlayerId " +
                      "WHERE concat(Players.FirstName, ' ', Players.LastName) " + " = '" + player.ToString() + "'" +
-                           "AND Month = DATEPART(MONTH, GETDATE()) + " + nextMonth;
+                           "AND Month = " + nextMonth;
 
 
                 resultTable.Load(selectCommand.ExecuteReader());
