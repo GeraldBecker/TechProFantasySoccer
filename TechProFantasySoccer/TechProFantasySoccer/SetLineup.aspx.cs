@@ -185,10 +185,22 @@ namespace TechProFantasySoccer {
             PopulateListItemArray(benchGoaliesList, SessionHandler.BenchGoalies);
 
             // Set the bench
-            List<string> bench = new List<string>(SessionHandler.BenchDefenders);
-            bench.AddRange(SessionHandler.BenchMidfielders);
-            bench.AddRange(SessionHandler.BenchStrikers);
-            bench.AddRange(SessionHandler.BenchGoalies);
+            List<string> bench = new List<string>();
+            foreach (string name in SessionHandler.BenchDefenders) {
+                bench.Add(name + " - Defender");
+            }
+            foreach (string name in SessionHandler.BenchMidfielders) {
+                bench.Add(name + " - Midfielder");
+            }
+            foreach (string name in SessionHandler.BenchStrikers) {
+                bench.Add(name + " - Striker");
+            }
+            foreach (string name in SessionHandler.BenchGoalies) {
+                bench.Add(name + " - Goalie");
+            }
+            //bench.AddRange(SessionHandler.BenchMidfielders);
+            //bench.AddRange(SessionHandler.BenchStrikers);
+            //bench.AddRange(SessionHandler.BenchGoalies);
             tbBench.DataSource = bench;
             tbBench.DataBind();
             int j = 0;
@@ -235,6 +247,64 @@ namespace TechProFantasySoccer {
 
                 GoaliePanel.Controls.Add(ddlGoalie);
 
+            }
+        }
+        private void UpdateDropDownLists() {
+            //Create arrays of ListItems to be added to the dropdown lists
+            ListItem[] benchDefenderList = new ListItem[SessionHandler.BenchDefenders.Count];
+            PopulateListItemArray(benchDefenderList, SessionHandler.BenchDefenders);
+
+            ListItem[] benchMidfielderList = new ListItem[SessionHandler.BenchMidfielders.Count];
+            PopulateListItemArray(benchMidfielderList, SessionHandler.BenchMidfielders);
+
+            ListItem[] benchStrikersList = new ListItem[SessionHandler.BenchStrikers.Count];
+            PopulateListItemArray(benchStrikersList, SessionHandler.BenchStrikers);
+
+            ListItem[] benchGoaliesList = new ListItem[SessionHandler.BenchGoalies.Count];
+            PopulateListItemArray(benchGoaliesList, SessionHandler.BenchGoalies);
+
+            // Update the bench
+            List<string> bench = new List<string>();
+            foreach (string name in SessionHandler.BenchDefenders) {
+                bench.Add(name + " - Defender");
+            }
+            foreach (string name in SessionHandler.BenchMidfielders) {
+                bench.Add(name + " - Midfielder");
+            }
+            foreach (string name in SessionHandler.BenchStrikers) {
+                bench.Add(name + " - Striker");
+            }
+            foreach (string name in SessionHandler.BenchGoalies) {
+                bench.Add(name + " - Goalie");
+            }
+            tbBench.DataSource = bench;
+            tbBench.DataBind();
+            int j = 0;
+            foreach (ListItem item in tbBench.Items) {
+                if (j % 2 == 0)
+                    item.Attributes["class"] = "player";
+                else
+                    item.Attributes["class"] = "player2";
+                j++;
+            }
+
+
+
+            // Repopulate all the dropdown lists
+            for (int i = 0; i < 4; i++) {
+                ResetDropDownList(benchDefenderList, i, SessionHandler.ActiveDefenders, defenderddls);
+            }
+
+            for (int i = 0; i < 4; i++) {
+                ResetDropDownList(benchMidfielderList, i, SessionHandler.ActiveMidfielders, midfielderddls);
+            }
+
+            for (int i = 0; i < 2; i++) {
+                ResetDropDownList(benchStrikersList, i, SessionHandler.ActiveStrikers, strikerddls);
+            }
+
+            for (int i = 0; i < 1; i++) {
+                ResetDropDownList(benchGoaliesList, i, SessionHandler.ActiveGoalies, goalieddls);
             }
         }
 
@@ -295,7 +365,7 @@ namespace TechProFantasySoccer {
         }
 
         /// <summary>
-        /// Update both the bench and active players lists.
+        /// Update both the bench and active players lists to be stored in sessions.
         /// </summary>
         /// <param name="index">The index of the dropdownlist to use to modify the lists.</param>
         /// <param name="benchList">The list of bench players to be updated.</param>
@@ -335,55 +405,7 @@ namespace TechProFantasySoccer {
         /// <summary>
         /// Repopulate the dropdownlists based on the new bench lists and active lists, and display the new bench
         /// </summary>
-        private void UpdateDropDownLists() {
-            //Create arrays of ListItems to be added to the dropdown lists
-            ListItem[] benchDefenderList = new ListItem[SessionHandler.BenchDefenders.Count];
-            PopulateListItemArray(benchDefenderList, SessionHandler.BenchDefenders);
 
-            ListItem[] benchMidfielderList = new ListItem[SessionHandler.BenchMidfielders.Count];
-            PopulateListItemArray(benchMidfielderList, SessionHandler.BenchMidfielders);
-
-            ListItem[] benchStrikersList = new ListItem[SessionHandler.BenchStrikers.Count];
-            PopulateListItemArray(benchStrikersList, SessionHandler.BenchStrikers);
-
-            ListItem[] benchGoaliesList = new ListItem[SessionHandler.BenchGoalies.Count];
-            PopulateListItemArray(benchGoaliesList, SessionHandler.BenchGoalies);
-
-            // Update the bench
-            List<string> bench = new List<string>(SessionHandler.BenchDefenders);
-            bench.AddRange(SessionHandler.BenchMidfielders);
-            bench.AddRange(SessionHandler.BenchStrikers);
-            bench.AddRange(SessionHandler.BenchGoalies);
-            tbBench.DataSource = bench;
-            tbBench.DataBind();
-            int j = 0;
-            foreach (ListItem item in tbBench.Items) {
-                if (j % 2 == 0)
-                    item.Attributes["class"] = "player";
-                else
-                    item.Attributes["class"] = "player2";
-                j++;
-            }
-
-
-            
-            // Repopulate all the dropdown lists
-            for (int i = 0; i < 4; i++) {
-                ResetDropDownList(benchDefenderList, i, SessionHandler.ActiveDefenders, defenderddls);
-            }
-
-            for (int i = 0; i < 4; i++) {
-                ResetDropDownList(benchMidfielderList, i, SessionHandler.ActiveMidfielders, midfielderddls);
-            }
-
-            for (int i = 0; i < 2; i++) {
-                ResetDropDownList(benchStrikersList, i, SessionHandler.ActiveStrikers, strikerddls);
-            }
-
-            for (int i = 0; i < 1; i++) {
-                ResetDropDownList(benchGoaliesList, i, SessionHandler.ActiveGoalies, goalieddls);
-            }
-        }
 
         /// <summary>
         /// Repopulate a dropdown list.
@@ -428,13 +450,17 @@ namespace TechProFantasySoccer {
         /// <param name="isActive">True to set the player to active, false for inactive.</param>
         private  void UpdatePlayers(Object player, bool isActive) {
             int active = (isActive) ? 1 : 0;
-
+            int nextMonth = 0;
             SqlConnection con = new SqlConnection(strConnString1);
             SqlCommand selectCommand = new SqlCommand();
             SqlCommand insertCommand = new SqlCommand();
             SqlCommand updateCommand = new SqlCommand();
             DataTable resultTable = new DataTable();
-
+            if (DateTime.Now.Month == 12) {
+                nextMonth = 1;
+            } else {
+                nextMonth = DateTime.Now.Month + 1;
+            }
             try {
                 con.Open();
                 selectCommand.Connection = con;
@@ -447,24 +473,23 @@ namespace TechProFantasySoccer {
                     "WHERE userId = '" + User.Identity.GetUserId() + "' AND " +
                           "PlayerId = (SELECT PlayerId FROM Players " +
                                       "WHERE concat(FirstName, ' ', LastName) = '" + player.ToString() + "' AND " +
-                                      "Month = DATEPART(MONTH, GETDATE()) + 1)";
+                                      "Month = DATEPART(MONTH, GETDATE()) + " + nextMonth + ")";
                 // The insert command, to be executed if the row does not exist in the database.
                 insertCommand.CommandText =
                      "INSERT INTO LineupHistory (UserId, PlayerId, Month, Active) " +
                      "VALUES ('" + User.Identity.GetUserId() + "', " +
-                         "(SELECT PlayerId FROM Players " +
-                         "WHERE concat(FirstName, ' ', LastName) = '" + player.ToString() + "'), " +
-                     "DATEPART(MONTH, GETDATE()) + 1, " +
+                            "(SELECT PlayerId FROM Players " +
+                             "WHERE concat(FirstName, ' ', LastName) = '" + player.ToString() + "'), " +
+                             "DATEPART(MONTH, GETDATE()) + " + nextMonth + ", " +
                      active + ")";
                 // the update command, to be executed if the row already exists
                 updateCommand.CommandText =
                      "UPDATE LineupHistory " +
-                     "SET LineupHistory.Active = " + active + " " +
-                     "FROM LineupHistory " +
-                     "JOIN Players ON LineupHistory.PlayerId = Players.PlayerId " +
-                     "WHERE concat(Players.FirstName, ' ', Players.LastName) " +
-                         " = '" + player.ToString() + "'" +
-                         "AND Month = DATEPART(MONTH, GETDATE()) + 1";
+                     "SET   LineupHistory.Active = " + active + " " +
+                     "FROM  LineupHistory " +
+                     "JOIN  Players ON LineupHistory.PlayerId = Players.PlayerId " +
+                     "WHERE concat(Players.FirstName, ' ', Players.LastName) " + " = '" + player.ToString() + "'" +
+                           "AND Month = DATEPART(MONTH, GETDATE()) + " + nextMonth;
 
 
                 resultTable.Load(selectCommand.ExecuteReader());
